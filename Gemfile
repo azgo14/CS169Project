@@ -30,6 +30,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+# JS Runtime (Why do we need this?)
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
