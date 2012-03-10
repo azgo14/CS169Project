@@ -1,20 +1,23 @@
 .viddetail
-  %h1 Lance Toma
+  %h1=@video.name
   -#%ul.info
     %li 
-  %iframe{:class => 'vid', :src => 'http://www.youtube.com/embed/JZ5PEEeKGOo'}
+  %iframe{:class => 'vid', :src => "http://www.youtube.com/embed/#{@video.youtube_id}"}
   %h2 Why did you want to tell this story?
-  %p Lance Toma, Executive Director of Asian & Pacific Islander Wellness Center, was interviewed by Barbara Rodgers for Comcast Newsmakers. Lance talks about May 19, National Asian & Pacific Islander HIV/AIDS Awareness Day, how HIV-related stigma contributes to rising HIV rates in the A&PI community, and some of the commemoration events happening in the San Francisco Bay Area.
+  %p=@video.why
   %h2 How did telling your story change you?
-  %p Lance Toma, Executive Director of Asian & Pacific Islander Wellness Center, was interviewed by Barbara Rodgers for Comcast Newsmakers. Lance talks about May 19, National Asian & Pacific Islander HIV/AIDS Awareness Day, how HIV-related stigma contributes to rising HIV rates in the A&PI community, and some of the commemoration events happening in the San Francisco Bay Area.
+  %p=@video.how
   %h2 How do you hope hearing your story will change the community?
-  %p Lance Toma, Executive Director of Asian & Pacific Islander Wellness Center, was interviewed by Barbara Rodgers for Comcast Newsmakers. Lance talks about May 19, National Asian & Pacific Islander HIV/AIDS Awareness Day, how HIV-related stigma contributes to rising HIV rates in the A&PI community, and some of the commemoration events happening in the San Francisco Bay Area.
+  %p=@video.hope
   %h2 Q & A
-  %p Lance Toma, Executive Director of Asian & Pacific Islander Wellness Center, was interviewed by Barbara Rodgers for Comcast Newsmakers. Lance talks about May 19, National Asian & Pacific Islander HIV/AIDS Awareness Day, how HIV-related stigma contributes to rising HIV rates in the A&PI community, and some of the commemoration events happening in the San Francisco Bay Area.
+  %p=@video.qa
   %h2 Additional Media
 
 
   %h2 Comments
+  -# @video.comments.each do |comment|
+    .comment
+      %p=comment.body
   .comments
     .comment
       %p Awesome!

@@ -6,6 +6,7 @@ $back-color: #a6c197;
 $content-back-color: #dbece3;
 $front-content-back-color: #eff7f3;
 $second-color: #a0976d;
+$second-color-dark: #6c664b;
 
 $page-width: 1000px;
 $page-margin: 5px;
@@ -34,7 +35,7 @@ a:hover {
 }
 
 .vidlistsubmit {
-  background: $second-color;
+  background: $second-color-dark;
   color: #fff;
   margin: 0 -10px 25px -10px;
   padding: 1px 10px 1px 10px;
