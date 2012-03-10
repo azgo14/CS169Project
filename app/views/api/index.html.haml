@@ -1,0 +1,18 @@
+-# Hardcoded examples for now, replace with loop later
+.vidlistsubmit
+  %h1 Submit Your Story!
+  %p 
+    %a{:href => '#'} Upload 
+    your video and share it with the world!
+.vidlistitem
+  -# Links hardcoded as well...
+  %h1=link_to 'Lance Toma','/api/show'
+  -#%iframe{:class => 'listvid', :src => 'http://www.youtube.com/embed/JZ5PEEeKGOo'}
+  =link_to image_tag('http://img.youtube.com/vi/JZ5PEEeKGOo/0.jpg', :class => 'listimg'), '/api/show'
+  %p Lance Toma, Executive Director of Asian & Pacific Islander Wellness Center, was interviewed by Barbara Rodgers for Comcast Newsmakers. Lance talks about May 19, National Asian & Pacific Islander HIV/AIDS Awareness Day, how HIV-related stigma contributes to rising HIV rates in the A&PI community, and some of the commemoration events happening in the San Francisco Bay Area.
+.vidlistitem
+  %h1 James Kyson-Lee
+  -#%iframe{:class => 'listvid', :src => 'http://www.youtube.com/embed/zN7u2VvehyQ'}
+  =link_to image_tag('http://img.youtube.com/vi/zN7u2VvehyQ/0.jpg', :class => 'listimg'), '/api/show'
+  %p James Kyson-Lee, one of the stars from NBC's "Heroes" sat down with the Banyan Tree Project for World AIDS Day. James wants the Asian & Pacific Islander community, especially A&PI youth, to learn the facts about HIV. We are all at risk, but we can protect ourselves with knowledge and action. Talk about HIV—for you, for me, for everyone!  
+

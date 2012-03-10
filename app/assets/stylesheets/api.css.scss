@@ -1,0 +1,130 @@
+// Place all the styles related to the api controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$back-color: #a6c197;
+$content-back-color: #dbece3;
+$front-content-back-color: #eff7f3;
+$second-color: #a0976d;
+
+$page-width: 1000px;
+$page-margin: 5px;
+
+body {
+  background: $back-color;
+  margin: 0;
+  font-family: 'Open Sans';
+}
+
+a {
+  color: #48ab11;
+  text-decoration: underline;
+}
+a:hover {
+  color: #999966;
+  text-decoration: underline;
+}
+
+#content {
+  background: $content-back-color;
+  margin: 0 auto 0 auto;
+  //width: 80%;
+  width: 1000px;
+  padding: 10px;
+}
+
+.vidlistsubmit {
+  background: $second-color;
+  color: #fff;
+  margin: 0 -10px 25px -10px;
+  padding: 1px 10px 1px 10px;
+  h1 {
+    font-family: 'Radley', cursive;
+    color: #fff;
+    margin: 0;
+    border-bottom: 1px solid $content-back-color;
+  }
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: $back-color;
+    text-decoration: underline;
+  }
+}
+
+.vidlistitem {
+  $vid-height: 250px;
+  //$vid-aspect: 1.777777778;
+  $vid-aspect: 1.333333333;
+  $vid-width: $vid-aspect * $vid-height;
+  background: $front-content-back-color;
+  padding: 20px;
+  margin: 5px 5px 25px 5px;
+  clear: both;
+  min-height: $vid-height + 10px;  
+  .listvid, .listimg {
+    float: left;
+    width: $vid-width;
+    height: $vid-height;
+    margin: 5px 30px 5px 5px;
+  }
+  .listimg:hover {
+    border: 4px solid $back-color;
+    margin: 1px 26px 1px 1px;
+  }
+  h1 {
+    float: right;
+    border-bottom: 2px solid $second-color;
+    font-family: 'Radley', cursive;
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+  }
+  h1:hover {
+    border-bottom: 2px solid $back-color;
+  }
+  p {
+    clear: right;
+    font-size: 16px;
+    color: #424f48;
+  }
+}
+
+
+.viddetail {
+  // Backwards here because we care more about width in this one
+  $vid-width: $page-width;
+  $vid-aspect: 1.777777778;
+  $vid-height: 1/$vid-aspect * $vid-width;
+
+  h1 {
+    font-size: 40px;
+    border-bottom: 2px solid $second-color;
+    font-family: 'Radley', cursive;
+  }
+  h2 {
+    border-bottom: 1px solid $second-color;
+    font-family: 'Radley', cursive;
+  }
+  p {
+    color: #0d0d0d;
+    background-color: $front-content-back-color;
+    border-left: 5px solid $back-color;
+    padding: 5px;
+  }
+  .vid {
+    width: $vid-width;
+    height: $vid-height;
+  }
+}
+
+.comment {
+  background-color: $front-content-back-color;
+}
+
+.clear {
+  clear: both;
+}
