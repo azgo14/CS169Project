@@ -34,6 +34,9 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 
+# Haml for easy views
+gem 'haml'
+
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
