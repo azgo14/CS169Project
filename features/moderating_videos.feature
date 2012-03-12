@@ -1,6 +1,7 @@
-Features: As an administrator of the Banyan Tree Project
-So that I can keep track of video submissions
-I want to see videos sorted by their status (pending, accepted, or rejected) and submission date
+Feature: Sorted video submissions by status on the admin page
+  As an administrator of the Banyan Tree Project
+  So that I can keep track of video submissions
+  I want to see videos sorted by their status (pending, accepted, or rejected) and submission date
 
 Background: videos submitted
 
