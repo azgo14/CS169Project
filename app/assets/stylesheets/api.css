@@ -1,0 +1,85 @@
+body {
+  background: #a6c197;
+  margin: 0;
+  font-family: 'Open Sans'; }
+
+a {
+  color: #48ab11;
+  text-decoration: underline; }
+
+a:hover {
+  color: #999966;
+  text-decoration: underline; }
+
+#content {
+  background: #dbece3;
+  margin: 0 auto 0 auto;
+  width: 1000px;
+  padding: 10px; }
+
+.vidlistsubmit {
+  background: #6c664b;
+  color: #fff;
+  margin: 0 -10px 25px -10px;
+  padding: 1px 10px 1px 10px; }
+  .vidlistsubmit h1 {
+    font-family: 'Radley', cursive;
+    color: #fff;
+    margin: 0;
+    border-bottom: 1px solid #dbece3; }
+  .vidlistsubmit a {
+    color: #fff;
+    text-decoration: underline; }
+  .vidlistsubmit a:hover {
+    color: #a6c197;
+    text-decoration: underline; }
+
+.vidlistitem {
+  background: #eff7f3;
+  padding: 20px;
+  margin: 5px 5px 25px 5px;
+  clear: both;
+  min-height: 260px; }
+  .vidlistitem .listvid, .vidlistitem .listimg {
+    float: left;
+    width: 333.333px;
+    height: 250px;
+    margin: 5px 30px 5px 5px; }
+  .vidlistitem .listimg:hover {
+    border: 4px solid #a6c197;
+    margin: 1px 26px 1px 1px; }
+  .vidlistitem h1 {
+    float: right;
+    border-bottom: 2px solid #a0976d;
+    font-family: 'Radley', cursive; }
+    .vidlistitem h1 a {
+      text-decoration: none;
+      color: #000; }
+  .vidlistitem h1:hover {
+    border-bottom: 2px solid #a6c197; }
+  .vidlistitem p {
+    clear: right;
+    font-size: 16px;
+    color: #424f48; }
+
+.viddetail h1 {
+  font-size: 40px;
+  border-bottom: 2px solid #a0976d;
+  font-family: 'Radley', cursive; }
+.viddetail h2 {
+  border-bottom: 1px solid #a0976d;
+  font-family: 'Radley', cursive; }
+.viddetail p {
+  color: #0d0d0d;
+  background-color: #eff7f3;
+  border-left: 5px solid #a6c197;
+  padding: 5px; }
+.viddetail .vid {
+  width: 1000px;
+  height: 562.5px; }
+
+.comment {
+  background-color: #eff7f3; }
+
+.clear {
+  clear: both; }
