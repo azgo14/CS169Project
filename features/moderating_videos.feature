@@ -22,3 +22,24 @@ Scenario: videos sorted by status (pending, accepted, rejected), then submission
   And I should see "Harry Potter" before "Mario"
   And I should see "Mario" before "Commander Shephard"
   And I should see "Commander Shephard" before "Captain America"
+
+Scenario: accepting a pending movie
+  When I follow "Garrus Vakarian"
+  Then I should be on the admin detail page
+  When I press "Accepted"
+  Then I should be on the admin/review page
+  Then I should see "Solid Snake" before "Garrus Vakarian"
+  And I should see "Garrus Vakarian" before "Harry Potter"
+  And I should see "Harry Potter" before "Mario"
+  And I should see "Mario" before "Commander Shephard"
+  And I should see "Commander Shephard" before "Captain America"
+
+Scenario: rejecting a pending movie
+  When I follow "Garrus Vakarian"
+  Then I should be on the admin detail page
+  When I press "Rejected"
+  Then I should be on the admin/review page
+  Then I should see "Solid Snake" before "Harry Potter"
+  And I should see "Harry Potter" before "Mario"
+  And I should see "Commander Shephard" before "Garrus Vakarian"
+  And I should see "Garrus Vakarian" before "Captian America"
