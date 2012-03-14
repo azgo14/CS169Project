@@ -2,7 +2,7 @@
 .vidlistsubmit
   %h1 Submit Your Story!
   %p 
-    %a{:href => '#'} Upload 
+    = link_to 'Upload', '/api/submission'
     your video and share it with the world!
 - @videos.each do |video|
   .vidlistitem
