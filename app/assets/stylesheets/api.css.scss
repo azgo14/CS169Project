@@ -95,7 +95,7 @@ a:hover {
 }
 
 
-.viddetail {
+#viddetail {
   // Backwards here because we care more about width in this one
   $vid-width: $page-width;
   $vid-aspect: 1.777777778;
@@ -122,7 +122,7 @@ a:hover {
   }
 }
 
-.submission {
+#submission {
   h1 {
     font-size: 40px;
     border-bottom: 2px solid $second-color;

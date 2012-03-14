@@ -16,6 +16,8 @@ CS169Project::Application.routes.draw do
     get 'submission', :on => :collection
   end
 
+  resources :api_admin
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
