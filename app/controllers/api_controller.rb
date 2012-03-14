@@ -32,4 +32,9 @@ class ApiController < ApplicationController
     @video.hope = @video.how = @video.qa = @video.why
     render :layout => 'api'
   end
+
+  def submission
+    render :layout => 'api'
+  end
+
 end

@@ -122,6 +122,36 @@ a:hover {
   }
 }
 
+.submission {
+  h1 {
+    font-size: 40px;
+    border-bottom: 2px solid $second-color;
+    font-family: 'Radley', cursive;
+  }
+  .submission-form {
+    background: $front-content-back-color;
+    padding: 20px;
+    .additional {
+      input {
+        display: block;
+      }
+    }
+    label {
+      display: block;
+      font-size: 20px;
+      margin: 20px 0 5px 0;
+      border-bottom: 2px solid $back-color;
+      &.smaller {
+        display: inline;
+        margin: 0;
+        border: 0;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+
 .comment {
   background-color: $front-content-back-color;
 }
