@@ -1,7 +1,7 @@
 Feature: Leaving comments on a video
-  As a member of the Banyan Tree Project
-  So that I can give my opinion on other members' personal stories
-  I want to be able to leave comments on video submissions
+  As an anonymous community member
+  So that I may interact with stories I like
+  I want to be able to rate stories and leave comments for other storytellers
 
 Background: videos submitted
 

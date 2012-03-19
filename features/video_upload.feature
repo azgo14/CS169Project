@@ -1,10 +1,15 @@
-Feature: video submission form
+Feature: Upload a Video
+  As an anonymous community member
+  So that I can view and display my digital story on the BTP site
+  I want to upload a file for BTP admin review and enter information about my movie
 
-As an administrator of the Banyan Tree Project
-So that members can share their personal stories and tell us about themselves
-I want a video submission form that lets members upload their videos and provide some personal information
+Scenario: uploading a video
+  Given I am on the home page
+  I should see "Upload your video and share it with the world!"
+  When I follow "Upload"
+  Then I should be on the video submission page
 
-Scenario: upload a video
+Scenario: filling in the video submission form
   Given I am on the video submission page
   When I fill in the following:
     | Name/Pseudonym                                                | Foo Baz      |

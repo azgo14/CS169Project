@@ -1,0 +1,66 @@
+Feature: Upload a Video
+  As an anonymous community member (do we want to force membership to upload a movie? I’m thinking yes…what do you think?)
+  So that I can view and display my digital story on the BTP site
+  I want to upload a file for BTP admin review and enter information about my movie
+
+Feature: View Sorted Videos
+  As an anonymous community member
+  So that I may see other digital stories
+  I want to be able to view all digital stories sorted by date/rating (should we allow a rating or
+  should it just be a simple favorite/like?)
+
+Feature: View Details About a Story
+  As an anonymous community member
+  So that I can get more information on a particular story
+  I want to be able to view details and other information about a story
+
+Feature: Searching for Videos
+  As an anonymous community member
+  So that I may quickly find a digital story I like
+  I want to be able to search by title, ethnicity, age, location
+
+Feature: Rating Stories and Leaving Comments
+  As an anonymous community member
+  So that I may interact with stories I like
+  I want to be able to rate stories and leave comments for other storytellers
+
+Feature: Login
+  As a registered community member
+  So that I may see the status of my digital story
+  I want to be able to login and see status and other information about my movie
+
+Feature: Member Messaging
+  As a registered community member
+  So that I may communicate with BTP admin staff
+  I want to be able to send messages/requests, etc
+
+Feature: Activity History
+  As a registered community member
+  So that I may view my site activity
+  I want to be able to see all comments I have posted, messages sent, and movies marked as
+  favorites
+
+Feature: Sort Pending Movies
+  As a BTP admin
+  So that I may quickly find newly uploaded videos
+  I want to see the pending videos sorted by date uploaded
+
+Feature: Update Video Status
+  As a BTP admin
+  So that I can approve digital stories for display on the BTP site
+  I want to be able to view individual digital stories and approve/reject/mark them pending
+
+Feature: Admin Messaging
+  As a BTP admin
+  So that I may communicate with submitters
+  I want to be able to send messages to community members
+
+Feature: Comment Notification
+  As a BTP admin
+  So that I may monitor comments about stories
+  I want to be able to view all recent comments or be notified when a new comment is posted
+
+Feature: Moderating  
+  As a BTP admin
+  So that I may moderate membership
+  I want to be able to block users from posting, commenting
