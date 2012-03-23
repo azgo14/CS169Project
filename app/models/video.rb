@@ -9,4 +9,7 @@ class Video < ActiveRecord::Base
   def make_private
   end
 
+  def sort(status)
+  end
+
 end

@@ -6,11 +6,11 @@ Feature: Sort Pending Movies
 Background: videos submitted
 
   Given the following videos are pending:
-  | Name               | Email                 | Date Submitted |
-  | Solid Snake        | snake@snake.com       | 12-June-2008   |
-  | Commander Shephard | shephard@normandy.com | 06-March-2012  |
-  | Mario              | mario@plumber.com     | 09-Sept-1985   |
-  | Harry Potter       | potter@hogwarts.com   | 21-July-2007   |
+  | Name               | Email                 | Date Submitted | Status  |
+  | Solid Snake        | snake@snake.com       | 12-June-2008   | pending |
+  | Commander Shephard | shephard@normandy.com | 06-March-2012  | pending |
+  | Mario              | mario@plumber.com     | 09-Sept-1985   | pending |
+  | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | pending |
 
   And I am signed in as an administrator
   And I am on the admin/review page
