@@ -10,9 +10,7 @@ class Video < ActiveRecord::Base
   end
 
   def make_private
-  end
-
-  def 
+  end 
 
   def self.sort(status)
     Video.find(:all, :order => :submission_date, :conditions => {:status => status})
