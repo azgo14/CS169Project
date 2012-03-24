@@ -5,7 +5,7 @@ Feature: Upload a Video
 
 Scenario: uploading a video
   Given I am on the home page
-  I should see "Upload your video and share it with the world!"
+  Then I should see "Upload your video and share it with the world!"
   When I follow "Upload"
   Then I should be on the video submission page
 
