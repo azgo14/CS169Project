@@ -15,6 +15,7 @@ class CreateVideos < ActiveRecord::Migration
       t.text :how #How did telling your story change you?
       t.text :hope #How do you hope hearing your story will change the community?
       t.text :qa
+      t.string :status #pending, accepted, or rejected
       t.timestamps
     end
   end
