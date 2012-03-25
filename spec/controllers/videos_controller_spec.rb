@@ -26,14 +26,34 @@ describe VideosController do
 
   describe '#create' do
 
-    describe 'video uploading' do
-      it 'should store information for a new video' do
-        post :index, :name => 'batman', :email => 'dark@night.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
+    describe 'video creation' do
+
+      before do
+        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
+      end
+
+      it 'should redirect to the index page upon completion' do
         response.should redirect_to(videos_path)
+      end
+
+      it 'should add a new pending video' do
         videos = Video.find_all
         videos.size.should == 1
-        videos[0][:name].should == 'batman'
+        videos[0].status.should == 'pending'
       end
+
+      it 'should store information about the video' do
+        video = Video.find_all[0]
+        video.name.should == 'batman'
+        video.email.should == 'dark@knight.com'
+        video.age.should == 25
+        video.language.should == 'chinese'
+        video.location.should == 'batcave'
+        video.why.should == 'because'
+        video.how.should == 'somehow'
+        video.hope.should == 'hopeful'
+      end
+
     end
 
   end
