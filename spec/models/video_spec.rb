@@ -2,16 +2,6 @@ require 'spec_helper'
 
 describe Video do
 
-  describe '#make_public' do
-    it 'should make the video publicly viewable on youtube' do
-    end
-  end
-
-  describe '#make_private' do
-    it 'should make the video not publicly viewable on youtube' do
-    end
-  end
-
   describe '#sort' do
     it 'should sort pending videos by submission date when the argument is :pending' do
       Video.should_receive(:find).with(:all, :order => :submission_date, :conditions => {:status => :pending})
