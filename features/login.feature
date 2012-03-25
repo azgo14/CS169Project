@@ -6,18 +6,19 @@ Background: not logged in
  
   When I am not logged in
   And the following user exists:
-    |  Username  |  Password  |
-    |  apiUser   |  abbtcs169 |
+    |  Username  |  Password   |  admin? |
+    |  apiUser   |  abbtcs169  |  false  |
+    |  adminAPI  |  cs169Admin |  true   |
 
   And the following user does not exist:
-    |  Username  |  Password  |
-    |  fail_test |  fail_test |
+    |  Username  |  Password  |  admin?  |
+    |  fail_test |  fail_test |  false   |
 
   And the following videos have been submitted:
     | Name               | Email                 | Date Submitted | Status   |
     | Mario              | mario@plumber.com     | 09-Sept-1985   | Accepted |
 
-Scenario: login successfully
+Scenario: login successfully as a user
   Given I am on the home page
   When I follow "Login"
   And I am on the login page
@@ -28,6 +29,20 @@ Scenario: login successfully
   And I press "Login"
   Then I should be on the home page
   And I should see "Login Successful!"
+  And I should not see "Admin Video Review"
+
+Scenario: login successfully as an administrator
+Given I am on the home page
+  When I follow "Login"
+  And I am on the login page
+  When I fill in the following:
+    | Username   |  adminAPI   |
+    | Password   |  cs169Admin |
+ 
+  And I press "Login"
+  Then I should be on the home page
+  And I should see "Login Successful!"
+  And I should see "Admin Video Review"
 
 Scenario: login unsuccessfully
   Given I am on the login page
