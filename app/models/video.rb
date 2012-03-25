@@ -3,14 +3,11 @@ class Video < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
-  def upload_to_youtube
-  end
-
   def make_public
   end
 
   def make_private
-  end 
+  end
 
   def self.sort(status)
     Video.find(:all, :order => :submission_date, :conditions => {:status => status})

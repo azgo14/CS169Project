@@ -18,6 +18,12 @@ CS169Project::Application.routes.draw do
 
   resources :api_admin
 
+  resources :videos
+
+  namespace :admin do
+    resources :videos
+  end
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
