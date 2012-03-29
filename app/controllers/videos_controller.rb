@@ -16,6 +16,7 @@ class VideosController < ApplicationController
   end
 
   def new
+    render :layout => 'videos'
   end
 
   def create
