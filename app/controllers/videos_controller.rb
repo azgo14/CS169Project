@@ -21,7 +21,8 @@ class VideosController < ApplicationController
 
   def create
     response = yt_client.video_upload(File.open(params[:video].path), :title => 'test',
-                                      :description => 'desc', :comment => 'denied')
+                                      :description => 'desc', :comment => 'denied',
+                                      :private => '')
     video = Video.new(:youtube_id => response.video_id[response.video_id.rindex(':')+1..-1])
     video.save!
     flash[:notice] = 'Video uploaded!'
