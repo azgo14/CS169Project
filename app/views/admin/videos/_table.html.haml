@@ -4,4 +4,4 @@
     %tr
       %td= link_to video.name, :action => 'show', :id => video.id
       %td= video.email
-      %td= video.submission_date.strftime("%B %d, %Y")
+      %td= video.created_at.strftime("%B %d, %Y")
