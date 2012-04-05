@@ -4,10 +4,11 @@ describe Admin::VideosController do
   describe '#index' do
     it 'should show me a correctly partitioned list of videos' do
       videos = [mock('Video'), mock('Video')]
-      Movie.stub(:pending_videos).and_return(videos)
-      Movie.stub(:accepted_videos).and_return(videos)
-      Movie.stub(:rejected_videos).and_return(videos)
+      Video.stub(:pending_videos).and_return(videos)
+      Video.stub(:accepted_videos).and_return(videos)
+      Video.stub(:rejected_videos).and_return(videos)
       get :index
+      #assigns(:video_lists).should == [videos, videos, videos]
       assigns(:pending_videos).should == videos
       assigns(:accepted_videos).should == videos
       assigns(:rejected_videos).should == videos
@@ -16,19 +17,18 @@ describe Admin::VideosController do
 
   describe '#show' do
     it 'should show the admin details page for the given video' do
-      get :show, :id => '0NwxHphsCxI'
+      video = mock('Video')
+      Video.should_receive(:find_by_id).with('1').and_return(video)
+      get :show, :id => 1
+      assigns(:video).should == video
       response.should render_template('show')
-      response.should have_selector('iframe', :src => 'http://www.youtube.com/embed/0NwxHphsCxI')
-      response.should have_button('Accept')
-      response.should have_button('Reject')
-      response.should have_button('Pend')
     end
   end
 
   describe 'Updating Video Status' do
     before :each do
       @video = mock('Video')
-      Video.should_receive(:find).with(1).and_return(@video)
+      Video.should_receive(:find_by_id).with('1').and_return(@video)
     end
 
     describe 'accepting a video' do
@@ -59,7 +59,7 @@ describe Admin::VideosController do
         @video.stub(:status).and_return(:rejected)
         post :reject, :id => 1
         @video.status.should == :rejected
-        response.should_redirect_to :action => 'index'
+        response.should redirect_to :action => 'index'
       end
 
       it 'should allow me to reject a pending video' do
@@ -81,7 +81,7 @@ describe Admin::VideosController do
         @video.stub(:status).and_return(:pending)
         post :pend, :id => 1
         @video.status.should == :pending
-        response.should_redirect_to :action => 'index'
+        response.should redirect_to :action => 'index'
       end
 
       it 'should allow me to pend an accepted video' do
