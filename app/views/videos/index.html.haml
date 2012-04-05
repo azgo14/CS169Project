@@ -1,0 +1,12 @@
+-# Hardcoded examples for now, replace with loop later
+.vidlistsubmit
+  %h1 Submit Your Story!
+  %p 
+    = link_to 'Upload', new_video_path()
+    your video and share it with the world!
+- @videos.each do |video|
+  .vidlistitem
+    %h1=link_to video.name, video_path(video)
+    =link_to image_tag("http://img.youtube.com/vi/#{video.youtube_id}/0.jpg", :class => 'listimg'), '/api/show'
+    %p=video.why
+
