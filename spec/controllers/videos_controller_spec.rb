@@ -42,8 +42,8 @@ describe VideosController do
   describe '#create' do
 
     describe 'submitting a video with complete information' do
-      before do
-        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
+      before(:each) do
+        post :create, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
       end
 
       it 'should redirect to the index page upon completion' do
@@ -72,7 +72,7 @@ describe VideosController do
 
     describe 'submitting a video with insufficient information' do
       before do
-        post :index, :name => 'batman'
+        post :create, :name => 'batman'
       end
 
       it 'should flash a notice and redirect to the submission page' do
