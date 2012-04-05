@@ -35,7 +35,7 @@ describe VideosController do
   describe '#new' do
     it 'should show the new submission page' do
       get :new
-      response.should render_template('submission')
+      response.should render_template('videos/new')
     end
   end
 
