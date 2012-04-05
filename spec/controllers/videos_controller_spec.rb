@@ -40,7 +40,7 @@ describe VideosController do
 
     describe 'submitting a video with complete information' do
       before do
-        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => true
+        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
       end
 
       it 'should redirect to the index page upon completion' do
@@ -73,7 +73,6 @@ describe VideosController do
       end
 
       it 'should flash a notice and redirect to the submission page' do
-        puts response.inspect
         response.should redirect_to(new_video_path)
         flash[:error].should == 'Please fill in all missing fields'
       end

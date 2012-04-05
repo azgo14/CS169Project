@@ -27,7 +27,7 @@ class VideosController < ApplicationController
     video, release = params[:video], params[:release]
     if (name != '' and email != '' and age != '' and ethnicity != nil and
         language != '' and location != '' and why != '' and how != '' and
-        hope != '' and video != nil and release == true)
+        hope != '' and video != nil and release == 'true')
       begin
         response = yt_client.video_upload(File.open(video.path), :title => 'test',
                                           :description => 'desc', :comment => 'denied',
