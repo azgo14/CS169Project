@@ -10,9 +10,14 @@ class VideosController < ApplicationController
 # DELETE /items/1      #=> destroy
 
   def index
+    @videos = Video.all
   end
 
-  def show
+  def show 
+    id = params[:id]
+    vid = Video.find(id)
+    @video = vid
+    
   end
 
   def new
@@ -49,6 +54,6 @@ class VideosController < ApplicationController
       flash[:error] = 'Please fill in all missing fields'
       redirect_to new_video_path
     end
-  end
+ end
 
 end

@@ -1,0 +1,42 @@
+#submission
+  %h1 Submission
+  = form_tag({:action => :create}, :class => 'submission-form') do
+    = label_tag 'name', 'Name/Psuedonym'
+    = text_field_tag 'name'
+    = label_tag 'email', 'Email'
+    = email_field_tag 'email'
+    = label_tag 'age', 'Age'
+    = text_field_tag 'age'
+
+    = label_tag 'ethnicity', 'Ethnicity (choose all that apply)'
+    .ethnicity
+      = label_tag 'ethnicity[chinese]', 'Chinese', :class => 'smaller'
+      = check_box_tag 'ethnicity[chinese]'
+    = label_tag 'language', 'Language'
+    = text_field_tag 'language'
+    = label_tag 'location', 'Location'
+    = text_field_tag 'location'
+    = label_tag 'video', 'Upload Video'
+    = file_field_tag 'video'
+
+    = label_tag 'additional', 'Additional Video/Images'
+    .additional
+      = file_field_tag 'additional[]'
+      %a Add another row
+
+    = label_tag 'why', 'Why did you want to tell this story?'
+    = text_area_tag 'why'
+    = label_tag 'how', 'How did telling your story change you?'
+    = text_area_tag 'how'
+    = label_tag 'hope', 'How do you hope hearing your story will change the community?'
+    = text_area_tag 'hope'
+
+    = label_tag 'release', 'Story Release/Content'
+    .release
+      %p Do you give permission for the Banyan Tree Project to use and promote your digital story?
+      = label_tag 'release_yes', 'Yes', :class => 'smaller'
+      = radio_button_tag 'release', true
+      = label_tag 'release_no', 'No', :class => 'smaller'
+      = radio_button_tag 'release', false
+
+    = submit_tag 'Submit'
