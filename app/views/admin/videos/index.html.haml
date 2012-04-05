@@ -1,0 +1,8 @@
+-# Hardcoded examples for now, replace with loop later
+%h1 Admin/Review
+%h2 Pending
+= render :partial => 'table', :locals => {:videos => @pending_videos}
+%h2 Accepted
+= render :partial => 'table', :locals => {:videos => @accepted_videos}
+%h2 Rejected
+= render :partial => 'table', :locals => {:videos => @rejected_videos}
