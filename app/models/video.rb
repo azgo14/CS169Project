@@ -6,7 +6,7 @@ class Video < ActiveRecord::Base
   has_many :comments
 
   def self.sort(status)
-    Video.find(:all, :order => :submission_date, :conditions => {:status => status})
+    Video.find(:all, :order => 'submission_date DESC', :conditions => {:status => status})
   end
 
   def self.pending_videos
