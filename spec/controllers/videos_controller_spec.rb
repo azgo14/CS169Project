@@ -15,7 +15,7 @@ describe VideosController do
     describe 'showing a valid video' do
       it 'should show the details page for the given video' do
         fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
-        Video.should_receive(:find).with("1234").and_return(fake_video)
+        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         get :show, {:id => '1234'}
         response.should render_template('videos/show')
         #put response.should have_whatever in the view spec

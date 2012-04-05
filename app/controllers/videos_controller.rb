@@ -15,9 +15,11 @@ class VideosController < ApplicationController
 
   def show 
     id = params[:id]
-    vid = Video.find(id)
-    @video = vid
-    
+    @video = Video.find_by_id(id)
+    if not(@video)
+      flash[:error] = 'Invalid video id'
+      redirect_to videos_path
+    end
   end
 
   def new
