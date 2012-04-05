@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(:version => 20120324002857) do
 
   create_table "videos", :force => true do |t|
     t.string   "youtube_id"
-    t.datetime "submission_date"
     t.integer  "user_id"
     t.string   "name"
     t.string   "email"
     t.integer  "age"
+    t.text     "ethnicity"
     t.string   "language"
     t.string   "location"
     t.text     "why"

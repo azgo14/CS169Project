@@ -1,5 +1,7 @@
 class Video < ActiveRecord::Base
 
+  serialize :ethnicity
+
   belongs_to :user
   has_many :comments
 

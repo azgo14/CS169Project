@@ -2,12 +2,11 @@ class CreateVideos < ActiveRecord::Migration
   def up
     create_table :videos do |t|
       t.string :youtube_id
-      t.datetime :submission_date
       t.references :user
       t.string :name
       t.string :email
       t.integer :age
-      #ethnicities?
+      t.text :ethnicity
       t.string :language
       t.string :location
       #additional media?

@@ -40,7 +40,7 @@ describe VideosController do
 
     describe 'submitting a video with complete information' do
       before do
-        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
+        post :index, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => true
       end
 
       it 'should redirect to the index page upon completion' do
@@ -48,13 +48,13 @@ describe VideosController do
       end
 
       it 'should add a new pending video' do
-        videos = Video.find_all
+        videos = Video.find(:all)
         videos.size.should == 1
         videos[0].status.should == 'pending'
       end
 
       it 'should store information about the video' do
-        video = Video.find_all[0]
+        video = Video.find(:all)[0]
         video.name.should == 'batman'
         video.email.should == 'dark@knight.com'
         video.age.should == 25
@@ -73,12 +73,13 @@ describe VideosController do
       end
 
       it 'should flash a notice and redirect to the submission page' do
-        flash[:error].should == 'Please fill in all forms below'
-        response.should redirect_to(new_videos_path)
+        puts response.inspect
+        response.should redirect_to(new_video_path)
+        flash[:error].should == 'Please fill in all missing fields'
       end
 
       it 'should not add a new video' do
-        Video.find_all.size.should == 0
+        Video.find(:all).size.should == 0
       end
     end
 
