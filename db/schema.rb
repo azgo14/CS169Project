@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324002857) do
+ActiveRecord::Schema.define(:version => 20120405032646) do
 
   create_table "videos", :force => true do |t|
     t.string   "youtube_id"
