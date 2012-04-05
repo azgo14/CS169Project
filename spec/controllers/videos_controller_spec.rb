@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe VideosController do
+ # render_views
 
   describe '#index' do
     it 'should show the index page' do
@@ -13,9 +14,11 @@ describe VideosController do
 
     describe 'showing a valid video' do
       it 'should show the details page for the given video' do
-        get :show, :id => '0NwxHphsCxI'
-        response.should render_template('show')
-        response.should have_selector('iframe', :src => 'http://www.youtube.com/embed/0NwxHphsCxI')
+        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        Video.should_receive(:find).with("1234").and_return(fake_video)
+        get :show, {:id => '1234'}
+        response.should render_template('videos/show')
+        #put response.should have_whatever in the view spec
       end
     end
 
