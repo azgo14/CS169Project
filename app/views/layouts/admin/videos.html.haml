@@ -4,10 +4,19 @@
     %title Banyan Tree Project
     = stylesheet_link_tag 'api'
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Radley|Exo|Open+Sans'
-    -#= javascript_include_tag 'application'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
+    #login
+      - if user_signed_in?
+        Welcome #{current_user.email} 
+        |
+        = link_to "Logout", destroy_user_session_path, :method => :delete
+      - else
+        = link_to "Sign In", new_user_session_path
+        = link_to "Register", new_user_registration_path
+
     #content
       - if flash[:notice]
         #notice.message= flash[:notice]

@@ -1,4 +1,5 @@
 class Admin::VideosController < ApplicationController
+  before_filter :authenticate_admin
 
   def index
     @pending_videos = Video.pending_videos

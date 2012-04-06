@@ -23,4 +23,8 @@
   .newcomment
     = form_tag :method => :get, :id => 'ratings_form' do               
       = text_area_tag 'comment'
-      = submit_tag 'Submit' #, :id => 'ratings_submit'
+      = submit_tag 'Submit Anonymously' #, :id => 'ratings_submit'
+    - if user_signed_in?
+      = form_tag :method => :get, :id => 'ratings_form' do               
+        = text_area_tag 'comment'
+        = submit_tag 'Submit' #, :id => 'ratings_submit'
