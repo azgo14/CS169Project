@@ -15,6 +15,11 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the video\s? list page$/
+      '/videos/'
+    when /^the video detail page for "([^"]+)"$/
+      "/videos/#{Video.find_by_name( $1 ).id}"
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
