@@ -6,12 +6,12 @@ Background: not logged in
  
   When I am not logged in
   And the following user exists:
-    |  Username  |  Password   |  admin? |
+    |  Username  |  Password   |  admin  |
     |  apiUser   |  abbtcs169  |  false  |
     |  adminAPI  |  cs169Admin |  true   |
 
   And the following user does not exist:
-    |  Username  |  Password  |  admin?  |
+    |  Username  |  Password  |  admin   |
     |  fail_test |  fail_test |  false   |
 
   And the following videos have been submitted:

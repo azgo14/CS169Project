@@ -29,7 +29,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'devise'
 gem 'youtube_it'
 
 # To use ActiveModel has_secure_password
