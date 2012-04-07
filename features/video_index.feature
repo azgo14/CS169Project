@@ -6,7 +6,7 @@ Feature: Leaving comments on a video
 Background: videos submitted
 
   Given the following videos have been submitted:
-  | Name               | Email                 | Date Submitted | Status   |
+  | name               | email                 | created_at     | status   |
   | Mario              | mario@plumber.com     | 09-Sept-1985   | Accepted |
   | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | Accepted |
 
