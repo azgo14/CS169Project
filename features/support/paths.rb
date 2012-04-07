@@ -19,6 +19,10 @@ module NavigationHelpers
       '/videos/'
     when /^the video detail page for "([^"]+)"$/
       "/videos/#{Video.find_by_name( $1 ).id}"
+    when /^the user sign-in page$/
+      '/users/sign_in'
+    when /^the admin\/review page$/
+      '/admin/videos'
 
 
     # Add more mappings here.
