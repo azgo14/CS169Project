@@ -55,14 +55,14 @@ Scenario: login unsuccessfully
 
 Scenario: commenting when not logged in
   Given I am on the video detail page for "Mario"
-  Then I should see "Submit Anonymously"
-  And I should not see "Submit"
+  Then I should see "Submit Anonymously" button
+  And I should not see "Submit" button
 
 Scenario: commenting when logged in
   Given I am signed in as a user
   And I am on the video detail page for "Mario"
-  Then I should see "Submit Anonymously"
-  And I should see "Submit"
+  Then I should see "Submit Anonymously" button
+  And I should see "Submit" button
 
 Scenario: Upload a video anonymously
   Given I am on the home page
