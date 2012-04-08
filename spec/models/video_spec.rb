@@ -4,17 +4,17 @@ describe Video do
 
   describe '#sort' do
     it 'should sort pending videos by submission date when the argument is :pending' do
-      Video.should_receive(:find).with(:all, :order => 'submission_date DESC', :conditions => {:status => :pending})
+      Video.should_receive(:find).with(:all, :order => 'created_at DESC', :conditions => {:status => :pending})
       Video.sort(:pending)
     end
 
     it 'should sort accepted videos by submission date when the argument is :accepted' do
-      Video.should_receive(:find).with(:all, :order => 'submission_date DESC', :conditions => {:status => :accepted})
+      Video.should_receive(:find).with(:all, :order => 'created_at DESC', :conditions => {:status => :accepted})
       Video.sort(:accepted)
     end
 
     it 'should sort rejected videos by submission date when the argument is :rejected' do
-      Video.should_receive(:find).with(:all, :order => 'submission_date DESC', :conditions => {:status => :rejected})
+      Video.should_receive(:find).with(:all, :order =>'created_at DESC', :conditions => {:status => :rejected})
       Video.sort(:rejected)
     end
   end
