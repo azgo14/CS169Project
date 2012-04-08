@@ -43,7 +43,8 @@ describe VideosController do
 
     describe 'submitting a video with complete information' do
       before(:each) do
-        post :create, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => 'file', :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
+        Video.stub(:upload).and_return('testid')
+        post :create, :name => 'batman', :email => 'dark@knight.com', :age => 25, :ethnicity => {:chinese => 1}, :language => 'chinese', :location => 'batcave', :video => fixture_file_upload('/files/test.mp4', 'video/mp4'), :why => 'because', :how => 'somehow', :hope => 'hopeful', :release => 'true'
       end
 
       it 'should redirect to the index page upon completion' do
@@ -66,12 +67,13 @@ describe VideosController do
         video.why.should == 'because'
         video.how.should == 'somehow'
         video.hope.should == 'hopeful'
-        video.youtube_id.should_not == ''
+        video.youtube_id.should == 'testid'
       end
     end
 
     describe 'submitting a video with insufficient information' do
       before do
+        Video.stub(:upload).and_return('testid')
         post :create, :name => 'batman'
       end
 

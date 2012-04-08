@@ -24,6 +24,7 @@ CS169Project::Application.routes.draw do
 
   namespace :admin do
     resources :videos
+    match '' => 'videos#index'
     match '/videos/accept/:id' => 'videos#accept', :as => :accept
     match '/videos/pend/:id' => 'videos#pend', :as => :pend
     match '/videos/reject/:id' => 'videos#reject', :as => :reject
