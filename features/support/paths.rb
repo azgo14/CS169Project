@@ -23,6 +23,8 @@ module NavigationHelpers
       '/users/sign_in'
     when /^the admin\/review page$/
       '/admin/videos'
+    when /^the video submission page$/
+      '/videos/new'
 
 
     # Add more mappings here.
