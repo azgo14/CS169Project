@@ -8,7 +8,7 @@ class VideosController < ApplicationController
 # PUT    /items/1      #=> update
 # POST   /items        #=> create
 # DELETE /items/1      #=> destroy
-
+  before_filter :authenticate_user!, :only => [:new, :create]
   def index
     @videos = Video.accepted_videos
   end

@@ -1,11 +1,43 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  #this method is used in order to remember where to return to when loging in.
+  def custom_user_sign_in
+    if current_user.nil?
+      session[:return_location] = request.referrer
+      authenticate_user!
+
+      flash[:error] = "There was a problem with login"
+      redirect_to root_path
+    else
+      puts request.referrer
+      redirect_to request.referrer
+    end
+  end
+
   private
+  #this is so logout takes you back to the page you were on
+  def after_sign_out_path_for(resource_or_scope)
+    request.referrer || root_path
+  end
+
+  #if custom return_location is specified, then redirect to that path
+  def after_sign_in_path_for(resource_or_scope)
+    if !session[:return_location].nil?
+      return_location = session[:return_location]
+      session[:return_location] = nil
+    end
+    return_location || stored_location_for(resource_or_scope) || signed_in_root_path(resource_or_scope)
+  end
+
   def authenticate_admin
     unless current_user.try(:admin?)
       flash[:error] = "You must be an Admin to view this"
-      redirect_to root_path
+      if current_user.nil?
+        authenticate_user!
+      else
+        redirect_to request.referrer || root_path
+      end
     end
   end
   def yt_client
