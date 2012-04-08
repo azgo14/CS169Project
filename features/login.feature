@@ -21,7 +21,8 @@ Background: not logged in
 Scenario: login successfully as a user
   Given I am on the home page
   When I follow "Sign In"
-  And I am on the user sign-in page
+  Then I should be on the user sign-in page
+
   When I fill in the following:
     | Email               |  apiUser@gmail.com   |
     | Password            |  abbtcs169  |
@@ -34,7 +35,8 @@ Scenario: login successfully as a user
 Scenario: login successfully as an administrator
 Given I am on the home page
   When I follow "Sign In"
-  And I am on the user sign-in page
+  Then I should be on the user sign-in page
+
   When I fill in the following:
     | Email               |  adminAPI@gmail.com   |
     | Password            |  cs169Admin           |
@@ -67,8 +69,9 @@ Scenario: commenting when logged in
 Scenario: Upload a video anonymously
   Given I am on the home page
   And I follow "Upload"
-  Then I should see "You need to sign in or sign up before continuing."
-  And I am on the user sign-in page
+
+  Then I should be on the user sign-in page
+  And I should see "You need to sign in or sign up before continuing."
 
   When I fill in the following:
     | Email                |  fail_test@gmail.com   |
@@ -81,8 +84,8 @@ Scenario: Upload a video anonymously
 Scenario: Upload a video as a user
   Given I am on the home page
   And I follow "Upload"
-  Then I should see "You need to sign in or sign up before continuing."
-  And I am on the user sign-in page
+  Then I should be on the user sign-in page
+  And I should see "You need to sign in or sign up before continuing."
   When I fill in the following:
     | Email               |  apiUser@gmail.com |
     | Password            |  abbtcs169         |  
@@ -90,3 +93,27 @@ Scenario: Upload a video as a user
   And I press "Sign in"
   Then I should be on the video submission page
   And I should see "Signed in successfully."
+
+Scenario: Successful sign in from video details page
+  Given I am on the video detail page for "Mario"
+  When I follow "Sign In"
+  Then I should be on the user sign-in page
+  
+  When I fill in the following:
+    | Email               |  apiUser@gmail.com |
+    | Password            |  abbtcs169         |  
+ 
+  And I press "Sign in"
+  Then I should be on the video detail page for "Mario"
+  And I should see "Signed in successfully."
+
+Scenario: Non-admin user accessing admin video review page
+  Given I am signed in as a user
+  And I am on the admin/review page
+  
+  Then I should be on the home page
+  And I should see "You must be an Admin to view this"
+
+
+  
+  

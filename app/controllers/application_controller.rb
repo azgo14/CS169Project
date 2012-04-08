@@ -5,13 +5,9 @@ class ApplicationController < ActionController::Base
   def custom_user_sign_in
     if current_user.nil?
       session[:return_location] = request.referrer
-      authenticate_user!
-
-      flash[:error] = "There was a problem with login"
-      redirect_to root_path
+      redirect_to new_user_session_path
     else
-      puts request.referrer
-      redirect_to request.referrer
+      redirect_to request.referrer || root_path
     end
   end
 
@@ -36,7 +32,7 @@ class ApplicationController < ActionController::Base
       if current_user.nil?
         authenticate_user!
       else
-        redirect_to request.referrer || root_path
+        redirect_to root_path
       end
     end
   end
