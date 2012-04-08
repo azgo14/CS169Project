@@ -114,6 +114,19 @@ Scenario: Non-admin user accessing admin video review page
   Then I should be on the home page
   And I should see "You must be an Admin to view this"
 
+Scenario: Anonymous user accessing admin video review page and successfully logs in
+  Given I am on the admin/review page
+
+  Then I should be on the user sign-in page
+  And I should see "You must be an Admin to view this"
+
+  When I fill in the following:
+    | Email               |  adminAPI@gmail.com   |
+    | Password            |  cs169Admin           |
+
+  And I press "Sign in"
+  Then I should be on the admin/review page
+  And I should see "Signed in successfully."
 
   
   
