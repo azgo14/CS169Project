@@ -51,7 +51,7 @@ class VideosController < ApplicationController
                         :status => 'pending')
       video.save!
       flash[:notice] = 'Thank you for your submission! We will be reviewing your story soon!'
-      redirect_to root_path
+      redirect_to videos_path
     else
       flash[:error] = 'Please fill in all missing fields'
       redirect_to new_video_path

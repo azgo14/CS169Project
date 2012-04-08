@@ -21,10 +21,10 @@ Scenario: filling in the video submission form
     | how      | Sad.         |
     | hope     | Improve      |
   And I check the following ethnicities: Chinese
-  And I attach the file "video_upload.feature" to "Upload Video"
+  And I attach the file "features/video_upload.feature" to "Upload Video"
   #And I attach the file "video_upload.feature" to "Additional Video/Images"
   And I choose "release_true"
   When I press "Submit"
-  Then I should be on the home page
+  Then I should be on the video list page
   And I should see "Thank you for your submission! We will be reviewing your story soon!"
   

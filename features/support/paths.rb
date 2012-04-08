@@ -16,7 +16,7 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
     when /^the video\s? list page$/
-      '/videos/'
+      '/videos'
     when /^the video detail page for "([^"]+)"$/
       "/videos/#{Video.find_by_name( $1 ).id}"
     when /^the user sign-in page$/
