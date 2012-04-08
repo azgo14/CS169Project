@@ -5,8 +5,8 @@ Feature: Sort Pending Movies
 
 Background: videos submitted
 
-  Given the following videos are pending:
-  | Name               | Email                 | Date Submitted | Status  |
+  Given the following videos exist:
+  | name               | email                 | created_at     | status  |
   | Solid Snake        | snake@snake.com       | 12-June-2008   | pending |
   | Commander Shephard | shephard@normandy.com | 06-March-2012  | pending |
   | Mario              | mario@plumber.com     | 09-Sept-1985   | pending |

@@ -10,10 +10,10 @@ class VideosController < ApplicationController
 # DELETE /items/1      #=> destroy
 
   def index
-    @videos = Video.all
+    @videos = Video.accepted_videos
   end
 
-  def show 
+  def show
     id = params[:id]
     @video = Video.find_by_id(id)
     if not(@video)
@@ -50,7 +50,7 @@ class VideosController < ApplicationController
                         :why => why, :how => how, :hope => hope, :qa => '',
                         :status => 'pending')
       video.save!
-      flash[:notice] = 'Video uploaded!'
+      flash[:notice] = 'Thank you for your submission! We will be reviewing your story soon!'
       redirect_to videos_path
     else
       flash[:error] = 'Please fill in all missing fields'

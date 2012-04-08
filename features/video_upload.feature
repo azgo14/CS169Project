@@ -12,19 +12,19 @@ Scenario: uploading a video
 Scenario: filling in the video submission form
   Given I am on the video submission page
   When I fill in the following:
-    | Name/Pseudonym                                                | Foo Baz      |
-    | Email                                                         | foo@baz.com  |
-    | Age                                                           | 9001         |
-    | In what language is your story told?                          | Pig Latin    |
-    | Location                                                      | Berkeley, CA |
-    | Why did you want to tell this story?                          | Because.     |
-    | How did telling your story change you?                        | Sad.         |
-    | How do you hope hearing your story will change the community? | Improve      |
-  And I check the following ethnicities: Chinese, Cambodian
-  And I attach the file "video.avi" to "Upload Video"
-  And I attach the file "image.jpeg" to "Upload Additional Video/Images"
-  And I check "yes"
+    | name     | Foo Baz      |
+    | email    | foo@baz.com  |
+    | age      | 9001         |
+    | language | Pig Latin    |
+    | location | Berkeley, CA |
+    | why      | Because.     |
+    | how      | Sad.         |
+    | hope     | Improve      |
+  And I check the following ethnicities: Chinese
+  And I attach the file "features/video_upload.feature" to "Upload Video"
+  #And I attach the file "video_upload.feature" to "Additional Video/Images"
+  And I choose "release_true"
   When I press "Submit"
-  Then I should be on the home page
-  And I should see "Thank you for your submission!  We will be reviewing your story soon!"
+  Then I should be on the video list page
+  And I should see "Thank you for your submission! We will be reviewing your story soon!"
   
