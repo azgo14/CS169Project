@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout :layout_by_resource
 
   #this method is used in order to remember where to return to when loging in.
   def custom_user_sign_in
@@ -12,6 +13,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
   #this is so logout takes you back to the page you were on
   def after_sign_out_path_for(resource_or_scope)
     request.referrer || root_path

@@ -128,5 +128,20 @@ Scenario: Anonymous user accessing admin video review page and successfully logs
   Then I should be on the admin/review page
   And I should see "Signed in successfully."
 
+Scenario: Login out on non-authentication needed pages should allow user to stay on that page
+  Given I am signed in as a user
+  And I am on the video detail page for "Mario"
   
+  When I am not logged in
+  Then I should be on the video detail page for "Mario"
+  And I should not see "Logout"
+
+Scenario: Login out on authentication needed pages should cause redirect to sign in page
+  Given I am signed in as a user
+  And I am on the video submission page
   
+  #this uses GET /users/sign_out, can't use DEL because we set signout to be GET in the initializer file for Devise
+  When I am not logged in
+  	
+  Then I should be on the user sign-in page
+  And I should see "You need to sign in or sign up before continuing."
