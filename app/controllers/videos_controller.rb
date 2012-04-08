@@ -35,7 +35,8 @@ class VideosController < ApplicationController
     if (name != '' and email != '' and age != '' and ethnicity != nil and
         language != '' and location != '' and why != '' and how != '' and
         hope != '' and video != nil and release == 'true')
-      yt_id = Video.upload(File.new(video.path))
+      video_hash = {:video => File.new(video.path), :title => 'Title', :description => why}
+      yt_id = Video.upload(video_hash)
       # Fix this to support user id/login
       video = Video.new(:youtube_id => yt_id, :user_id => '', :name => name,
                         :email => email, :age => age, :ethnicity => ethnicity.keys,
