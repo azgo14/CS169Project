@@ -35,15 +35,8 @@ class VideosController < ApplicationController
     if (name != '' and email != '' and age != '' and ethnicity != nil and
         language != '' and location != '' and why != '' and how != '' and
         hope != '' and video != nil and release == 'true')
-      begin
-        response = yt_client.video_upload(File.open(video.path), :title => 'test',
-                                          :description => 'desc', :comment => 'denied',
-                                          :private => '')
-        yt_id = response.video_id[response.video_id.rindex(':')+1..-1]
-      rescue Exception
-        yt_id = ''
-      end
-      # Fix to support user id/login
+      yt_id = Video.upload(File.new(video.path))
+      # Fix this to support user id/login
       video = Video.new(:youtube_id => yt_id, :user_id => '', :name => name,
                         :email => email, :age => age, :ethnicity => ethnicity.keys,
                         :language => language, :location => location,
@@ -56,6 +49,6 @@ class VideosController < ApplicationController
       flash[:error] = 'Please fill in all missing fields'
       redirect_to new_video_path
     end
- end
+  end
 
 end
