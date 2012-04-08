@@ -51,7 +51,7 @@ Scenario: login unsuccessfully
     | Password              |  fail_test              |
   And I press "Sign in"
   Then I should be on the user sign-in page
-  And I should see "Login Unsuccessful! Wrong Username or Password"
+  And I should see "Invalid email or password."
 
 Scenario: commenting when not logged in
   Given I am on the video detail page for "Mario"
@@ -67,7 +67,8 @@ Scenario: commenting when logged in
 Scenario: Upload a video anonymously
   Given I am on the home page
   And I follow "Upload"
-  Then I am on the user sign-in page
+  Then I should see "You need to sign in or sign up before continuing."
+  And I am on the user sign-in page
 
   When I fill in the following:
     | Email                |  fail_test@gmail.com   |
@@ -75,13 +76,13 @@ Scenario: Upload a video anonymously
  
   And I press "Sign in"
   Then I should be on the user sign-in page
-  And I should see "Login Unsuccessful! Wrong Username or Password"
+  And I should see "Invalid email or password."
 
 Scenario: Upload a video as a user
   Given I am on the home page
   And I follow "Upload"
-  Then I am on the user sign-in page
-
+  Then I should see "You need to sign in or sign up before continuing."
+  And I am on the user sign-in page
   When I fill in the following:
     | Email               |  apiUser@gmail.com |
     | Password            |  abbtcs169         |  
