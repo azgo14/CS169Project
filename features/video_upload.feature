@@ -4,13 +4,16 @@ Feature: Upload a Video
   I want to upload a file for BTP admin review and enter information about my movie
 
 Scenario: uploading a video
-  Given I am on the home page
+  Given I am on the video list page
   Then I should see "Upload your video and share it with the world!"
   When I follow "Upload"
+  Then I should be on the user sign-in page
+  When I am signed in as a registered user,
   Then I should be on the video submission page
 
 Scenario: filling in the video submission form
-  Given I am on the video submission page
+  Given I am signed in as a registered user,
+  When I am on the video submission page
   When I fill in the following:
     | name     | Foo Baz      |
     | email    | foo@baz.com  |
