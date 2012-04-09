@@ -14,6 +14,14 @@ Given /I am signed in as an administrator/ do
   Then %{I press "Sign in"}
 end
 
+Given /I am signed in as a registered user/ do
+  user = User.create(:email => 'user@api.com', :password => 'password')
+  When %{I am on the user sign-in page}
+  And %{I fill in "user_email" with "user@api.com"}
+  And %{I fill in "user_password" with "password"}
+  Then %{I press "Sign in"}
+end
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   match = page.body.gsub(/\n/, "") =~ /#{e1}.*#{e2}/
   assert match!=nil
