@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe VideosController do
  # render_views
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
 
   describe '#index' do
     it 'should show the index page' do

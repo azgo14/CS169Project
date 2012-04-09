@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Admin::VideosController do
+  before (:each) do
+    @user = FactoryGirl.create(:admin)
+    sign_in @user
+  end
+
   describe '#index' do
     it 'should show me a correctly partitioned list of videos' do
       videos = [mock('Video'), mock('Video')]
@@ -47,7 +52,7 @@ describe Admin::VideosController do
       it 'should allow me to accept a rejected video' do
         @video.stub(:status).and_return(:rejected)
       end
-    
+
       it 'should not affect the video if I accept an accepted video' do
         @video.stub(:status).and_return(:accepted)
       end
@@ -69,12 +74,12 @@ describe Admin::VideosController do
       it 'should allow me to reject an accepted video' do
         @video.stub(:status).and_return(:accepted)
       end
-      
+
       it 'should not affect the video if I reject a rejected video' do
         @video.stub(:status).and_return(:rejected)
       end
     end
-    
+
     describe 'pending a video' do
       after :each do
         @video.should_receive(:update_attributes).with(:status => :pending)
@@ -87,11 +92,11 @@ describe Admin::VideosController do
       it 'should allow me to pend an accepted video' do
         @video.stub(:status).and_return(:accepted)
       end
-    
+
       it 'should allow me to pend a rejected video' do
         @video.stub(:status).and_return(:rejected)
       end
-    
+
       it 'should not affect the video if I pend a pending video' do
         @video.stub(:status).and_return(:pending)
       end
