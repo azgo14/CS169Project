@@ -1,14 +1,28 @@
 require 'spec_helper'
 
 describe Admin::CommentsController do
+
+  before (:each) do
+    @user = FactoryGirl.create(:admin)
+    sign_in @user
+  end
+
   describe '#index' do
-    it 'should list me all pending comments' do
-      pending 'unimplemented'
+    it 'should show me a list of comments' do
     end
   end
-  describe '#update' do
-    it 'should allow me to change the status (accepted/pending/rejected) of a comment' do
-      pending 'unimplemented'
+
+  describe '#show' do
+    it 'should show the admin details page for the given comment' do
     end
   end
+
+  describe 'Updating Comment Status' do
+    describe 'accepting a comment' do
+    end
+
+    describe 'rejecting a comment' do
+    end
+  end
+
 end
