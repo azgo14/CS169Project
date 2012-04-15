@@ -18,9 +18,6 @@ describe Admin::VideosController do
       assigns(:accepted_videos).should == videos
       assigns(:rejected_videos).should == videos
     end
-    it 'should show me pending comments' do
-      pending 'unimplemented'
-    end
   end
 
   describe '#show' do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::CommentsController do
 
-  before (:each) do
+  before(:each) do
     @user = FactoryGirl.create(:admin)
     sign_in @user
   end
