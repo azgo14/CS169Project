@@ -8,18 +8,18 @@ Given /I am signed in as an administrator/ do
   admin = User.create(:email => 'admin@api.com', :password => 'password')
   admin.admin = true
   admin.save
-  When %{I am on the user sign-in page}
-  And %{I fill in "user_email" with "admin@api.com"}
-  And %{I fill in "user_password" with "password"}
-  Then %{I press "Sign in"}
+  step %{I am on the user sign-in page}
+  step %{I fill in "user_email" with "admin@api.com"}
+  step %{I fill in "user_password" with "password"}
+  step %{I press "Sign in"}
 end
 
 Given /I am signed in as a registered user/ do
   user = User.create(:email => 'user@api.com', :password => 'password')
-  When %{I am on the user sign-in page}
-  And %{I fill in "user_email" with "user@api.com"}
-  And %{I fill in "user_password" with "password"}
-  Then %{I press "Sign in"}
+  step %{I am on the user sign-in page}
+  step %{I fill in "user_email" with "user@api.com"}
+  step %{I fill in "user_password" with "password"}
+  step %{I press "Sign in"}
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
@@ -29,7 +29,7 @@ end
 
 Then /I should see the following under "(.*)": (.*)/ do |status, video_list|
   video_list.split(/,\s*/).each do |video|
-    Then %{I should see "#{status}" before "#{video}"}
+    step %{I should see "#{status}" before "#{video}"}
   end
 end
 
@@ -56,6 +56,6 @@ end
 
 When /I check the following ethnicities: (.*)/ do |ethnicity_list|
   ethnicity_list.split(/,\s*/).each do |ethnicity|
-    When %{I check "#{ethnicity}"}
+    step %{I check "#{ethnicity}"}
   end
 end
