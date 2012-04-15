@@ -13,7 +13,6 @@ describe Admin::VideosController do
       Video.stub(:accepted_videos).and_return(videos)
       Video.stub(:rejected_videos).and_return(videos)
       get :index
-      #assigns(:video_lists).should == [videos, videos, videos]
       assigns(:pending_videos).should == videos
       assigns(:accepted_videos).should == videos
       assigns(:rejected_videos).should == videos
