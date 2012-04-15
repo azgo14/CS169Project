@@ -34,6 +34,21 @@ describe VideosController do
       end
     end
 
+    describe 'comments' do
+      it 'should ask the database for the corresponding comments' do
+        pending 'Unimplemented'
+      end
+      it 'should only find the approved comments' do
+        pending 'unimplemented'
+      end
+    end
+
+    describe 'ratings' do
+      it 'should allow me to submit an anonymous rating' do
+        pending 'unimeplemented'
+      end
+    end
+
   end
 
   describe '#new' do
