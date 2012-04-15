@@ -10,7 +10,7 @@ describe CommentsController do
   describe '#new' do
     describe 'submitting an anonymous comment with content' do
       before(:each) do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         post :create, {:id => '1234', :content => 'my comment'}
       end
@@ -27,7 +27,7 @@ describe CommentsController do
 
     describe 'submitting an anonymous comment without content' do
       before(:each) do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         post :create, {:id => '1234', :content => 'my comment'}
       end

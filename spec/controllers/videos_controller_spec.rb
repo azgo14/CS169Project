@@ -18,7 +18,7 @@ describe VideosController do
 
     describe 'showing a valid video' do
       it 'should show the details page for the given video' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         get :show, {:id => '1234'}
         response.should render_template('videos/show')
@@ -35,21 +35,34 @@ describe VideosController do
     end
 
     describe 'comments' do
+      before(:each) do
+        fake_video = FactoryGirl.create(:video, :id => '1234')
+        pending_comment = FactoryGirl.create(:comment, :content => 'this is pending',
+                                             :status => 'pending')
+        approved_comment = FactoryGirl.create(:comment, :content => 'this is approved',
+                                              :status => 'approved')
+        rejected_comment = FactoryGirl.create(:comment, :content => 'this is rejected',
+                                              :status => 'rejected')
+      end
+
       it 'should ask the database for the corresponding comments' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
-        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        Video.should_receive(:find_by_id).with('1234').and_return(fake_video)
         fake_video.should_receive(:comments)
         get :show, {:id => '1234'}
       end
+
       it 'should only find the approved comments' do
-        pending 'unimplemented (how do we test this?)'
+        get :show, {:id => '1234'}
+        response.should have_selector('.comment', :content => 'this is approved')
+        response.should_not have_selector('.comment', :content => 'this is pending')
+        response.should_not have_selector('.comment', :content => 'this is rejected')
       end
     end
 
     describe 'ratings' do
       it 'should allow me to submit an anonymous rating' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
-        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
+        Video.should_receive(:find_by_id).with('1234').and_return(fake_video)
         post :like, {:id => '1234'}
         fake_video.rating.should eq(6)
       end
