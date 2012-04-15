@@ -18,7 +18,7 @@ describe VideosController do
 
     describe 'showing a valid video' do
       it 'should show the details page for the given video' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         get :show, {:id => '1234'}
         response.should render_template('videos/show')
@@ -36,7 +36,7 @@ describe VideosController do
 
     describe 'comments' do
       it 'should ask the database for the corresponding comments' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         fake_video.should_receive(:comments)
         get :show, {:id => '1234'}
@@ -48,7 +48,7 @@ describe VideosController do
 
     describe 'ratings' do
       it 'should allow me to submit an anonymous rating' do
-        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         post :like, {:id => '1234'}
         fake_video.rating.should eq(6)
