@@ -8,7 +8,7 @@ describe Admin::VideosController do
 
   describe '#index' do
     it 'should show me a correctly partitioned list of videos' do
-      videos = [mock('Video'), mock('Video')]
+      videos = [FactoryGirl.create(:video), FactoryGirl.create(:video)]
       Video.stub(:pending_videos).and_return(videos)
       Video.stub(:accepted_videos).and_return(videos)
       Video.stub(:rejected_videos).and_return(videos)
@@ -22,7 +22,7 @@ describe Admin::VideosController do
 
   describe '#show' do
     it 'should show the admin details page for the given video' do
-      video = mock('Video')
+      video = FactoryGirl.create(:video)
       Video.should_receive(:find_by_id).with('1').and_return(video)
       get :show, :id => 1
       assigns(:video).should == video
@@ -32,7 +32,7 @@ describe Admin::VideosController do
 
   describe 'Updating Video Status' do
     before :each do
-      @video = mock('Video')
+      @video = FactoryGirl.create(:video)
       Video.should_receive(:find_by_id).with('1').and_return(@video)
     end
 
