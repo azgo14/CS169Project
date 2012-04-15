@@ -5,5 +5,6 @@ FactoryGirl.define do
     user_id
     comment
     status 'pending'
+    video_id
   end
 end
