@@ -126,5 +126,31 @@ describe VideosController do
     end
 
   end
+  describe '#search' do
+    before(:each) do
+      vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California")
+      vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
+      vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California")
+    end
 
+    it "should show the video search page" do
+      pending
+    end
+
+    it "should return correct result for search by name" do
+      pending
+    end
+
+    it "should return correct result for search by age" do
+      pending
+    end
+
+    it "should return correct result for search by location" do
+      pending
+    end
+
+    it "should return correct result for search by ethnicity" do
+      pending
+    end
+  end
 end

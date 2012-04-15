@@ -46,4 +46,27 @@ describe Video do
       end
     end
   end
+
+  describe "#search" do
+    it 'should call find_by_ethnicity on @search_term if @condition argument is :ethniticy and return a collection of videos with matching :ethnicity' do
+      pending
+    end
+
+    it 'should call find_by_title on @search_term if @condition argument is :title and return a collection of videos with matching :title' do
+      pending
+    end
+
+    it 'should call find_by_age on @search_term if @condition argument is :age and return a collection of videos with matching :age' do
+      pending
+    end
+
+    it 'should call find_by_location on @search_term if @condition argument is :location and return a collection of videos with matching :location' do
+      pending
+    end
+
+    it 'should return null if there are no videos with matching @search_term on @condition' do
+      pending
+    end
+
+  end
 end

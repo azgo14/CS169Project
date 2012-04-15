@@ -11,6 +11,18 @@ Background: assuring existence of certain videos
     | Wario Joe    | 21     | Korean      | New Jersey  | Accepted |
     | Mike Slick   | 27	    | Cambodian   | Connecticut | Accepted |
 
+Scenario: Entering search text w/o selecting condition (default to title)
+  Given that I am on the video list page
+  And I fill in "Mario Lui" for search_text
+  And I press "Search"
+  Then I should be on the video search page
+  And I should see "Mario Lui" within "search_bar_text"
+  And I should see "Title" should be selected for "search_bar_condition"
+  And I should see "Mario Lui" within "search_results"
+  And I should not see "Mike Slick" within "search_results"
+  And I should not see "Wario Joe" within "search_results"
+  And I should not see "Luigi Bo" within "search_results"
+ 
 Scenario: searching by full title (name) on the video list page
   Given that I am on the video list page
   When I select "Title" from search_conditions
