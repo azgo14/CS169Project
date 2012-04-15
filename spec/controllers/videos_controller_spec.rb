@@ -34,6 +34,27 @@ describe VideosController do
       end
     end
 
+    describe 'comments' do
+      it 'should ask the database for the corresponding comments' do
+        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI')
+        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        fake_video.should_receive(:comments)
+        get :show, {:id => '1234'}
+      end
+      it 'should only find the approved comments' do
+        pending 'unimplemented (how do we test this?)'
+      end
+    end
+
+    describe 'ratings' do
+      it 'should allow me to submit an anonymous rating' do
+        fake_video = Factory(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
+        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        post :like, {:id => '1234'}
+        fake_video.rating.should eq(6)
+      end
+    end
+
   end
 
   describe '#new' do
