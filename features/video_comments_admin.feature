@@ -12,8 +12,8 @@ Background: videos submitted
 
   And the following comments have been submitted:
   | Name           | Content     | Video   | Date Submitted | Status   |
-  | Some Troll     | You suck    | Mario   | 09-Sept-1985   | Rejected |
-  | Nice Person    | Amazing     | Mario   | 21-July-2007   | Accepted |
+  | Some Troll     | You suck    | Mario   | 09-Sept-1985   | Pending  |
+  | Nice Person    | Amazing     | Mario   | 21-July-2007   | Pending  |
   | New Person     | I am young  | Mario   | 01-July-2012   | Pending  |
 
   And I am signed in as an administrator
