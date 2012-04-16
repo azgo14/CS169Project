@@ -128,29 +128,38 @@ describe VideosController do
   end
   describe '#search' do
     before(:each) do
-      vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California")
-      vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
-      vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California")
+      @vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California")
+      @vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
+      @vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California")
     end
 
     it "should show the video search page" do
-      pending
+      get :search
+      response.should render_template('search')
     end
 
     it "should return correct result for search by name" do
-      pending
+      Video.should_receive(:search).with("Lui", "name").and_return([@vid1,@vid2])
+      get :search, :search_text => "Lui", :search_condition => "Name"
+      assigns(:videos).should == [@vid1,@vid2]
     end
 
     it "should return correct result for search by age" do
-      pending
+      Video.should_receive(:search).with("21", "age").and_return([@vid1,@vid3])
+      get :search, :search_text => "21", :search_condition => "Age"
+      assigns(:videos).should == [@vid1,@vid3]
     end
 
     it "should return correct result for search by location" do
-      pending
+      Video.should_receive(:search).with("California", "location").and_return([@vid1,@vid2,@vid3])
+      get :search, :search_text => "California", :search_condition => "Location"
+      assigns(:videos).should == [@vid1,@vid2,@vid3]
     end
 
     it "should return correct result for search by ethnicity" do
-      pending
+      Video.should_receive(:search).with("Japanese", "ethnicity").and_return([@vid2,@vid3])
+      get :search, :search_text => "Japanese", :search_condition => "Ethnicity"
+      assigns(:videos).should == [@vid2,@vid3]
     end
   end
 end

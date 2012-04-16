@@ -48,24 +48,51 @@ describe Video do
   end
 
   describe "#search" do
-    it 'should call find_by_ethnicity on @search_term if @condition argument is :ethniticy and return a collection of videos with matching :ethnicity' do
-      pending
+    before(:each) do
+      @vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California")
+      @vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
+      @vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California")
     end
 
-    it 'should call find_by_title on @search_term if @condition argument is :title and return a collection of videos with matching :title' do
-      pending
+    it 'should call find on @search_text if @search_condition argument is "ethniticy" and return a collection of videos with matching "ethnicity"' do
+
+      Video.should_receive(:find).with(:all, :conditions => ["ethnicity LIKE ?", "%Japanese%"]).and_return([@vid2,@vid3])
+      @search_text = "Japanese"
+      @search_condition = "ethnicity"
+      return_val = Video.search(@search_text, @search_condition)
+      return_val = [@vid2,@vid3]
     end
 
-    it 'should call find_by_age on @search_term if @condition argument is :age and return a collection of videos with matching :age' do
-      pending
+    it 'should call the correct find on @search_text if @search_condition argument is "title" and return a collection of videos with matching "title"' do
+      Video.should_receive(:find).with(:all, :conditions => ["name LIKE ?", "%Lui%"]).and_return([@vid1,@vid2])
+      @search_text = "Lui"
+      @search_condition = "name"
+      return_val = Video.search(@search_text, @search_condition)
+      return_val = [@vid1,@vid2]
     end
 
-    it 'should call find_by_location on @search_term if @condition argument is :location and return a collection of videos with matching :location' do
-      pending
+    it 'should call the correct find on @search_text if @search_condition argument is "age" and return a collection of videos with matching "age"' do
+      Video.should_receive(:find).with(:all, :conditions => ["age LIKE ?", "%21%"]).and_return([@vid1,@vid3])
+      @search_text = "21"
+      @search_condition = "age"
+      return_val = Video.search(@search_text, @search_condition)
+      return_val = [@vid1,@vid3]
     end
 
-    it 'should return null if there are no videos with matching @search_term on @condition' do
-      pending
+    it 'should call the correct find on @search_text if @search_condition argument is "location" and return a collection of videos with matching "location"' do
+      Video.should_receive(:find).with(:all, :conditions => ["location LIKE ?", "%California%"]).and_return([@vid1,@vid2,@vid3])
+      @search_text = "California"
+      @search_condition = "location"
+      return_val = Video.search(@search_text, @search_condition)
+      return_val = [@vid1,@vid2,@vid3]
+    end
+
+    it 'should return empty array if there are no videos with matching @search_term on @search_condition' do
+      Video.should_receive(:find).with(:all, :conditions => ["name LIKE ?", "%Andrew%"]).and_return([])
+      @search_text = "Andrew"
+      @search_condition = "name"
+      return_val = Video.search(@search_text, @search_condition)
+      return_val.should == []
     end
 
   end
