@@ -16,7 +16,16 @@
       - else
         = link_to "Sign In", sign_in_path
         = link_to "Register", new_user_registration_path
-
+    = form_tag video_search_path, :method => 'get' do
+      %p
+        = text_field_tag "search_text", nil, :placeholder => 'Enter search term...'
+        = select_tag "search_condition", options_for_select(Video::SEARCH_OPTIONS)
+        = submit_tag "Search"
+    - form_tag video_search_path, :method => 'get' do
+      %p
+        = text_field_tag "search_text", nil, :placeholder => 'Enter search term...'
+        = select_tag "search_condition", options_for_select(Video::SEARCH_OPTIONS)
+        = submit_tag "Search"
     #content
       - if flash[:notice]
         #notice.message= flash[:notice]

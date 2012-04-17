@@ -21,6 +21,7 @@ CS169Project::Application.routes.draw do
 
   resources :api_admin
 
+  match '/videos/search' => 'videos#search', :as => :video_search
   resources :videos
 
   namespace :admin do

@@ -51,5 +51,12 @@ class VideosController < ApplicationController
       redirect_to new_video_path
     end
   end
-
+  def search
+    if params[:search_condition].blank? || params[:search_condition] == "Title"
+      params[:search_condition] = "Name"
+    end
+    @videos = Video.search(params[:search_text], params[:search_condition])
+    @search_text = params[:search_text]
+    @search_condition = params[:search_condition]
+  end
 end

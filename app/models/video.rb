@@ -5,6 +5,8 @@ class Video < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
+  SEARCH_OPTIONS = ["Title", "Ethnicity", "Age", "Location"]
+
   def self.yt_client
     yt_client = YouTubeIt::Client.new(:dev_key => 'AI39si6KxFUeYAkWUV5FVWzUThnJGb6PmeSdXOBa9MeKapONiggor24t22qsWmgRGzzWZuaqdQeeMVF8XBaWFDi-_XPgOayKLg', :username => 'testacct281', :password => 'testpass281')
     return yt_client
@@ -43,4 +45,7 @@ class Video < ActiveRecord::Base
     sort(:rejected)
   end
 
+  def self.search(search_text, search_condition)
+    Video.find(:all, :conditions => ["lower(#{search_condition}) LIKE ?", "%#{search_text}%".downcase])
+  end
 end

@@ -1,0 +1,6 @@
+- @videos.each do |video|
+  .vidlistitem
+    %h1=link_to video.name, video_path(video)
+    =link_to image_tag("http://img.youtube.com/vi/#{video.youtube_id}/0.jpg", :class => 'listimg'), video_path(video)
+    %p=video.why
+
