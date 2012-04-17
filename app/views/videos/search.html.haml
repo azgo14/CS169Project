@@ -1,3 +1,5 @@
+= paginate @videos
+
 - @videos.each do |video|
   .vidlistitem
     %h1=link_to video.name, video_path(video)

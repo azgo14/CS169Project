@@ -8,7 +8,9 @@ class VideosController < ApplicationController
 # PUT    /items/1      #=> update
 # POST   /items        #=> create
 # DELETE /items/1      #=> destroy
+
   before_filter :authenticate_user!, :only => [:new, :create]
+
   def index
     @videos = Video.accepted_videos
   end
@@ -55,7 +57,7 @@ class VideosController < ApplicationController
     if params[:search_condition].blank? || params[:search_condition] == "Title"
       params[:search_condition] = "Name"
     end
-    @videos = Video.search(params[:search_text], params[:search_condition])
+    @videos = Video.search(params[:search_text], params[:search_condition]).page(params[:page]).per(5)
     @search_text = params[:search_text]
     @search_condition = params[:search_condition]
   end
