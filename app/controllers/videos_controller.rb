@@ -54,11 +54,12 @@ class VideosController < ApplicationController
     end
   end
   def search
-    if params[:search_condition].blank? || params[:search_condition] == "Title"
+    @search_condition = Video::SEARCH_OPTIONS.include?(params[:search_condition]) ? params[:search_condition] : nil
+
+    if params[:search_condition].blank? || params[:search_condition] == "Title" || !Video::SEARCH_OPTIONS.include?(params[:search_condition])
       params[:search_condition] = "Name"
     end
     @videos = Video.search(params[:search_text], params[:search_condition]).page(params[:page]).per(5)
     @search_text = params[:search_text]
-    @search_condition = params[:search_condition]
   end
 end

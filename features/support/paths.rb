@@ -23,6 +23,8 @@ module NavigationHelpers
       '/users/sign_out'
     when /^the user sign-in page$/
       '/users/sign_in'
+    when /^the video search page$/
+      '/videos/search'
     when /^the admin\/review page$/
       '/admin/videos'
     when /^the video submission page$/
