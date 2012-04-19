@@ -1,7 +1,7 @@
 #submission
   %h1 Submission
   = form_tag({:action => :create}, :class => 'submission-form', :multipart => 'true') do
-    = label_tag 'name', 'Name/Psuedonym'
+    = label_tag 'name', 'Name/Pseudonym'
     = text_field_tag 'name'
     = label_tag 'email', 'Email'
     = email_field_tag 'email'
