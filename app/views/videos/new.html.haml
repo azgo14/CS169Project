@@ -1,26 +1,31 @@
 #submission
   %h1 Submission
   = form_tag({:action => :create}, :class => 'submission-form', :multipart => 'true') do
-    = label_tag 'name', 'Name/Pseudonym'
+    .notice
+      %p 
+        Items marked with a 
+        %span.required *
+        are required.
+    = label_tag 'name', 'Name/Pseudonym <span class="required">*</span>'.html_safe 
     = text_field_tag 'name'
     .moreinfo
       %p Your name will be displayed next to your story title in our public library. If you want your story to be anonymoous, please use a pseudonym or 'anonymous'.
-    = label_tag 'email', 'Email'
+    = label_tag 'email', 'Email <span class="required">*</span>'.html_safe
     = email_field_tag 'email'
     .moreinfo
       %p The Banyan Tree Project will not share your email address with any community members or third parties.
-    = label_tag 'age', 'Age'
+    = label_tag 'age', 'Age <span class="required">*</span>'.html_safe
     = text_field_tag 'age'
 
-    = label_tag 'ethnicity', 'Ethnicity (choose all that apply)'
+    = label_tag 'ethnicity', 'Ethnicity (choose all that apply) <span class="required">*</span>'.html_safe
     .ethnicity
       = label_tag 'ethnicity[chinese]', 'Chinese', :class => 'smaller'
       = check_box_tag 'ethnicity[chinese]'
-    = label_tag 'language', 'Language'
+    = label_tag 'language', 'Language <span class="required">*</span>'.html_safe
     = text_field_tag 'language'
     = label_tag 'location', 'Location'
     = text_field_tag 'location'
-    = label_tag 'video', 'Upload Video'
+    = label_tag 'video', 'Upload Video <span class="required">*</span>'.html_safe
     = file_field_tag 'video'
 
     = label_tag 'additional', 'Would you like to share any other images or videos related to your story?'
@@ -28,14 +33,14 @@
       = file_field_tag 'additional[]'
       %a Add another row
 
-    = label_tag 'why', 'Why did you want to tell this story?'
+    = label_tag 'why', 'Why did you want to tell this story? <span class="required">*</span>'.html_safe
     = text_area_tag 'why'
-    = label_tag 'how', 'How did telling your story change you?'
+    = label_tag 'how', 'How did telling your story change you? <span class="required">*</span>'.html_safe
     = text_area_tag 'how'
-    = label_tag 'hope', 'How do you hope hearing your story will change the community?'
+    = label_tag 'hope', 'How do you hope hearing your story will change the community? <span class="required">*</span>'.html_safe
     = text_area_tag 'hope'
 
-    = label_tag 'release', 'Story Release/Content'
+    = label_tag 'release', 'Story Release/Content <span class="required">*</span>'.html_safe
     .release
       %p Do you give permission for the Banyan Tree Project to use and promote your digital story?
       = label_tag 'release_yes', 'Yes', :class => 'smaller'

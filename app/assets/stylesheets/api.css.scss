@@ -131,6 +131,9 @@ a:hover {
   .submission-form {
     background: $front-content-back-color;
     padding: 20px;
+    .required {
+      color: red;
+    }
     .additional {
       input {
         display: block;
