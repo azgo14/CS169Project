@@ -29,7 +29,19 @@ describe Admin::VideosController do
     end
   end
 
-  describe 'Updating Video Status' do
+  describe '#update' do
+    it 'should update the attributes of the given video' do
+      video = FactoryGirl.create(:video)
+      Video.should_receive(:find_by_id).with('1').and_return(video)
+      video.should_receive(:update_attributes!).with('why' => 'because', 'title' => 'new title')
+      post :update, {:id => 1, :video => {'why' => 'because', 'title' => 'new title'}}
+      flash[:notice].should == 'This video has been successfully updated'
+      response.should redirect_to admin_video_path(video)
+    end
+  end
+
+
+  describe 'Changing Video Status' do
     before :each do
       @video = FactoryGirl.create(:video)
       Video.should_receive(:find_by_id).with('1').and_return(@video)
@@ -41,7 +53,8 @@ describe Admin::VideosController do
         @video.stub(:status).and_return(:accepted)
         post :accept, :id => 1
         @video.status.should == :accepted
-        response.should redirect_to :action => 'index'
+        flash[:notice].should == 'This video has been accepted'
+        response.should redirect_to admin_video_path(@video)
       end
 
       it 'should allow me to accept a pending video' do
@@ -63,7 +76,8 @@ describe Admin::VideosController do
         @video.stub(:status).and_return(:rejected)
         post :reject, :id => 1
         @video.status.should == :rejected
-        response.should redirect_to :action => 'index'
+        response.should redirect_to admin_video_path(@video)
+        flash[:notice].should == 'This video has been rejected'
       end
 
       it 'should allow me to reject a pending video' do
@@ -76,28 +90,6 @@ describe Admin::VideosController do
 
       it 'should not affect the video if I reject a rejected video' do
         @video.stub(:status).and_return(:rejected)
-      end
-    end
-
-    describe 'pending a video' do
-      after :each do
-        @video.should_receive(:update_attributes).with(:status => :pending)
-        @video.stub(:status).and_return(:pending)
-        post :pend, :id => 1
-        @video.status.should == :pending
-        response.should redirect_to :action => 'index'
-      end
-
-      it 'should allow me to pend an accepted video' do
-        @video.stub(:status).and_return(:accepted)
-      end
-
-      it 'should allow me to pend a rejected video' do
-        @video.stub(:status).and_return(:rejected)
-      end
-
-      it 'should not affect the video if I pend a pending video' do
-        @video.stub(:status).and_return(:pending)
       end
     end
   end
