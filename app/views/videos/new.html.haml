@@ -3,10 +3,12 @@
   = form_tag({:action => :create}, :class => 'submission-form', :multipart => 'true') do
     = label_tag 'name', 'Name/Pseudonym'
     = text_field_tag 'name'
-    .name
+    .moreinfo
       %p Your name will be displayed next to your story title in our public library. If you want your story to be anonymoous, please use a pseudonym or 'anonymous'.
     = label_tag 'email', 'Email'
     = email_field_tag 'email'
+    .moreinfo
+      %p The Banyan Tree Project will not share your email address with any community members or third parties.
     = label_tag 'age', 'Age'
     = text_field_tag 'age'
 
