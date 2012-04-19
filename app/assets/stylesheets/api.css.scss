@@ -3,10 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $back-color: #a6c197;
-$content-back-color: #dbece3;
-$front-content-back-color: #eff7f3;
+$content-back-color: #fffcee;
+$front-content-back-color: #f5f6e7;
 $second-color: #a0976d;
-$second-color-dark: #6c664b;
+$second-color-dark: #a0976d;
 
 $page-width: 1000px;
 $page-margin: 5px;
@@ -14,7 +14,7 @@ $page-margin: 5px;
 body {
   background: $back-color;
   margin: 0;
-  font-family: 'Open Sans';
+  font-family: 'Georgia';
 }
 
 a {
@@ -64,6 +64,7 @@ a:hover {
   padding: 20px;
   margin: 5px 5px 25px 5px;
   clear: both;
+  border: 1px solid #cccccc;
   min-height: $vid-height + 10px;  
   .listvid, .listimg {
     float: left;
@@ -90,7 +91,7 @@ a:hover {
   p {
     clear: right;
     font-size: 16px;
-    color: #424f48;
+    color: #6d6d6c;
   }
 }
 
