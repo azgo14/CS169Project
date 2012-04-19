@@ -13,9 +13,11 @@
     %h2 How do you hope hearing your story will change the community?
     =text_area :video, :hope, :size => '140x5'
     %h2 Additional Media
-    =submit_tag 'Save changes'
+    %h2 Notes
+    =text_area :video, :notes, :size => '140x5'
     %h2 Status
     =@video.status
-  %p
+    %h2
+    = submit_tag 'Save changes'
   = button_to 'Accept', {:action => 'accept', :id => @video.id}
   = button_to 'Reject', {:action => 'reject', :id => @video.id}
