@@ -11,6 +11,13 @@ class Admin::VideosController < ApplicationController
     @video = Video.find_by_id(params[:id])
   end
 
+  def update
+    @video = Video.find_by_id(params[:id])
+    @video.update_attributes!(params[:video])
+    flash[:notice] = 'Video successfully updated'
+    redirect_to admin_video_path(@video)
+  end
+
   def accept
     @video = Video.find_by_id(params[:id])
     @video.update_attributes(:status => :accepted)
