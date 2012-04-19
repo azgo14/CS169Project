@@ -23,7 +23,7 @@ class VideosController < ApplicationController
       redirect_to videos_path
     end
     #@commments = @video.comments.find_all_by_status('accepted')
-    @commments = @video.comments.all
+    @comments = Comment.find_all_by_video_id_and_status(id,'accepted')
     if @comments == nil
       @comments = []
     end
