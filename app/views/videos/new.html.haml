@@ -1,3 +1,9 @@
+:javascript
+  $(function() {
+    $('.additional a.add').bind('click', function() {
+      $('.additional .fields').append('<input id="additional_" name="additional[]" type="file" />');
+      });
+    });
 #submission
   %h1 Submission
   = form_tag({:action => :create}, :class => 'submission-form', :multipart => 'true') do
@@ -30,8 +36,9 @@
 
     = label_tag 'additional', 'Would you like to share any other images or videos related to your story?'
     .additional
-      = file_field_tag 'additional[]'
-      %a Add another row
+      .fields
+        = file_field_tag 'additional[]'
+      %a.add Add another row
 
     %h2 About your story
     = label_tag 'title', 'What is the title of your story? <span class="required">*</span>'.html_safe
