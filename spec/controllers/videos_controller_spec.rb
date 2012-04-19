@@ -61,10 +61,10 @@ describe VideosController do
 
     describe 'ratings' do
       it 'should allow me to submit an anonymous rating' do
-        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :rating => 5)
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :likes => 5)
         Video.should_receive(:find_by_id).with('1234').and_return(fake_video)
         post :like, {:id => '1234'}
-        fake_video.rating.should eq(6)
+        fake_video.likes.should eq(6)
       end
     end
 

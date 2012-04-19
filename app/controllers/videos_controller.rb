@@ -46,7 +46,7 @@ class VideosController < ApplicationController
                         :language => language, :location => location,
                         :title => title, :about => about,
                         :why => why, :how => how, :hope => hope,
-                        :status => 'pending')
+                        :status => 'pending', :likes => 0)
       video.save!
       flash[:notice] = 'Thank you for your submission! We will be reviewing your story soon!'
       redirect_to videos_path
@@ -63,5 +63,20 @@ class VideosController < ApplicationController
     end
     @videos = Video.search(params[:search_text], params[:search_condition]).page(params[:page]).per(5)
     @search_text = params[:search_text]
+  end
+  def like
+    id = params[:id]
+    @video = Video.find_by_id(id)
+    if not(@video)
+      flash[:error] = 'Invalid video id'
+      redirect_to videos_path
+    end
+
+    @video.likes += 1
+    @video.save!
+
+    flash[:notice] = 'Thank you for your like!'
+
+    redirect_to video_path(@video)
   end
 end

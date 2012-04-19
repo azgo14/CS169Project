@@ -16,6 +16,13 @@
 
 
 %h2 Comments
+.likes
+  %p 
+    - if @video.likes > 0
+      This story currently has
+      =@video.likes
+      likes.
+    =button_to "Like this story!", like_video_path(@video)
 -# @video.comments.each do |comment|
   .comment
     %p=comment.body
