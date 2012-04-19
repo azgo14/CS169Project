@@ -33,19 +33,20 @@
       = file_field_tag 'additional[]'
       %a Add another row
 
-    = label_tag 'why', 'Why did you want to tell this story? <span class="required">*</span>'.html_safe
+    %h2 About your story
+    = label_tag 'title', 'What is the title of your story? <span class="required">*</span>'.html_safe
+    = text_area_tag 'title'
+    = label_tag 'about', 'What is your story about?'.html_safe
+    = text_area_tag 'about'
+    = label_tag 'why', 'Why did you want to tell this story?'.html_safe
     = text_area_tag 'why'
-    = label_tag 'how', 'How did telling your story change you? <span class="required">*</span>'.html_safe
+    = label_tag 'how', 'How did telling your story change you?'.html_safe
     = text_area_tag 'how'
-    = label_tag 'hope', 'How do you hope hearing your story will change the community? <span class="required">*</span>'.html_safe
+    = label_tag 'hope', 'How do you hope hearing your story will change the community?'.html_safe
     = text_area_tag 'hope'
 
     = label_tag 'release', 'Story Release/Content <span class="required">*</span>'.html_safe
     .release
-      %p Do you give permission for the Banyan Tree Project to use and promote your digital story?
-      = label_tag 'release_yes', 'Yes', :class => 'smaller'
-      = radio_button_tag 'release', true
-      = label_tag 'release_no', 'No', :class => 'smaller'
-      = radio_button_tag 'release', false
+      %p Clicking SUBMIT indicates you have read and give permission to the Banyan Tree Project to share your story as outlined in the release form (release form link). If you do not grant permission, do not click SUBMIT. 
 
     = submit_tag 'Submit'

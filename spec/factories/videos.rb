@@ -6,10 +6,11 @@ FactoryGirl.define do
     ethnicity []
     language 'language'
     location 'location'
+    title 'title'
+    about 'about'
     why 'why'
     how 'how'
     hope 'hope'
-    qa 'qa'
     status 'pending'
     youtube_id '1234'
     user_id ''

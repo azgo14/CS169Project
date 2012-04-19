@@ -1,5 +1,5 @@
 #viddetail.admin
-  = render :partial => 'api/show'
+  = render :partial => 'videos/show'
   = button_to 'Accept', {:action => 'accept', :id => @video.id}
   = button_to 'Pend', {:action => 'pend', :id => @video.id}
   = button_to 'Reject', {:action => 'reject', :id => @video.id}

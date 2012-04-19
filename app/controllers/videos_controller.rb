@@ -32,18 +32,20 @@ class VideosController < ApplicationController
     name, email, age = params[:name], params[:email], params[:age]
     ethnicity = params[:ethnicity]
     language, location = params[:language], params[:location]
+    title, about = params[:title], params[:about]
     why, how, hope = params[:why], params[:how], params[:hope]
-    video, release = params[:video], params[:release]
+    video = params[:video]
     if (name != '' and email != '' and age != '' and ethnicity != nil and
-        language != '' and location != '' and why != '' and how != '' and
-        hope != '' and video != nil and release == 'true')
+        language != '' and location != '' and title != '' and about != '' and
+        video != nil)
       video_hash = {:video => File.new(video.path), :title => 'Title', :description => why}
       yt_id = Video.upload(video_hash)
       # Fix this to support user id/login
       video = Video.new(:youtube_id => yt_id, :user_id => '', :name => name,
                         :email => email, :age => age, :ethnicity => ethnicity.keys,
                         :language => language, :location => location,
-                        :why => why, :how => how, :hope => hope, :qa => '',
+                        :title => title, :about => about,
+                        :why => why, :how => how, :hope => hope,
                         :status => 'pending')
       video.save!
       flash[:notice] = 'Thank you for your submission! We will be reviewing your story soon!'
