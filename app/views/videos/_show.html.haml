@@ -18,22 +18,27 @@
 %h2 Comments
 .likes
   %p 
-    - if @video.likes > 0
+    - if @video.likes != nil and @video.likes > 0
       This story currently has
       =@video.likes
       likes.
-    =button_to "Like this story!", like_video_path(@video)
--# @video.comments.each do |comment|
-  .comment
-    %p=comment.body
+    =button_to "Like this story!", like_video_path(@video), {:id => 'like'}
 .comments
-  .comment
-    %p Awesome!
+  - if @comments != nil
+    - @comments.each do |c|
+      .comment
+        %p
+          %h4=c.name
+          =c.content
   .newcomment
-    = form_tag :method => :get, :id => 'ratings_form' do               
-      = text_area_tag 'comment'
+    = form_tag({:action => :create_comment}, :class => 'comment-form', :multipart => 'true') do
+      = hidden_field_tag 'anonymous',true
+      = label_tag 'content', 'Anonymous Comment'
+      = text_area_tag 'content'
       = submit_tag 'Submit Anonymously' #, :id => 'ratings_submit'
     - if user_signed_in?
-      = form_tag :method => :get, :id => 'ratings_form' do               
-        = text_area_tag 'comment'
+      = form_tag({:action => :create_comment}, :class => 'comment-form', :multipart => 'true') do
+        = hidden_field_tag 'anonymous',false
+        = label_tag 'content', 'Comment'
+        = text_area_tag 'content'
         = submit_tag 'Submit' #, :id => 'ratings_submit'

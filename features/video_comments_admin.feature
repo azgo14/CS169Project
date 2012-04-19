@@ -6,15 +6,15 @@ Feature: Moderating comments as an admin
 Background: videos submitted
 
   Given the following videos have been submitted:
-  | Name               | Email                 | Date Submitted | Status   |
-  | Mario              | mario@plumber.com     | 09-Sept-1985   | Accepted |
-  | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | Accepted |
+  | Name               | Email                 | Date Submitted | Status   | Likes |
+  | Mario              | mario@plumber.com     | 09-Sept-1985   | Accepted | 0     |
+  | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | Accepted | 0     |
 
   And the following comments have been submitted:
-  | Name           | Content     | Video   | Date Submitted | Status   |
-  | Some Troll     | You suck    | Mario   | 09-Sept-1985   | Pending  |
-  | Nice Person    | Amazing     | Mario   | 21-July-2007   | Pending  |
-  | New Person     | I am young  | Mario   | 01-July-2012   | Pending  |
+  | Name           | Content     | Video   | Date Submitted | Status   | Likes |
+  | Some Troll     | You suck    | Mario   | 09-Sept-1985   | Pending  | 0     |
+  | Nice Person    | Amazing     | Mario   | 21-July-2007   | Pending  | 0     |
+  | New Person     | I am young  | Mario   | 01-July-2012   | Pending  | 0     |
 
   And I am signed in as an administrator
 

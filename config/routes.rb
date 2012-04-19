@@ -23,6 +23,7 @@ CS169Project::Application.routes.draw do
   resources :videos do
     member do
       post 'like'
+      post 'create_comment'
     end
   end
 

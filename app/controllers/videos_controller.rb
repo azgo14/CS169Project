@@ -22,6 +22,11 @@ class VideosController < ApplicationController
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end
+    #@commments = @video.comments.find_all_by_status('accepted')
+    @commments = @video.comments.all
+    if @comments == nil
+      @comments = []
+    end
   end
 
   def new
@@ -78,5 +83,35 @@ class VideosController < ApplicationController
     flash[:notice] = 'Thank you for your like!'
 
     redirect_to video_path(@video)
+  end
+
+  def create_comment
+    video_id = params[:id]
+    content = params[:content] 
+    anonymous = params[:anonymous]
+    user = current_user
+
+    video = Video.find(video_id)
+
+    if user != nil
+      user_id = user.id
+    else
+      user_id = -1
+    end
+
+    puts 'asdfff'
+    puts video_id
+
+    if (content != '' and video_id != '' and user_id != '')
+      comment = Comment.new(:content => content, :video_id => video_id,
+                            :user_id => user_id, :status => 'pending',
+                            :anonymous => anonymous)
+      comment.save!
+      flash[:notice] = 'Thank you for your comment! We will be reviewing it soon!'
+    else
+      flash[:error] = 'Please fill in a comment'
+    end
+    redirect_to video_path(video)
+
   end
 end

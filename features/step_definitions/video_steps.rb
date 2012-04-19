@@ -4,6 +4,13 @@ Given /the following videos exist/ do |videos_table|
   end
 end
 
+Given /the following comments exist/ do |comments_table|
+  comments_table.hashes.each do |comment|
+    comment['video'] = Video.find_by_name(comment['video'])
+    Comment.create(comment)
+  end
+end
+
 Given /I am signed in as an administrator/ do
   admin = User.create(:email => 'admin@api.com', :password => 'password')
   admin.admin = true
@@ -58,4 +65,8 @@ When /I check the following ethnicities: (.*)/ do |ethnicity_list|
   ethnicity_list.split(/,\s*/).each do |ethnicity|
     step %{I check "#{ethnicity}"}
   end
+end
+
+Then /I should not see any comments/ do
+  page.should_not have_css(".comment")
 end

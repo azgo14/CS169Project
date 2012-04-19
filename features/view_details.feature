@@ -6,9 +6,9 @@ Feature: View Details About a Story
 Background: videos submitted
 
   Given the following videos exist:
-  | name               | email                 | why           | how                       | status   |
-  | Mario              | mario@plumber.com     | I'm a plumber | Because I save princesses | accepted |
-  | Harry Potter       | potter@hogwarts.com   | I have a scar | I survived whatshisface   | accepted |
+  | name               | email                 | why           | how                       | status   | likes |
+  | Mario              | mario@plumber.com     | I'm a plumber | Because I save princesses | accepted | 0     |
+  | Harry Potter       | potter@hogwarts.com   | I have a scar | I survived whatshisface   | accepted | 5     |
 
   And I am on the video list page
 
@@ -19,8 +19,9 @@ Scenario: Go from list to details page
 
 Scenario: Leave a comment
   When I follow "Harry Potter"
-  And I fill in "comment" with "My Comment"
-  Then I should not see "Thank you for your comment"
+  And I fill in "content" with "My Comment"
+  When I press "Submit Anonymously"
+  Then I should see "Thank you for your comment"
   When I am on the video list page
   And I follow "Harry Potter"
   Then I should not see "My Comment"
@@ -28,5 +29,5 @@ Scenario: Leave a comment
 Scenario: Ratings
   When I follow "Harry Potter"
   Then I should see "5 likes"
-  When I follow "like"
+  When I press "like"
   Then I should see "6 likes"
