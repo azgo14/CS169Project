@@ -16,6 +16,6 @@
     =submit_tag 'Save changes'
     %h2 Status
     =@video.status
-    %p
-    = button_to 'Accept', {:action => 'accept', :id => @video.id}
-    = button_to 'Reject', {:action => 'reject', :id => @video.id}
+  %p
+  = button_to 'Accept', {:action => 'accept', :id => @video.id}
+  = button_to 'Reject', {:action => 'reject', :id => @video.id}
