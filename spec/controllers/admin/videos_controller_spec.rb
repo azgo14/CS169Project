@@ -20,11 +20,14 @@ describe Admin::VideosController do
   end
 
   describe '#show' do
-    it 'should show the admin details page for the given video' do
+    it 'should show the admin detail page for the given video' do
+      comments = [mock('Comment'), mock('Comment')]
       video = FactoryGirl.create(:video)
       Video.should_receive(:find_by_id).with('1').and_return(video)
+      Comment.should_receive(:find_all_by_video_id_and_status).with('1', 'accepted').and_return(comments)
       get :show, :id => 1
       assigns(:video).should == video
+      assigns(:comments).should == comments
       response.should render_template('show')
     end
   end
@@ -35,7 +38,7 @@ describe Admin::VideosController do
       Video.should_receive(:find_by_id).with('1').and_return(video)
       video.should_receive(:update_attributes!).with('why' => 'because', 'title' => 'new title')
       post :update, {:id => 1, :video => {'why' => 'because', 'title' => 'new title'}}
-      flash[:notice].should == 'This video has been successfully updated'
+      flash[:notice].should == 'This video has been successfully updated.'
       response.should redirect_to admin_video_path(video)
     end
   end
@@ -53,7 +56,7 @@ describe Admin::VideosController do
         @video.stub(:status).and_return(:accepted)
         post :accept, :id => 1
         @video.status.should == :accepted
-        flash[:notice].should == 'This video has been accepted'
+        flash[:notice].should == 'This video has been accepted.'
         response.should redirect_to admin_video_path(@video)
       end
 
@@ -77,7 +80,7 @@ describe Admin::VideosController do
         post :reject, :id => 1
         @video.status.should == :rejected
         response.should redirect_to admin_video_path(@video)
-        flash[:notice].should == 'This video has been rejected'
+        flash[:notice].should == 'This video has been rejected.'
       end
 
       it 'should allow me to reject a pending video' do
