@@ -8,11 +8,11 @@
   %h1 Submission
   = form_tag({:action => :create}, :class => 'submission-form', :multipart => 'true') do
     .notice
-      %p 
-        Items marked with a 
+      %p
+        Items marked with a
         %span.required *
         are required.
-    = label_tag 'name', 'Name/Pseudonym <span class="required">*</span>'.html_safe 
+    = label_tag 'name', 'Name/Pseudonym <span class="required">*</span>'.html_safe
     = text_field_tag 'name'
     .moreinfo
       %p Your name will be displayed next to your story title in our public library. If you want your story to be anonymoous, please use a pseudonym or 'anonymous'.
@@ -22,18 +22,61 @@
       %p The Banyan Tree Project will not share your email address with any community members or third parties.
     = label_tag 'age', 'Age <span class="required">*</span>'.html_safe
     = text_field_tag 'age'
-
     = label_tag 'ethnicity', 'Ethnicity (choose all that apply) <span class="required">*</span>'.html_safe
     .ethnicity
+      = label_tag 'ethnicity[african]', 'African American or Black', :class => 'smaller'
+      = check_box_tag 'ethnicity[african]'
+      = label_tag 'ethnicity[native]', 'American Indian or Alaskan Native', :class => 'smaller'
+      = check_box_tag 'ethnicity[native]'
+      = label_tag 'ethnicity[arab]', 'Arab American or Middle Easterner', :class => 'smaller'
+      = check_box_tag 'ethnicity[arab]'
+      = label_tag 'ethnicity[cambodian]', 'Cambodian', :class => 'smaller'
+      = check_box_tag 'ethnicity[cambodian]'
       = label_tag 'ethnicity[chinese]', 'Chinese', :class => 'smaller'
       = check_box_tag 'ethnicity[chinese]'
+      = label_tag 'ethnicity[filipino]', 'Filipino', :class => 'smaller'
+      = check_box_tag 'ethnicity[filipino]'
+      = label_tag 'ethnicity[hmong]', 'Hmong', :class => 'smaller'
+      = check_box_tag 'ethnicity[hmong]'
+      = label_tag 'ethnicity[indonesian]', 'Indonesian', :class => 'smaller'
+      = check_box_tag 'ethnicity[indonesian]'
+      = label_tag 'ethnicity[japanese]', 'Japanese', :class => 'smaller'
+      = check_box_tag 'ethnicity[japanese]'
+      = label_tag 'ethnicity[korean]', 'Korean', :class => 'smaller'
+      = check_box_tag 'ethnicity[korean]'
+      = label_tag 'ethnicity[laotian]', 'Laotian', :class => 'smaller'
+      = check_box_tag 'ethnicity[laotian]'
+      = label_tag 'ethnicity[indian]', 'South Asian or Asian Indian', :class => 'smaller'
+      = check_box_tag 'ethnicity[indian]'
+      = label_tag 'ethnicity[thai]', 'Thai', :class => 'smaller'
+      = check_box_tag 'ethnicity[thai]'
+      = label_tag 'ethnicity[vietnamese]', 'Vietnamese', :class => 'smaller'
+      = check_box_tag 'ethnicity[vietnamese]'
+      = label_tag 'ethnicity[other_asian]', 'Other Asian', :class => 'smaller'
+      = check_box_tag 'ethnicity[other_asian]'
+      = label_tag 'ethnicity[caucasian]', 'Caucasian or White', :class => 'smaller'
+      = check_box_tag 'ethnicity[caucasian]'
+      = label_tag 'ethnicity[hispanic]', 'Hispanic, Latino, or Spanish origin', :class => 'smaller'
+      = check_box_tag 'ethnicity[hispanic]'
+      = label_tag 'ethnicity[chamorro]', 'Chamorro/Guamanian', :class => 'smaller'
+      = check_box_tag 'ethnicity[chamorro]'
+      = label_tag 'ethnicity[fijian]', 'Fijian', :class => 'smaller'
+      = check_box_tag 'ethnicity[fijian]'
+      = label_tag 'ethnicity[hawaiian]', 'Native Hawaiian', :class => 'smaller'
+      = check_box_tag 'ethnicity[hawaiian]'
+      = label_tag 'ethnicity[samoan]', 'Samoan', :class => 'smaller'
+      = check_box_tag 'ethnicity[samoan]'
+      = label_tag 'ethnicity[tongan]', 'Tongan', :class => 'smaller'
+      = check_box_tag 'ethnicity[tongan]'
+      = label_tag 'ethnicity[other_pi]', 'Other Pacific Islander', :class => 'smaller'
+      = check_box_tag 'ethnicity[other_pi]'
     = label_tag 'language', 'Language <span class="required">*</span>'.html_safe
     = text_field_tag 'language'
     = label_tag 'location', 'Location'
     = text_field_tag 'location'
-    = label_tag 'video', 'Upload Video <span class="required">*</span>'.html_safe
+    = label_tag 'video', 'Upload Your Story <span class="required">*</span>'.html_safe
+    = 'Supported file formats: (webm, mpeg4, 3gpp, mov, avi, mpegps, wmv, flv) <br/>'.html_safe
     = file_field_tag 'video'
-
     = label_tag 'additional', 'Would you like to share any other images or videos related to your story?'
     .additional
       .fields
@@ -54,6 +97,6 @@
 
     = label_tag 'release', 'Story Release/Content <span class="required">*</span>'.html_safe
     .release
-      %p Clicking SUBMIT indicates you have read and give permission to the Banyan Tree Project to share your story as outlined in the release form (release form link). If you do not grant permission, do not click SUBMIT. 
+      %p Clicking SUBMIT indicates you have read and give permission to the Banyan Tree Project to share your story as outlined in the release form (release form link). If you do not grant permission, do not click SUBMIT.
 
     = submit_tag 'Submit'
