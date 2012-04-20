@@ -1,0 +1,7 @@
+%h1 Admin/Review
+%h2 Pending
+= render :partial => 'table', :locals => {:comments => @pending_comments}
+%h2 Accepted
+= render :partial => 'table', :locals => {:comments => @accepted_comments}
+%h2 Rejected
+= render :partial => 'table', :locals => {:comments => @rejected_comments}

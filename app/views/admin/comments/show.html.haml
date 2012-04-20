@@ -24,8 +24,11 @@
       - @comments.each do |c|
         .comment
           %p
+            =c.status
             %h4=c.name
             =c.content
+            =button_to 'Accept', {:action => 'accept', :id => c.id}
+            =button_to 'Reject', {:action => 'reject', :id => c.id}
     %h2 Notes
     =text_area :video, :notes, :size => '140x5'
     %p

@@ -10,7 +10,7 @@ class Admin::VideosController < ApplicationController
   def show
     id = params[:id]
     @video = Video.find_by_id(id)
-    @comments = Comment.find_all_by_video_id_and_status(id, 'accepted')
+    @comments = Comment.find_all_by_video_id_and_status(id, 'accepted') or []
   end
 
   def update

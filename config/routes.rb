@@ -33,6 +33,9 @@ CS169Project::Application.routes.draw do
     match '/videos/accept/:id' => 'videos#accept', :as => :accept
     match '/videos/pend/:id' => 'videos#pend', :as => :pend
     match '/videos/reject/:id' => 'videos#reject', :as => :reject
+    resources :comments
+    match '/comments/accept/:id' => 'comments#accept', :as => :accept
+    match '/comments/reject/:id' => 'comments#reject', :as => :reject
   end
 
   # Sample resource route with options:
