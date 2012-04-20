@@ -29,7 +29,7 @@ Scenario: Accept a pending video
   Given I am on the admin video detail page for "Solid Snake"
   When I press "Accept"
   Then I should be on the admin video detail page for "Solid Snake"
-  And I should see "This video has been accepted"
+  And I should see "This video has been accepted."
   When I am on the admin/review page
   Then I should see the following under "Accepted": Mario, Solid Snake
   And I should see "Solid Snake" before "Mario"
@@ -38,7 +38,7 @@ Scenario: Reject a pending video
   Given I am on the admin video detail page for "Solid Snake"
   When I press "Reject"
   Then I should be on the admin video detail page for "Solid Snake"
-  And I should see "This video has been rejected"
+  And I should see "This video has been rejected."
   When I am on the admin/review page
   Then I should see the following under "Rejected": Harry Potter, Solid Snake
 
@@ -46,7 +46,7 @@ Scenario: Reject an accepted video
   Given I am on the admin video detail page for "Mario"
   When I press "Reject"
   Then I should be on the admin video detail page for "Mario"
-  And I should see "This video has been rejected"
+  And I should see "This video has been rejected."
   When I am on the admin/review page
   Then I should see the following under "Rejected": Harry Potter, Mario
 
@@ -54,7 +54,7 @@ Scenario: Accept a rejected video
   Given I am on the admin video detail page for "Harry Potter"
   When I press "Accept"
   Then I should be on the admin video detail page for "Harry Potter"
-  And I should see "This video has been accepted"
+  And I should see "This video has been accepted."
   When I am on the admin/review page
   Then I should see the following under "Accepted": Mario, Harry Potter
 
