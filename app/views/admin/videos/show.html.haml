@@ -24,15 +24,15 @@
       - @comments.each do |c|
         .comment
           %p
-            %h4=c.name
             =c.content
+            %br
+            %br
+            %b
+              =c.name
     %h2 Notes
     =text_area :video, :notes, :size => '140x5'
-    %p
     = submit_tag 'Save changes'
-    %p
   %h2 Status
   =@video.status
-  %p
   = button_to 'Accept', {:action => 'accept', :id => @video.id}
   = button_to 'Reject', {:action => 'reject', :id => @video.id}

@@ -1,6 +1,6 @@
 %h1=@video.name
 -#%ul.info
-  %li 
+  %li
 %iframe{:class => 'vid', :src => "http://www.youtube.com/embed/#{@video.youtube_id}"}
 %h2 What is the title of your story?
 %p=@video.title
@@ -17,19 +17,22 @@
 
 %h2 Comments
 .likes
-  %p 
+  %p
     - if @video.likes != nil and @video.likes > 0
       This story currently has
       =@video.likes
       likes.
-    =button_to "Like this story!", like_video_path(@video), {:id => 'like'}
+  =button_to "Like this story!", like_video_path(@video), {:id => 'like'}
 .comments
   - if @comments != nil
     - @comments.each do |c|
       .comment
         %p
-          %h4=c.name
           =c.content
+          %br
+          %br
+          %b
+            =c.name
   .newcomment
     = form_tag({:action => :create_comment}, :class => 'comment-form', :multipart => 'true') do
       = hidden_field_tag 'anonymous',true
