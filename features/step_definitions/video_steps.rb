@@ -70,3 +70,7 @@ end
 Then /I should not see any comments/ do
   page.should_not have_css(".comment")
 end
+
+Then /I should not see any notes/ do
+  assert page.find_field('video_notes').has_no_text?
+end

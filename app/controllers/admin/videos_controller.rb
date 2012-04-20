@@ -8,13 +8,15 @@ class Admin::VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find_by_id(params[:id])
+    id = params[:id]
+    @video = Video.find_by_id(id)
+    @comments = Comment.find_all_by_video_id_and_status(id, 'accepted')
   end
 
   def update
     @video = Video.find_by_id(params[:id])
     @video.update_attributes!(params[:video])
-    flash[:notice] = 'Video successfully updated'
+    flash[:notice] = 'This video has been successfully updated.'
     redirect_to admin_video_path(@video)
   end
 
@@ -23,7 +25,8 @@ class Admin::VideosController < ApplicationController
     @video.update_attributes(:status => :accepted)
     # Make this publicly list videos on Youtube
     # @video.make_listed
-    redirect_to admin_videos_path
+    flash[:notice] = 'This video has been accepted.'
+    redirect_to admin_video_path(@video)
   end
 
   def reject
@@ -31,14 +34,15 @@ class Admin::VideosController < ApplicationController
     @video.update_attributes(:status => :rejected)
     # Make this unlist videos on Youtube
     # @video.make_unlisted
-    redirect_to admin_videos_path
+    flash[:notice] = 'This video has been rejected.'
+    redirect_to admin_video_path(@video)
   end
 
-  def pend
-    @video = Video.find_by_id(params[:id])
-    @video.update_attributes(:status => :pending)
-    # Make ths unlist videos on Youtube
-    # @video.make_unlisted
-    redirect_to admin_videos_path
-  end
+#  def pend
+#    @video = Video.find_by_id(params[:id])
+#    @video.update_attributes(:status => :pending)
+#    # Make ths unlist videos on Youtube
+#    # @video.make_unlisted
+#    redirect_to admin_video_path(@video)
+#  end
 end

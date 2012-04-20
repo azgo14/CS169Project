@@ -5,7 +5,7 @@ Feature: Update Video Status
 
 Background: videos submitted
 
-  Given the following videos exist:Given the following videos exist:
+  Given the following videos exist:
   | name               | email                 | created_at     | status    |
   | Solid Snake        | snake@snake.com       | 12-June-2008   | pending   |
   | Commander Shephard | shephard@normandy.com | 06-March-2012  | pending   |
@@ -28,37 +28,33 @@ Scenario: Clicking on a video brings me to the admin detail page
 Scenario: Accept a pending video
   Given I am on the admin video detail page for "Solid Snake"
   When I press "Accept"
-  Then I should be on the admin/review page
-  And I should see the following under "Accepted": Mario, Solid Snake
+  Then I should be on the admin video detail page for "Solid Snake"
+  And I should see "This video has been accepted."
+  When I am on the admin/review page
+  Then I should see the following under "Accepted": Mario, Solid Snake
   And I should see "Solid Snake" before "Mario"
 
 Scenario: Reject a pending video
   Given I am on the admin video detail page for "Solid Snake"
   When I press "Reject"
-  Then I should be on the admin/review page
-  And I should see the following under "Rejected": Harry Potter, Solid Snake
-
-Scenario: Pend an accepted video
-  Given I am on the admin video detail page for "Mario"
-  When I press "Pend"
-  Then I should be on the admin/review page
-  And I should see the following under "Pending": Solid Snake, Commander Shephard, Mario
+  Then I should be on the admin video detail page for "Solid Snake"
+  And I should see "This video has been rejected."
+  When I am on the admin/review page
+  Then I should see the following under "Rejected": Harry Potter, Solid Snake
 
 Scenario: Reject an accepted video
   Given I am on the admin video detail page for "Mario"
   When I press "Reject"
-  Then I should be on the admin/review page
-  And I should see the following under "Rejected": Harry Potter, Mario
-
-Scenario: Pend a rejected video
-  Given I am on the admin video detail page for "Harry Potter"
-  When I press "Pend"
-  Then I should be on the admin/review page
-  And I should see the following under "Pending": Solid Snake, Commander Shephard, Harry Potter
+  Then I should be on the admin video detail page for "Mario"
+  And I should see "This video has been rejected."
+  When I am on the admin/review page
+  Then I should see the following under "Rejected": Harry Potter, Mario
 
 Scenario: Accept a rejected video
   Given I am on the admin video detail page for "Harry Potter"
   When I press "Accept"
-  Then I should be on the admin/review page
-  And I should see the following under "Accepted": Mario, Harry Potter
+  Then I should be on the admin video detail page for "Harry Potter"
+  And I should see "This video has been accepted."
+  When I am on the admin/review page
+  Then I should see the following under "Accepted": Mario, Harry Potter
 
