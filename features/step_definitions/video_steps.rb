@@ -72,5 +72,5 @@ Then /I should not see any comments/ do
 end
 
 Then /I should not see any notes/ do
-  assert page.find_field('video_notes').has_no_text?
+  assert page.find_by_id('video_notes').text.blank?
 end
