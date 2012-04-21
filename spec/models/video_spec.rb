@@ -54,68 +54,28 @@ describe Video do
       @vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
     end
 
-    it 'should call find on @search_text if @search_condition argument is "ethniticy" and return a collection of videos with matching "ethnicity"' do
-      @search_text = "Japanese"
-      @search_condition = "ethnicity"
-      Video.stub_chain(:where,:order).and_return([@vid1,@vid3])
-      Video.should_receive(:where).with("lower(#{@search_condition}) LIKE ?", "%#{@search_text}%".downcase)
-
-      return_val = Video.search(@search_text, @search_condition)
-      return_val.should == [@vid1,@vid3]
-    end
-
-    it '"ethnicity" test without stubbing' do
+    it 'should call search on @search_text if @search_condition argument is "ethniticy" and return a collection of videos with matching "ethnicity"' do
       @search_text = "Japanese"
       @search_condition = "ethnicity"
       return_val = Video.search(@search_text, @search_condition)
       return_val.should == [@vid1,@vid3]
     end
 
-    it 'should call the correct find on @search_text if @search_condition argument is "title" and return a collection of videos with matching "title"' do
-      @search_text = "Lui"
-      @search_condition = "name"
-      Video.stub_chain(:where,:order).and_return([@vid2,@vid3])
-      Video.should_receive(:where).with("lower(#{@search_condition}) LIKE ?", "%#{@search_text}%".downcase)
-
-      return_val = Video.search(@search_text, @search_condition)
-      return_val.should == [@vid2,@vid3]
-    end
-
-    it '"name" test without stubbing' do
+    it 'should call search on @search_text if @search_condition argument is "title" and return a collection of videos with matching "title"' do
       @search_text = "Lui"
       @search_condition = "name"
       return_val = Video.search(@search_text, @search_condition)
       return_val.should == [@vid2,@vid3]
     end
 
-    it 'should call the correct find on @search_text if @search_condition argument is "age" and return a collection of videos with matching "age"' do
-      @search_text = "21"
-      @search_condition = "age"
-      Video.stub_chain(:where,:order).and_return([@vid1,@vid2])
-      Video.should_receive(:where).with("lower(#{@search_condition}) LIKE ?", "%#{@search_text}%".downcase)
-
-      return_val = Video.search(@search_text, @search_condition)
-      return_val.should == [@vid1,@vid2]
-    end
-
-    it '"age" test without stubbing' do
+    it 'should call search on @search_text if @search_condition argument is "age" and return a collection of videos with matching "age"' do
       @search_text = "21"
       @search_condition = "age"
       return_val = Video.search(@search_text, @search_condition)
       return_val.should == [@vid1,@vid2]
     end
 
-    it 'should call the correct find on @search_text if @search_condition argument is "location" and return a collection of videos with matching "location"' do
-      @search_text = "California"
-      @search_condition = "location"
-      Video.stub_chain(:where,:order).and_return([@vid1,@vid2,@vid3])
-      Video.should_receive(:where).with("lower(#{@search_condition}) LIKE ?", "%#{@search_text}%".downcase)
-
-      return_val = Video.search(@search_text, @search_condition)
-      return_val.should == [@vid1,@vid2,@vid3]
-    end
-
-    it '"location" test without stubbing' do
+    it 'should call search on @search_text if @search_condition argument is "location" and return a collection of videos with matching "location"' do
       @search_text = "California"
       @search_condition = "location"
       return_val = Video.search(@search_text, @search_condition)
@@ -123,16 +83,6 @@ describe Video do
     end
 
     it 'should return empty array if there are no videos with matching @search_term on @search_condition' do
-      @search_text = "Andrew"
-      @search_condition = "name"
-      Video.stub_chain(:where,:order).and_return([])
-      Video.should_receive(:where).with("lower(#{@search_condition}) LIKE ?", "%#{@search_text}%".downcase)
-
-      return_val = Video.search(@search_text, @search_condition)
-      return_val.should == []
-    end
-
-    it 'empty array test without stubbing' do
       @search_text = "Andrew"
       @search_condition = "name"
       return_val = Video.search(@search_text, @search_condition)
