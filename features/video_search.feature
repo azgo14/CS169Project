@@ -59,6 +59,7 @@ Scenario: searching by part of title (name) on the video list page
   And I should see "Title" should be selected for "search_condition"
   And I should see "Mario Lui" within "#search_results"
   And I should see "Mike Slick" within "#search_results"
+  And I should see "Mario Lui" before "Mike Slick"
   And I should not see "Wario Joe" within "#search_results"
   And I should not see "Luigi Bo" within "#search_results"
 
@@ -87,6 +88,9 @@ Scenario: searching by title with no text specified on the video list page
   And I should see "Mike Slick" within "#search_results"
   And I should see "Wario Joe" within "#search_results"
   And I should see "Luigi Bo" within "#search_results"
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
 
 
 
@@ -129,6 +133,9 @@ Scenario: searching by partial age that does exist on the video list page
   And I should see "Mike Slick" within "#search_results"
   And I should see "Wario Joe" within "#search_results"
   And I should see "Luigi Bo" within "#search_results"
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
 
 Scenario: searching by age with no text specified on the video list page
   Given I am on the video list page
@@ -141,7 +148,9 @@ Scenario: searching by age with no text specified on the video list page
   And I should see "Mike Slick" within "#search_results"
   And I should see "Wario Joe" within "#search_results"
   And I should see "Luigi Bo" within "#search_results"
-
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
 
 
 Scenario: searching by full ethnicity on the video list page
@@ -167,6 +176,7 @@ Scenario: searching by part of ethnicity on the video list page
   And I should see "Ethnicity" should be selected for "search_condition"
   And I should see "Mario Lui" within "#search_results"
   And I should see "Mike Slick" within "#search_results"
+  And I should see "Mario Lui" before "Mike Slick"
   And I should not see "Wario Joe" within "#search_results"
   And I should not see "Luigi Bo" within "#search_results"
 
@@ -195,7 +205,9 @@ Scenario: searching by ethnicity with no text specified on the video list page
   And I should see "Mike Slick" within "#search_results"
   And I should see "Wario Joe" within "#search_results"
   And I should see "Luigi Bo" within "#search_results"
-
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
 
 
 @javascript
@@ -238,3 +250,6 @@ Scenario: searching by location with no text specified on the video list page
   And I should see "Mike Slick" within "#search_results"
   And I should see "Wario Joe" within "#search_results"
   And I should see "Luigi Bo" within "#search_results"
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
