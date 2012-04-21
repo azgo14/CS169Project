@@ -139,25 +139,29 @@ describe VideosController do
     end
 
     it "should return correct result for search by name" do
-      Video.should_receive(:search).with("Lui", "name").and_return([@vid1,@vid2])
+      Video.stub_chain(:search, :page, :per).and_return([@vid1,@vid2])
+      Video.should_receive(:search).with("Lui", "Name")
       get :search, :search_text => "Lui", :search_condition => "Name"
       assigns(:videos).should == [@vid1,@vid2]
     end
 
     it "should return correct result for search by age" do
-      Video.should_receive(:search).with("21", "age").and_return([@vid1,@vid3])
+      Video.stub_chain(:search, :page, :per).and_return([@vid1,@vid3])
+      Video.should_receive(:search).with("21", "Age")
       get :search, :search_text => "21", :search_condition => "Age"
       assigns(:videos).should == [@vid1,@vid3]
     end
 
     it "should return correct result for search by location" do
-      Video.should_receive(:search).with("California", "location").and_return([@vid1,@vid2,@vid3])
+      Video.stub_chain(:search, :page, :per).and_return([@vid1,@vid2,@vid3])
+      Video.should_receive(:search).with("California", "Location")
       get :search, :search_text => "California", :search_condition => "Location"
       assigns(:videos).should == [@vid1,@vid2,@vid3]
     end
 
     it "should return correct result for search by ethnicity" do
-      Video.should_receive(:search).with("Japanese", "ethnicity").and_return([@vid2,@vid3])
+      Video.stub_chain(:search, :page, :per).and_return([@vid2,@vid3])
+      Video.should_receive(:search).with("Japanese", "Ethnicity")
       get :search, :search_text => "Japanese", :search_condition => "Ethnicity"
       assigns(:videos).should == [@vid2,@vid3]
     end
