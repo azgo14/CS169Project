@@ -253,3 +253,133 @@ Scenario: searching by location with no text specified on the video list page
   And I should see "Luigi Bo" before "Mario Lui"
   And I should see "Mario Lui" before "Mike Slick"
   And I should see "Mike Slick" before "Wario Joe"
+
+Scenario: more videos in returned by search than 5 which causes pagination
+  Given the following videos exist:
+    | name         | age    | ethnicity   | location    | status   |
+    | Abe Jo       | 19     | Chinese     | California  | Accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+  Given I am on the video list page
+  When I select "Title" from "search_condition"
+  And I press "Search"
+  Then I should be on the video search page
+  And the "search_text" field should contain ""
+  And I should see "Title" should be selected for "search_condition"
+  And I should see "Abe Jo" within "#search_results"
+  And I should see "Bob Elo" within "#search_results"
+  And I should see "Chang So" within "#search_results"
+  And I should see "Darren Go" within "#search_results"
+  And I should see "Elen Cer" within "#search_results"
+  And I should see "Abe Jo" before "Bob Elo"
+  And I should see "Bob Elo" before "Chang So"
+  And I should see "Chang So" before "Darren Go"
+  And I should see "Darren Go" before "Elen Cer" 
+  And I should not see "Mario Lui" within "#search_results"
+  And I should not see "Mike Slick" within "#search_results"
+  And I should not see "Wario Joe" within "#search_results"
+  And I should not see "Luigi Bo" within "#search_results"
+  
+  When I follow "Next"
+  And I should not see "Abe Jo" within "#search_results"
+  And I should not see "Bob Elo" within "#search_results"
+  And I should not see "Chang So" within "#search_results"
+  And I should not see "Darren Go" within "#search_results"
+  And I should not see "Elen Cer" within "#search_results"
+  And I should see "Mario Lui" within "#search_results"
+  And I should see "Mike Slick" within "#search_results"
+  And I should see "Wario Joe" within "#search_results"
+  And I should see "Luigi Bo" within "#search_results"
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
+
+Scenario: pressing next and then prev for paginated search
+ Given the following videos exist:
+    | name         | age    | ethnicity   | location    | status   |
+    | Abe Jo       | 19     | Chinese     | California  | Accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+  Given I am on the video list page
+  When I select "Title" from "search_condition"
+  And I press "Search"
+  Then I should be on the video search page
+  And the "search_text" field should contain ""
+  And I should see "Title" should be selected for "search_condition"
+  And I should see "Abe Jo" within "#search_results"
+  And I should see "Bob Elo" within "#search_results"
+  And I should see "Chang So" within "#search_results"
+  And I should see "Darren Go" within "#search_results"
+  And I should see "Elen Cer" within "#search_results"
+  And I should see "Abe Jo" before "Bob Elo"
+  And I should see "Bob Elo" before "Chang So"
+  And I should see "Chang So" before "Darren Go"
+  And I should see "Darren Go" before "Elen Cer" 
+  And I should not see "Mario Lui" within "#search_results"
+  And I should not see "Mike Slick" within "#search_results"
+  And I should not see "Wario Joe" within "#search_results"
+  
+  When I follow "Next"
+  And I follow "Prev"
+  Then I should be on the video search page
+  And the "search_text" field should contain ""
+  And I should see "Title" should be selected for "search_condition"
+  And I should see "Abe Jo" within "#search_results"
+  And I should see "Bob Elo" within "#search_results"
+  And I should see "Chang So" within "#search_results"
+  And I should see "Darren Go" within "#search_results"
+  And I should see "Elen Cer" within "#search_results"
+  And I should see "Abe Jo" before "Bob Elo"
+  And I should see "Bob Elo" before "Chang So"
+  And I should see "Chang So" before "Darren Go"
+  And I should see "Darren Go" before "Elen Cer" 
+  And I should not see "Mario Lui" within "#search_results"
+  And I should not see "Mike Slick" within "#search_results"
+  And I should not see "Wario Joe" within "#search_results"
+
+Scenario: more videos in returned by search than 5 which causes pagination. Instead of pressing next, we press last.
+
+  Given the following videos exist:
+    | name         | age    | ethnicity   | location    | status   |
+    | Abe Jo       | 19     | Chinese     | California  | Accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+  Given I am on the video list page
+  When I select "Title" from "search_condition"
+  And I press "Search"
+  Then I should be on the video search page
+  And the "search_text" field should contain ""
+  And I should see "Title" should be selected for "search_condition"
+  And I should see "Abe Jo" within "#search_results"
+  And I should see "Bob Elo" within "#search_results"
+  And I should see "Chang So" within "#search_results"
+  And I should see "Darren Go" within "#search_results"
+  And I should see "Elen Cer" within "#search_results"
+  And I should see "Abe Jo" before "Bob Elo"
+  And I should see "Bob Elo" before "Chang So"
+  And I should see "Chang So" before "Darren Go"
+  And I should see "Darren Go" before "Elen Cer" 
+  And I should not see "Mario Lui" within "#search_results"
+  And I should not see "Mike Slick" within "#search_results"
+  And I should not see "Wario Joe" within "#search_results"
+  And I should not see "Luigi Bo" within "#search_results"
+  
+  When I follow "Last"
+  And I should not see "Abe Jo" within "#search_results"
+  And I should not see "Bob Elo" within "#search_results"
+  And I should not see "Chang So" within "#search_results"
+  And I should not see "Darren Go" within "#search_results"
+  And I should not see "Elen Cer" within "#search_results"
+  And I should see "Mario Lui" within "#search_results"
+  And I should see "Mike Slick" within "#search_results"
+  And I should see "Wario Joe" within "#search_results"
+  And I should see "Luigi Bo" within "#search_results"
+  And I should see "Luigi Bo" before "Mario Lui"
+  And I should see "Mario Lui" before "Mike Slick"
+  And I should see "Mike Slick" before "Wario Joe"
