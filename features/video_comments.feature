@@ -38,13 +38,12 @@ Scenario: Cannot post comments as an blocked user
   But I should see "Sorry, you are not allowed to post comments"
 
 Scenario: Only see accepted comments
- Given the following comments exist:
-   | anonymous | content     | video   | status   |
-   | true      | You suck    | Mario   | rejected |
-   | true      | Amazing     | Mario   | accepted |
-   | true      | I am young  | Mario   | pending  |
- When I follow "Mario"
-
- Then I should not see "You suck"
- And I should see "Amazing"
- And I should not see "I am young"
+  And the following comments exist:
+  | user_id | content     | video_id | status   |
+  | 1       | You suck    | 1        | rejected |
+  | 2       | Amazing     | 1        | accepted |
+  | 3       | I am young  | 1        | pending  |
+  When I follow "Mario"
+  Then I should not see "You suck"
+  And I should see "Amazing"
+  And I should not see "I am young"

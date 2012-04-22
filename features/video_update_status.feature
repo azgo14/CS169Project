@@ -13,7 +13,7 @@ Background: videos submitted
   | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | rejected  |
 
   And I am signed in as an administrator
-  And I am on the admin/review page
+  And I am on the admin videos page
 
 Scenario: Videos should be partitioned by status (pending, accepted, rejected) and sorted by date submitted
   Then I should see the following under "Pending": Solid Snake, Commander Shephard
@@ -30,7 +30,7 @@ Scenario: Accept a pending video
   When I press "Accept"
   Then I should be on the admin video detail page for "Solid Snake"
   And I should see "This video has been accepted."
-  When I am on the admin/review page
+  When I am on the admin videos page
   Then I should see the following under "Accepted": Mario, Solid Snake
   And I should see "Solid Snake" before "Mario"
 
@@ -39,7 +39,7 @@ Scenario: Reject a pending video
   When I press "Reject"
   Then I should be on the admin video detail page for "Solid Snake"
   And I should see "This video has been rejected."
-  When I am on the admin/review page
+  When I am on the admin videos page
   Then I should see the following under "Rejected": Harry Potter, Solid Snake
 
 Scenario: Reject an accepted video
@@ -47,7 +47,7 @@ Scenario: Reject an accepted video
   When I press "Reject"
   Then I should be on the admin video detail page for "Mario"
   And I should see "This video has been rejected."
-  When I am on the admin/review page
+  When I am on the admin videos page
   Then I should see the following under "Rejected": Harry Potter, Mario
 
 Scenario: Accept a rejected video
@@ -55,6 +55,6 @@ Scenario: Accept a rejected video
   When I press "Accept"
   Then I should be on the admin video detail page for "Harry Potter"
   And I should see "This video has been accepted."
-  When I am on the admin/review page
+  When I am on the admin videos page
   Then I should see the following under "Accepted": Mario, Harry Potter
 

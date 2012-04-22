@@ -25,10 +25,12 @@ module NavigationHelpers
       '/users/sign_in'
     when /^the video search page$/
       '/videos/search'
-    when /^the admin\/review page$/
+    when /^the admin videos page$/
       '/admin/videos'
     when /^the video submission page$/
       '/videos/new'
+    when /^the admin comments page$/
+      '/admin/comments'
 
 
     # Add more mappings here.

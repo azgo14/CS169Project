@@ -26,8 +26,7 @@ Scenario: filling in the video submission form
     | how      | Sad.         |
     | hope     | Improve      |
   And I check the following ethnicities: Chinese
-  And I attach the file "spec/fixtures/files/test.mp4" to "Upload Video"
-  #And I attach the file "video_upload.feature" to "Additional Video/Images"
+  And I attach the file "spec/fixtures/files/test.mp4" to "Upload Your Story"
   When I press "Submit"
   Then I should be on the video list page
   And I should see "Thank you for your submission! We will be reviewing your story soon!"

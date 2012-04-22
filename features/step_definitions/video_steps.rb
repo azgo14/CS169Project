@@ -4,13 +4,6 @@ Given /the following videos exist/ do |videos_table|
   end
 end
 
-Given /the following comments exist/ do |comments_table|
-  comments_table.hashes.each do |comment|
-    comment['video'] = Video.find_by_name(comment['video'])
-    Comment.create(comment)
-  end
-end
-
 Given /I am signed in as an administrator/ do
   admin = User.create(:email => 'admin@api.com', :password => 'password')
   admin.admin = true

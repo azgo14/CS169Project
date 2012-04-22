@@ -3,7 +3,7 @@ So that I may see the status of my digital story
 I want to be able to login and see status and other information about my movie
 
 Background: not logged in
- 
+
   When I am not logged in
   And the following user exists:
     |  email               |  password   |  admin  |
@@ -26,7 +26,7 @@ Scenario: login successfully as a user
   When I fill in the following:
     | Email               |  apiUser@gmail.com   |
     | Password            |  abbtcs169  |
- 
+
   And I press "Sign in"
   Then I should be on the home page
   And I should see "Signed in successfully."
@@ -40,7 +40,7 @@ Given I am on the home page
   When I fill in the following:
     | Email               |  adminAPI@gmail.com   |
     | Password            |  cs169Admin           |
- 
+
   And I press "Sign in"
   Then I should be on the home page
   And I should see "Signed in successfully."
@@ -76,7 +76,7 @@ Scenario: Upload a video anonymously
   When I fill in the following:
     | Email                |  fail_test@gmail.com   |
     | Password             |  fail_test             |
- 
+
   And I press "Sign in"
   Then I should be on the user sign-in page
   And I should see "Invalid email or password."
@@ -88,8 +88,8 @@ Scenario: Upload a video as a user
   And I should see "You need to sign in or sign up before continuing."
   When I fill in the following:
     | Email               |  apiUser@gmail.com |
-    | Password            |  abbtcs169         |  
- 
+    | Password            |  abbtcs169         |
+
   And I press "Sign in"
   Then I should be on the video submission page
   And I should see "Signed in successfully."
@@ -98,24 +98,24 @@ Scenario: Successful sign in from video details page
   Given I am on the video detail page for "Mario"
   When I follow "Sign In"
   Then I should be on the user sign-in page
-  
+
   When I fill in the following:
     | Email               |  apiUser@gmail.com |
-    | Password            |  abbtcs169         |  
- 
+    | Password            |  abbtcs169         |
+
   And I press "Sign in"
   Then I should be on the video detail page for "Mario"
   And I should see "Signed in successfully."
 
 Scenario: Non-admin user accessing admin video review page
   Given I am signed in as a user
-  And I am on the admin/review page
-  
+  And I am on the admin videos page
+
   Then I should be on the home page
   And I should see "You must be an Admin to view this"
 
 Scenario: Anonymous user accessing admin video review page and successfully logs in
-  Given I am on the admin/review page
+  Given I am on the admin videos page
 
   Then I should be on the user sign-in page
   And I should see "You must be an Admin to view this"
@@ -125,13 +125,13 @@ Scenario: Anonymous user accessing admin video review page and successfully logs
     | Password            |  cs169Admin           |
 
   And I press "Sign in"
-  Then I should be on the admin/review page
+  Then I should be on the admin videos page
   And I should see "Signed in successfully."
 
 Scenario: Login out on non-authentication needed pages should allow user to stay on that page
   Given I am signed in as a user
   And I am on the video detail page for "Mario"
-  
+
   When I am not logged in
   Then I should be on the video detail page for "Mario"
   And I should not see "Logout"
@@ -139,9 +139,9 @@ Scenario: Login out on non-authentication needed pages should allow user to stay
 Scenario: Login out on authentication needed pages should cause redirect to sign in page
   Given I am signed in as a user
   And I am on the video submission page
-  
+
   #this uses GET /users/sign_out, can't use DEL because we set signout to be GET in the initializer file for Devise
   When I am not logged in
-  	
+
   Then I should be on the user sign-in page
   And I should see "You need to sign in or sign up before continuing."
