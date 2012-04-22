@@ -36,26 +36,27 @@ describe VideosController do
 
     describe 'comments' do
       before(:each) do
-        fake_video = FactoryGirl.create(:video, :id => '1234')
+        @fake_video = FactoryGirl.create(:video, :id => '1234')
         pending_comment = FactoryGirl.create(:comment, :content => 'this is pending',
+                                             :anonymous => true,
+                                             :video_id => '1234',
                                              :status => 'pending')
         approved_comment = FactoryGirl.create(:comment, :content => 'this is approved',
-                                              :status => 'approved')
+                                              :anonymous => true,
+                                              :video_id => '1234',
+                                              :status => 'accepted')
         rejected_comment = FactoryGirl.create(:comment, :content => 'this is rejected',
+                                              :anonymous => true,
+                                              :video_id => '1234',
                                               :status => 'rejected')
       end
 
       it 'should ask the database for the corresponding comments' do
-        Video.should_receive(:find_by_id).with('1234').and_return(fake_video)
-        fake_video.should_receive(:comments)
+        Video.should_receive(:find_by_id).with('1234').and_return(@fake_video)
+        #@fake_video.should_receive(:comments)
+        Comment.should_receive(:find_all_by_video_id_and_status).with('1234',
+                                                                    'accepted')
         get :show, {:id => '1234'}
-      end
-
-      it 'should only find the approved comments' do
-        get :show, {:id => '1234'}
-        response.should have_selector('.comment', :content => 'this is approved')
-        response.should_not have_selector('.comment', :content => 'this is pending')
-        response.should_not have_selector('.comment', :content => 'this is rejected')
       end
     end
 
@@ -164,6 +165,79 @@ describe VideosController do
       Video.should_receive(:search).with("Japanese", "Ethnicity")
       get :search, :search_text => "Japanese", :search_condition => "Ethnicity"
       assigns(:videos).should == [@vid2,@vid3]
+    end
+  end
+  describe '#create_comment' do
+    before(:each) do
+      @fake_video = FactoryGirl.create(:video, :id => '1234', :youtube_id => '0NwxHphsCxI')
+      @fake_id = @fake_video.id
+      #Video.should_receive(:find_by_id).with("1234").and_return(@fake_video)
+      #User.should_receive(:find_by_id).with('1').and_return(@user)
+      #@user.should_receive(:blocked).and_return(false)
+    end
+    
+    after(:each) do
+    end
+
+    
+    describe 'submitting an anonymous comment with content' do
+      it 'should allow an anonymous submission and mark the submission as pending' do
+        Comment.should_receive(:new).with(:content=>'my comment', 
+                                           :video_id=>'1234', 
+                                           :user_id=>1, 
+                                           :anonymous=>'true', 
+                                           :status => 'pending')
+        post :create_comment, {:id => @fake_id, :content => 'my comment', 
+          :user_id => '1', :anonymous => 'true'}
+      end
+      it 'should redirect back to the video' do
+        post :create_comment, {:id => @fake_id, :content => 'my comment', 
+          :user_id => '1'}
+        response.should redirect_to(video_path(@fake_id))
+      end
+      it 'should store the comment' do
+        post :create_comment, {:id => @fake_id, :content => 'my comment', 
+          :user_id => '1'}
+        @fake_video.comments[0].content.should == 'my comment'
+      end
+    end
+
+    describe 'submitting an anonymous comment without content' do
+      it 'should not create a new comment' do
+      post :create_comment, {:id => @fake_id, :content => '', 
+        :user_id => '1'}
+        Comment.should_not_receive(:new)
+      end
+      it 'should flash a notice and redirect back to the video' do
+        post :create_comment, {:id => @fake_id, :content => '', 
+          :user_id => '1'}
+        response.should redirect_to(video_path(@fake_id))
+        flash[:error].should == 'Please fill in a comment'
+      end
+    end
+
+    describe 'commenting as a blocked user' do
+      before(:each) do
+        pending 'Implementation of blocked users'
+        @user = FactoryGirl.create(:user, :id => '3', :blocked => true,
+                                :email => 'fake@em.ail')
+        sign_in @user
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
+        User.should_receive(:find_by_id).with('3').and_return(@user)
+        @user.should_receive(:blocked).and_return(true)
+        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        post :create, {:id => '1234', :content => 'my comment', :user_id => '1'}
+      end
+
+      describe 'submitting an anonymous comment with content' do
+        it 'should not create a new comment' do
+          Comment.should_not_receive(:new)
+        end
+        it 'should flash a notice and redirect back to the video' do
+          response.should redirect_to(show_video_path)
+          flash[:error].should == "Sorry, you aren't allowed to post comments"
+        end
+      end
     end
   end
 end

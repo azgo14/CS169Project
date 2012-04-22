@@ -99,14 +99,13 @@ class VideosController < ApplicationController
       user_id = -1
     end
 
-    puts 'asdfff'
-    puts video_id
-
     if (content != '' and video_id != '' and user_id != '')
       comment = Comment.new(:content => content, :video_id => video_id,
                             :user_id => user_id, :status => 'pending',
                             :anonymous => anonymous)
-      comment.save!
+      if comment != nil
+        comment.save!
+      end
       flash[:notice] = 'Thank you for your comment! We will be reviewing it soon!'
     else
       flash[:error] = 'Please fill in a comment'
