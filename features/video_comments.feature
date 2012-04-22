@@ -27,22 +27,23 @@ Scenario: Posting a comment as an unblocked user does not immediately add a comm
   And I press "Submit Anonymously"
   Then I should not see "Some Comment"
 
-Scenario: Cannot post comments as an blocked user
-  When I follow "Logout"
-  And I am signed in as a registered, blocked user
-  And I am on the video list page
-  When I follow "Harry Potter"
-  And I fill in "Anonymous Comment" with "Please unblock me"
-  And I press "Submit Anonymously"
-  Then I should not see "Please unblock me"
-  But I should see "Sorry, you are not allowed to post comments"
+##### POSTPONED UNTIL NEXT ITERATION DUE TO BETTER FEATURE ALIGNMENT #####
+# Scenario: Cannot post comments as an blocked user
+#   When I follow "Logout"
+#   And I am signed in as a registered, blocked user
+#   And I am on the video list page
+#   When I follow "Harry Potter"
+#   And I fill in "Anonymous Comment" with "Please unblock me"
+#   And I press "Submit Anonymously"
+#   Then I should not see "Please unblock me"
+#   But I should see "Sorry, you are not allowed to post comments"
 
 Scenario: Only see accepted comments
   And the following comments exist:
-  | user_id | content     | video_id | status   |
-  | 1       | You suck    | 1        | rejected |
-  | 2       | Amazing     | 1        | accepted |
-  | 3       | I am young  | 1        | pending  |
+  | anonymous | content     | video_id | status   |
+  | true      | You suck    | 1        | rejected |
+  | true      | Amazing     | 1        | accepted |
+  | true      | I am young  | 1        | pending  |
   When I follow "Mario"
   Then I should not see "You suck"
   And I should see "Amazing"

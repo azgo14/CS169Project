@@ -34,7 +34,7 @@ class Video < ActiveRecord::Base
   # end
 
   def self.sort(status)
-    Video.find(:all, :order => 'created_at DESC', :conditions => {:status => status})
+    Video.find(:all, :order => 'created_at DESC', :conditions => {:status => status}) or []
   end
 
   def self.pending_videos

@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.sort(status)
-    Comment.find(:all, :order => 'created_at DESC', :conditions => {:status => status})
+    Comment.find(:all, :order => 'created_at DESC', :conditions => {:status => status}) or []
   end
 
   def self.pending_comments

@@ -10,7 +10,7 @@ class Admin::CommentsController < ApplicationController
   def show
     @comment = Comment.find_by_id(params[:id])
     @video = Video.find_by_id(@comment.video_id)
-    @comments = Comment.find_all_by_video_id(@video.id) or []
+    @comments = Comment.find_all_by_video_id(@video.id)
   end
 
   def accept

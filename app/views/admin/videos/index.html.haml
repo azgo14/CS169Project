@@ -1,10 +1,7 @@
 %h1 Admin/Review
-%div#pending
-  %h2 Pending
-  = render :partial => 'table', :locals => {:videos => @pending_videos}
-%div#accepted
-  %h2 Accepted
-  = render :partial => 'table', :locals => {:videos => @accepted_videos}
-%div#rejected
-  %h2 Rejected
-  = render :partial => 'table', :locals => {:videos => @rejected_videos}
+%h2 Pending
+= render :partial => 'table', :locals => {:videos => @pending_videos, :type => 'pending'}
+%h2 Accepted
+= render :partial => 'table', :locals => {:videos => @accepted_videos, :type => 'accepted'}
+%h2 Rejected
+= render :partial => 'table', :locals => {:videos => @rejected_videos, :type => 'rejected'}

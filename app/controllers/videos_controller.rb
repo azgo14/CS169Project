@@ -87,7 +87,7 @@ class VideosController < ApplicationController
 
   def create_comment
     video_id = params[:id]
-    content = params[:content] 
+    content = params[:content]
     anonymous = params[:anonymous]
     user = current_user
 
@@ -98,9 +98,6 @@ class VideosController < ApplicationController
     else
       user_id = -1
     end
-
-    puts 'asdfff'
-    puts video_id
 
     if (content != '' and video_id != '' and user_id != '')
       comment = Comment.new(:content => content, :video_id => video_id,

@@ -1,9 +1,9 @@
-%table
+%table{:id => type, :class => 'admin_comments'}
   %tbody
   - comments.each do |comment|
     %tr
       %td= link_to comment.name, :action => 'show', :id => comment.id
       %td= comment.content
       %td= comment.created_at.strftime("%B %d, %Y")
-      %td= button_to 'Accept', {:action => 'accept', :id => comment.id}, :name => "#{comment.id}_accept"
-      %td= button_to 'Reject', {:action => 'reject', :id => comment.id}, :name => "#{comment.id}_reject"
+      %td= button_to 'Accept', {:action => 'accept', :id => comment.id}, :id => "#{comment.id}_accept"
+      %td= button_to 'Reject', {:action => 'reject', :id => comment.id}, :id => "#{comment.id}_reject"
