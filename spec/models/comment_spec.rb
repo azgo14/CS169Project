@@ -45,4 +45,23 @@ describe Comment do
       end
     end
   end
+
+  describe '#name' do
+
+    before :each do
+      @user = FactoryGirl.create(:user, :email => 'user@api.com')
+    end
+
+    it "should return 'Anonymous' if submitted anonymously" do
+      comment = FactoryGirl.create(:comment, :anonymous => true)
+      @user.should_not_receive(:email)
+      comment.name
+    end
+
+    it 'should return the email address of the user who submitted the comment' do
+      comment = FactoryGirl.create(:comment, :anonymous => false, :user => @user)
+      @user.should_receive(:email).and_return('user@api.com')
+      comment.name
+    end
+  end
 end

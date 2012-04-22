@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   def name
-    if anonymous
+    if anonymous or user == nil
       return 'Anonymous'
     else
       return user.email
