@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Admin::VideosController do
+
   before (:each) do
     @user = FactoryGirl.create(:admin)
     sign_in @user

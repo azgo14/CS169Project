@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    user_id
-    comment
+    content 'Some comment content'
     status 'pending'
-    video_id
+    anonymous 'true'
   end
 end

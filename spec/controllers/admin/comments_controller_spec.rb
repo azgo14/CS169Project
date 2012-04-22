@@ -14,28 +14,32 @@ describe Admin::CommentsController do
       Comment.stub(:accepted_comments).and_return(comments)
       Comment.stub(:rejected_comments).and_return(comments)
       get :index
-      assigns(:pending_comments).should == videos
-      assigns(:accepted_comments).should == videos
-      assigns(:rejected_comments).should == videos
+      assigns(:pending_comments).should == comments
+      assigns(:accepted_comments).should == comments
+      assigns(:rejected_comments).should == comments
     end
   end
 
   describe '#show' do
-    it 'should show the comment on the admin details page for the corresponding vide' do
+    it 'should show the comment on the admin details page for the corresponding video' do
       comment = FactoryGirl.create(:comment, :id => 1, :video_id => 1)
+      video = FactoryGirl.create(:video, :id => 1)
       Comment.should_receive(:find_by_id).with('1').and_return(comment)
       comment.should_receive(:video_id).and_return('1')
       get :show, :id => 1
-      response.should render_template('videos/show')
+      response.should render_template('show')
+      puts response.body
+      response.body.should have_selector('Some comment content', 'div.comment p')
       response.should redirect_to(video_path(comment.video_id) + "comment_#{comment.id}")
     end
   end
 
   describe 'Updating Comment Status' do
      before :each do
-        @comment = FactoryGirl.create(:comment)
-        Comment.should_receive(:find_by_id).with('1').and_return(@comment)
-      end
+      @comment = FactoryGirl.create(:comment)
+      Comment.should_receive(:find_by_id).with('1').and_return(@comment)
+      @request.env['HTTP_REFERER'] = 'http://test.host/admin/comments'
+    end
 
     describe 'accepting a comment' do
        after :each do
@@ -63,7 +67,7 @@ describe Admin::CommentsController do
        after :each do
         @comment.should_receive(:update_attributes).with(:status => :rejected)
         @comment.stub(:status).and_return(:rejected)
-        post :accept, :id => 1
+        post :reject, :id => 1
         @comment.status.should == :rejected
         response.should redirect_to :action => 'index'
       end
@@ -81,26 +85,5 @@ describe Admin::CommentsController do
       end
     end
 
-    describe 'pending a comment' do
-       after :each do
-        @comment.should_receive(:update_attributes).with(:status => :pending)
-        @comment.stub(:status).and_return(:pending)
-        post :accept, :id => 1
-        @comment.status.should == :pending
-        response.should redirect_to :action => 'index'
-      end
-
-      it 'should allow me to accept a pending comment' do
-        @comment.stub(:status).and_return(:accepted)
-      end
-
-      it 'should allow me to accept a rejected video' do
-        @comment.stub(:status).and_return(:rejected)
-      end
-
-      it 'should not affect the comment if I accept an accepted comment' do
-        @comment.stub(:status).and_return(:pending)
-      end
-    end
   end
 end
