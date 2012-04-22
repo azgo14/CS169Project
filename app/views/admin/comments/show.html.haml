@@ -22,7 +22,7 @@
           likes.
     .comments
       - @comments.each do |c|
-        .comment
+        %div{:id => "#{c.id}", :class => 'comment'}
           %p
             %b
               Status:
@@ -34,8 +34,8 @@
             %br
             %b
               =c.name
-          =button_to 'Accept', {:action => 'accept', :id => c.id}
-          =button_to 'Reject', {:action => 'reject', :id => c.id}
+          =button_to 'Accept', {:action => 'accept', :id => c.id}, {:id => "#{c.id}_accept"}
+          =button_to 'Reject', {:action => 'reject', :id => c.id}, {:id => "#{c.id}_reject"}
     %h2 Notes
     =text_area :video, :notes, :size => '140x5'
     = submit_tag 'Save changes'

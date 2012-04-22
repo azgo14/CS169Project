@@ -51,3 +51,15 @@ Scenario: Rejecting a comment should make a comment hidden
   And I go to the video list page
   And I follow "Mario"
   Then I should not see the comment "You suck"
+
+Scenario: Accepting a comment on a video page should update the admin video display
+  When I am on the admin comments page
+  And I follow "Anonymous"
+  And I accept comment 2
+  Then I should see comment 2 as "accepted"
+
+Scenario: Rejecting a comment on a video page should update the admin video display
+  When I am on the admin comments page
+  And I follow "Anonymous"
+  And I reject comment 1
+  Then I should see comment 1 as "rejected"

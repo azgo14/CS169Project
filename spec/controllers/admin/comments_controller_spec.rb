@@ -27,10 +27,9 @@ describe Admin::CommentsController do
       Comment.should_receive(:find_by_id).with('1').and_return(comment)
       comment.should_receive(:video_id).and_return('1')
       get :show, :id => 1
+      assigns(:video).should == video
+      assigns(:comments).should == [comment]
       response.should render_template('show')
-      puts response.body
-      response.body.should have_selector('Some comment content', 'div.comment p')
-      response.should redirect_to(video_path(comment.video_id) + "comment_#{comment.id}")
     end
   end
 
