@@ -13,25 +13,25 @@
     %h2 How do you hope hearing your story will change the community?
     =text_area :video, :hope, :size => '140x5'
     %h2 Additional Media
-    %h2 Comments
-    .likes
-      - if @video.likes != nil and @video.likes > 0
-        %p
-          This story currently has
-          =@video.likes
-          likes.
-    .comments
-      - @comments.each do |c|
-        .comment
-          %p
-            =c.content
-            %br
-            %br
-            %b
-              =c.name
     %h2 Notes
     =text_area :video, :notes, :size => '140x5'
     = submit_tag 'Save changes'
+  %h2 Comments
+  .likes
+    - if @video.likes != nil and @video.likes > 0
+      %p
+        This story currently has
+        =@video.likes
+        likes.
+  .comments
+    - @comments.each do |c|
+      .comment
+        %p
+          =c.content
+          %br
+          %br
+          %b
+            =c.name
   %h2 Status
   =@video.status
   = button_to 'Accept', {:action => 'accept', :id => @video.id}
