@@ -11,6 +11,7 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.find_by_id(params[:id])
     @video = Video.find_by_id(@comment.video_id)
     @comments = Comment.find_all_by_video_id(@video.id)
+    redirect_to admin_video_path(@video.id)
   end
 
   def accept

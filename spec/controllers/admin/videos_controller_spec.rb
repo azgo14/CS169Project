@@ -25,17 +25,17 @@ describe Admin::VideosController do
       comments = [mock('Comment'), mock('Comment')]
       video = FactoryGirl.create(:video)
       Video.should_receive(:find_by_id).with('1').and_return(video)
-      Comment.should_receive(:find_all_by_video_id_and_status).with('1', 'accepted').and_return(comments)
+      Comment.should_receive(:find_all_by_video_id).with('1').and_return(comments)
       get :show, :id => 1
       assigns(:video).should == video
       assigns(:comments).should == comments
-      response.should render_template('show')
     end
   end
 
   describe '#update' do
     it 'should update the attributes of the given video' do
       video = FactoryGirl.create(:video)
+      @request.env['HTTP_REFERER'] = admin_video_path(video)
       Video.should_receive(:find_by_id).with('1').and_return(video)
       video.should_receive(:update_attributes!).with('why' => 'because', 'title' => 'new title')
       post :update, {:id => 1, :video => {'why' => 'because', 'title' => 'new title'}}
@@ -48,6 +48,7 @@ describe Admin::VideosController do
   describe 'Changing Video Status' do
     before :each do
       @video = FactoryGirl.create(:video)
+      @request.env['HTTP_REFERER'] = admin_video_path(@video)
       Video.should_receive(:find_by_id).with('1').and_return(@video)
     end
 

@@ -29,15 +29,14 @@ describe Admin::CommentsController do
       get :show, :id => 1
       assigns(:video).should == video
       assigns(:comments).should == [comment]
-      response.should render_template('show')
-    end
+      response.should redirect_to admin_video_path(@video)    end
   end
 
   describe 'Updating Comment Status' do
      before :each do
       @comment = FactoryGirl.create(:comment)
       Comment.should_receive(:find_by_id).with('1').and_return(@comment)
-      @request.env['HTTP_REFERER'] = 'http://test.host/admin/comments'
+      @request.env['HTTP_REFERER'] = admin_comments_path
     end
 
     describe 'accepting a comment' do
@@ -46,7 +45,7 @@ describe Admin::CommentsController do
         @comment.stub(:status).and_return(:accepted)
         post :accept, :id => 1
         @comment.status.should == :accepted
-        response.should redirect_to :action => 'index'
+        response.should redirect_to admin_comments_path
       end
 
       it 'should allow me to accept a pending comment' do
@@ -68,7 +67,7 @@ describe Admin::CommentsController do
         @comment.stub(:status).and_return(:rejected)
         post :reject, :id => 1
         @comment.status.should == :rejected
-        response.should redirect_to :action => 'index'
+        response.should redirect_to admin_comments_path
       end
 
       it 'should allow me to reject a pending comment' do
