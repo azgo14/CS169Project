@@ -2,7 +2,7 @@
   %tbody
   - comments.each do |comment|
     %tr
-      %td= link_to comment.name, :action => 'show', :id => comment.id
+      %td= link_to comment.name, admin_video_path(comment.video_id, :anchor => "#{comment.id}")
       %td= comment.content
       %td= comment.created_at.strftime("%B %d, %Y")
       %td= button_to 'Accept', {:action => 'accept', :id => comment.id}, :id => "#{comment.id}_accept"

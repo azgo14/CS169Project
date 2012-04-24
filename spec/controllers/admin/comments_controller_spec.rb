@@ -29,7 +29,8 @@ describe Admin::CommentsController do
       get :show, :id => 1
       assigns(:video).should == video
       assigns(:comments).should == [comment]
-      response.should redirect_to admin_video_path(@video)    end
+      response.should redirect_to admin_video_path(@video, :anchor => 1)
+    end
   end
 
   describe 'Updating Comment Status' do
