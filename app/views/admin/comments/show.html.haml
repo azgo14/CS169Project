@@ -37,9 +37,9 @@
           %br
           %b
             =c.name
-        =button_to 'Accept', {:action => 'accept', :id => c.id}, {:id => "#{c.id}_accept"}
-        =button_to 'Reject', {:action => 'reject', :id => c.id}, {:id => "#{c.id}_reject"}
+        =button_to 'Accept', {:controller => 'admin/comments', :action => 'accept', :id => c.id}, {:id => "#{c.id}_accept"}
+        =button_to 'Reject', {:controller => 'admin/comments', :action => 'reject', :id => c.id}, {:id => "#{c.id}_reject"}
   %h2 Status
   =@video.status
-  = button_to 'Accept', {:action => 'accept', :id => @video.id}
-  = button_to 'Reject', {:action => 'reject', :id => @video.id}
+  = button_to 'Accept', {:controller => 'admin/videos', :action => 'accept', :id => @video.id}
+  = button_to 'Reject', {:controller => 'admin/videos', :action => 'reject', :id => @video.id}
