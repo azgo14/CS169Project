@@ -216,30 +216,29 @@ describe VideosController do
       end
     end
 
-    ##### POSTPONED UNTIL NEXT ITERATION DUE TO BETTER FEATURE ALIGNMENT #####
-    # describe 'commenting as a blocked user' do
-    #   before(:each) do
-    #     pending 'Implementation of blocked users'
-    #     @user = FactoryGirl.create(:user, :id => '3', :blocked => true,
-    #                             :email => 'fake@em.ail')
-    #     sign_in @user
-    #     fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
-    #     User.should_receive(:find_by_id).with('3').and_return(@user)
-    #     @user.should_receive(:blocked).and_return(true)
-    #     Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
-    #     post :create, {:id => '1234', :content => 'my comment', :user_id => '1'}
-    #   end
+    describe 'commenting as a blocked user' do
+      before(:each) do
+        pending 'Implementation of blocked users'
+        @user = FactoryGirl.create(:user, :id => '3', :blocked => true,
+                                :email => 'fake@em.ail')
+        sign_in @user
+        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
+        User.should_receive(:find_by_id).with('3').and_return(@user)
+        @user.should_receive(:blocked).and_return(true)
+        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        post :create, {:id => '1234', :content => 'my comment', :user_id => '1'}
+      end
 
-    #   describe 'submitting an anonymous comment with content' do
-    #     it 'should not create a new comment' do
-    #       Comment.should_not_receive(:new)
-    #     end
-    #     it 'should flash a notice and redirect back to the video' do
-    #       response.should redirect_to(show_video_path)
-    #       flash[:error].should == "Sorry, you aren't allowed to post comments"
-    #     end
-    #   end
-    # end
+      describe 'submitting an anonymous comment with content' do
+        it 'should not create a new comment' do
+          Comment.should_not_receive(:new)
+        end
+        it 'should flash a notice and redirect back to the video' do
+          response.should redirect_to(show_video_path)
+          flash[:error].should == "Sorry, you aren't allowed to post comments"
+        end
+      end
+    end
 
   end
 end
