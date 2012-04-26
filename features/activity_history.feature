@@ -33,8 +33,14 @@ Scenario: Viewing a profile displays all message history
   And I should see "more" and "message"
   And I should not see "wrong" and "person"
 
-Scenario: Posting a comment or sending a message updates activity history
+Scenario: Posting a comment updates activity history
   When I go to the video details page for "Mario"
   And I fill in "Anonymous Comment" with "Some comment"
   And I go to the user profile page for "test@test.com"
   Then I should see "Some comment"
+
+Scenario: Sending a message updates activity history
+  When I go to the new messages page
+  And I send a new message "Hello there"
+  And I go to the user profile page for "test@test.com"
+  Then I should see "Hello there"
