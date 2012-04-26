@@ -39,10 +39,10 @@ describe MessagesController do
 
   describe '#show' do
     it 'should show a specific message and update read status' do
-      fake_message = FactoryGirl.create(:message, 
+      fake_message = FactoryGirl.create(:message,
                                         :id => '1234',
-                                        :to_user => @user.id, 
-                                        :from_user => 'admin', 
+                                        :to_user => @user.id,
+                                        :from_user => 'admin',
                                         :subject => 'asdf',
                                         :status => 'unread',
                                         :content => 'aeou')
@@ -52,10 +52,10 @@ describe MessagesController do
       fake_message.status.should = 'read'
     end
     it 'should not update read status for authored messages' do
-      fake_message = FactoryGirl.create(:message, 
+      fake_message = FactoryGirl.create(:message,
                                         :id => '1234',
-                                        :to_user => 'admin', 
-                                        :from_user => @user.id, 
+                                        :to_user => 'admin',
+                                        :from_user => @user.id,
                                         :subject => 'asdf',
                                         :status => 'unread',
                                         :content => 'aeou')
@@ -65,17 +65,17 @@ describe MessagesController do
       fake_message.status.should_not = 'read'
     end
     it 'should not be able to show messages not directed to or written by the user' do
-      fake_message = FactoryGirl.create(:message, 
+      fake_message = FactoryGirl.create(:message,
                                         :id => '1234',
-                                        :to_user => @user.id + 2, 
-                                        :from_user => 'admin', 
+                                        :to_user => @user.id + 2,
+                                        :from_user => 'admin',
                                         :subject => 'asdf',
                                         :status => 'unread',
                                         :content => 'aeou')
-      fake_message2 = FactoryGirl.create(:message, 
+      fake_message2 = FactoryGirl.create(:message,
                                          :id => '1235',
-                                         :to_user => 'admin', 
-                                         :from_user => @user.id + 3, 
+                                         :to_user => 'admin',
+                                         :from_user => @user.id + 3,
                                          :subject => 'asdf',
                                          :status => 'unread',
                                          :content => 'aeou')
@@ -84,7 +84,7 @@ describe MessagesController do
       response.should redirect_to(message_path)
       flash[:error].should == 'You are not allowed to view this message'
       fake_message.status.should_not = 'read'
-     
+
       Video.should_receive(:find_by_id).with('1235').and_return(fake_message2)
       get :show, {:id => '1235'}
       response.should redirect_to(message_path)
@@ -140,5 +140,5 @@ describe MessagesController do
   end
 end
 
-      
+
 
