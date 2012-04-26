@@ -1,12 +1,12 @@
 Feature: Video Notes Field
-As a BTP admin
-So that I may leave a record of my thoughts and communicate status of stories with other admins
-I want to be able to enter info into a notes field associated with each submitted story
+  As a BTP admin
+  So that I may leave a record of my thoughts and communicate status of stories with other admins
+  I want to be able to enter info into a notes field associated with each submitted story
 
 Background: videos submitted
   Given the following videos exist:
   | name               | email                 | created_at     | status    | notes        |
-  | Commander Shephard | shephard@normandy.com | 06-March-2012  | pending   |              | 
+  | Commander Shephard | shephard@normandy.com | 06-March-2012  | pending   |              |
   | Mario              | mario@plumber.com     | 09-Sept-1985   | accepted  | Touching     |
   | Harry Potter       | potter@hogwarts.com   | 21-July-2007   | rejected  | Not relevant |
 

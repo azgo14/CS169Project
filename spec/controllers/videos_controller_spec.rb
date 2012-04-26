@@ -218,9 +218,8 @@ describe VideosController do
 
     describe 'commenting as a blocked user' do
       before(:each) do
-        pending 'Implementation of blocked users'
         @user = FactoryGirl.create(:user, :id => '3', :blocked => true,
-                                :email => 'fake@em.ail')
+                                   :email => 'fake@em.ail')
         sign_in @user
         fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         User.should_receive(:find_by_id).with('3').and_return(@user)
