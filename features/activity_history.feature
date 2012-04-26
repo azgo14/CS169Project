@@ -14,6 +14,11 @@ Background: videos and comments submitted
   | false     | You suck    | 1        | rejected | 1        |
   | false     | Amazing     | 1        | accepted | 1        |
   | true      | I am young  | 1        | pending  | -1       |
+  And the following messages exist:
+  | from_user | subject | content |
+  | 1         | hello   | testing |
+  | 2         | wrong   | person  |
+  | 1         | more    | message |
   And I am signed in as user 1
 
 Scenario: Viewing a profile displays all comment history
@@ -23,6 +28,10 @@ Scenario: Viewing a profile displays all comment history
   And I should not see "I am young"
 
 Scenario: Viewing a profile displays all message history
+  When I go to the user profile page for "test@test.com"
+  Then I should see "hello" and "testing"
+  And I should see "more" and "message"
+  And I should not see "wrong" and "person"
 
 Scenario: Posting a comment or sending a message updates activity history
   When I go to the video details page for "Mario"
