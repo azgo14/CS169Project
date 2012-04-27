@@ -1,0 +1,11 @@
+Dear Storyteller!
+
+We're happy to tell you that your digital story submission, <%=@video.title%>, was accepted!  Thank you for being a part of "Taking Root: Our Stories, Our Community."  It takes a thousand voices to tell a single story, and your story is a vital contribution to our goal of ending HIV stigma in Asian American, Native Hawaiian and Pacific Islander communities.
+
+Your story can now be viewed at <%= url_for(:host => 'banyantree.herokuapp.com', :controller => 'videos', :action => 'show', :id =>@video.id)%>.  Share your story with your friends and community.  Start the conversation #withoutshame.
+
+If you have questions, please email info@banyantreeproject.org.
+
+Thank you,
+
+The Banyan Tree Project
