@@ -82,26 +82,67 @@ describe Admin::VideosController do
     end
 
     describe 'rejecting a video' do
-      after :each do
-        @video.should_receive(:update_attributes).with(:status => :rejected)
-        @video.stub(:status).and_return(:rejected)
-        post :reject, :id => 1
-        @video.status.should == :rejected
-        response.should redirect_to admin_video_path(@video)
-        flash[:notice].should == 'This video has been rejected.'
+  
+      it 'should allow me to send a custom email to the story teller' do
+        get :reject, :id => 1
+        response.should render_template(:email)
       end
+    end
+  end
 
-      it 'should allow me to reject a pending video' do
-        @video.stub(:status).and_return(:pending)
-      end
+  describe '#send' do
+    before :each do
+      @video = FactoryGirl.create(:video)
+      @text = "This is a test."
+      @message = SubmissionMailer.should_receive(:custom_message).with(@video, @text).and_return(mock('Message', :deliver => true))
+      @message.stub(:deliver) 
+    end
 
-      it 'should allow me to reject an accepted video' do
-        @video.stub(:status).and_return(:accepted)
-      end
+    it 'should send the story teller an email when rejecting a video' do
+      post :send, :id => 1, :text => @text, :reject => true
+    end
 
-      it 'should not affect the video if I reject a rejected video' do
-        @video.stub(:status).and_return(:rejected)
-      end
+    it 'should change the video status to rejected when rejecting a video' do
+      @video.should_receive(:update_attributes).with(:status => :rejected)
+      @video.stub(:status).and_return(:rejected)
+      post :reject, :id => 1, :text => @text, :reject => true
+      @video.status.should == :rejected
+      response.should redirect_to admin_video_path(@video)
+      flash[:notice].should == 'This video has been rejected.'
+    end
+
+    it 'should send the story teller an email if the video is pending' do
+      post :send, :id => 1, :text => @text, :reject => false
+    end
+
+    it 'should not change the video status if the video is pending' do
+      @video.should_not_receive(:update_attributes)
+      post :send, :id => 1, :text => @text, :reject => false
+      @video.status.should == 'pending'
+      response.should redirect_to admin_video_path(@video)
+      flash[:notice].should == 'Your email has been sent.'
+    end
+   end
+
+  describe '#cancel' do
+    
+    before :each do
+      @video = FactoryGirl.create(:video)
+      @request.env['HTTP_REFERER'] = admin_video_path(@video)
+      SubmissionMailer.should_not_receive(:custom_message)
+    end
+
+    after :each do
+      response.should redirect_to admin_video_path(@video)
+    end
+
+    it 'should not send the story teller an email' do
+      post :cancel
+    end
+
+    it 'should not change the video status' do
+      @video.should_not_receive(:update_attributes)
+      @video.status.should == 'pending'
     end
   end
 end
