@@ -53,6 +53,12 @@ describe Admin::VideosController do
     end
 
     describe 'accepting a video' do
+
+      before :each do
+        @message = SubmissionMailer.should_receive(:submission_accepted).with(@video).and_return(mock('Message', :deliver => true))
+        @message.stub(:deliver)
+      end
+      
       after :each do
         @video.should_receive(:update_attributes).with(:status => :accepted)
         @video.stub(:status).and_return(:accepted)

@@ -25,6 +25,7 @@ class Admin::VideosController < ApplicationController
     @video.update_attributes(:status => :accepted)
     # Make this publicly list videos on Youtube
     # @video.make_listed
+    SubmissionMailer.submission_accepted(@video).deliver
     flash[:notice] = 'This video has been accepted.'
     redirect_to :back
   end
