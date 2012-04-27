@@ -14,8 +14,8 @@ Background: videos submitted
 Scenario: Sending an email
   When I press "Email Storyteller"
   Then I should be on the email page
-  And "to" should contain "oak@oaks_lab.com"
-  And "subject" should contain "Questions about your Taking Root story submission"
+  And I should see "To: oak@oaks_lab.com"
+  And I should see "Subject: Questions about your Taking Root story submission"
   And "message" should be empty
   When I fill in "message" with "What is your favorite starter Pokemon?"
   And I press "Send"
@@ -27,14 +27,5 @@ Scenario: Cancel sending an email
   And I press "Cancel"
   Then I should be on the admin video detail page for "Professor Oak"
   And I should not see "Your email has been sent."
-
-Scenario: Changing pre-entered fields
-  When I press "Email Storyteller"
-  And I fill in "to" with "profs_aid@oaks_lab.com"
-  And I fill in "subject" with "Professor Oak's Submission"
-  And I fill in "message" with "What is Professor Oak's favorite Pokemon?"
-  And I press "Send"
-  Then I should be on the admin video detail page for "Professor Oak"
-  And I should see "Your email has been sent."
 
 

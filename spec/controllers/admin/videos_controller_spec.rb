@@ -94,7 +94,8 @@ describe Admin::VideosController do
     before :each do
       @video = FactoryGirl.create(:video)
       @text = "This is a test."
-      @message = SubmissionMailer.should_receive(:custom_message).with(@video, @text).and_return(mock('Message', :deliver => true))
+      @subject = "My subject"
+      @message = SubmissionMailer.should_receive(:custom_message).with(@video, @subject, @text).and_return(mock('Message', :deliver => true))
       @message.stub(:deliver) 
     end
 
@@ -105,19 +106,19 @@ describe Admin::VideosController do
     it 'should change the video status to rejected when rejecting a video' do
       @video.should_receive(:update_attributes).with(:status => :rejected)
       @video.stub(:status).and_return(:rejected)
-      post :reject, :id => 1, :text => @text, :reject => true
+      post :reject, :id => 1, :subject => @subject, :text => @text, :reject => true
       @video.status.should == :rejected
       response.should redirect_to admin_video_path(@video)
       flash[:notice].should == 'This video has been rejected.'
     end
 
     it 'should send the story teller an email if the video is pending' do
-      post :send, :id => 1, :text => @text, :reject => false
+      post :send, :id => 1, :subject => @subject, :text => @text, :reject => false
     end
 
     it 'should not change the video status if the video is pending' do
       @video.should_not_receive(:update_attributes)
-      post :send, :id => 1, :text => @text, :reject => false
+      post :send, :id => 1, :subject => @subject, :text => @text, :reject => false
       @video.status.should == 'pending'
       response.should redirect_to admin_video_path(@video)
       flash[:notice].should == 'Your email has been sent.'

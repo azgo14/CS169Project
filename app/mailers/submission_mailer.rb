@@ -4,7 +4,7 @@ class SubmissionMailer < ActionMailer::Base
     mail(
         :from => 'info@banyantreeproject.org',
         :to => video.email,
-        :subject => 'Your Digital Story Submission'
+        :subject => 'Your story for Taking Root has been accepted'
     )
   end
 end
