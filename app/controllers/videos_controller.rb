@@ -1,5 +1,3 @@
-require 'spawn'
-
 class VideosController < ApplicationController
 
 # RESTful routes reference
@@ -45,7 +43,7 @@ class VideosController < ApplicationController
     if (name != '' and email != '' and age != '' and ethnicity != nil and
         language != '' and location != '' and title != '' and about != '' and
         video != nil)
-      spawn_block do
+      spawn_block(:kill => true) do
         video_hash = {:video => File.new(video.path), :title => 'Title', :description => why}
         yt_id = Video.upload(video_hash)
         # Fix this to support user id/login

@@ -26,9 +26,9 @@ class Video < ActiveRecord::Base
 
   def self.upload(video)
     response = Video.yt_client.video_upload(video[:video], :title => video[:title],
-                                           :description => video[:description],
-                                           :list => 'denied', :comment => 'denied')
-                                           # :private => '')
+                                            :description => video[:description],
+                                            :list => 'denied', :comment => 'denied',
+                                            :rate => 'denied')
     yt_id = response.video_id[response.video_id.rindex(':')+1..-1]
     return yt_id
   end
