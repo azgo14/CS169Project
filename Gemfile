@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'youtube_it'
 gem 'kaminari'
+gem 'spawn', :git => 'git://github.com/rfc2822/spawn'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

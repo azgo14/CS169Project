@@ -8,6 +8,7 @@ development:
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
+  reconnect: true
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -17,12 +18,14 @@ test: &test
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
+  reconnect: true
 
 production:
   adapter: sqlite3
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+  reconnect: true
 
 cucumber:
   <<: *test
