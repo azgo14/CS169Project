@@ -62,6 +62,7 @@ class VideosController < ApplicationController
       redirect_to new_video_path
     end
   end
+
   def search
     @search_condition = Video::SEARCH_OPTIONS.include?(params[:search_condition]) ? params[:search_condition] : nil
 
@@ -71,6 +72,7 @@ class VideosController < ApplicationController
     @videos = Video.search(params[:search_text], params[:search_condition]).page(params[:page]).per(5)
     @search_text = params[:search_text]
   end
+
   def like
     id = params[:id]
     @video = Video.find_by_id(id)
