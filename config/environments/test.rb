@@ -36,5 +36,5 @@ CS169Project::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  config.threadsafe!
+  ActiveRecord::Base.logger = nil
 end
