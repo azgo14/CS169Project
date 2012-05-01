@@ -11,7 +11,11 @@ class Video < ActiveRecord::Base
                     if search_condition != "Age"
                       where("lower(#{search_condition}) LIKE ?", "%#{search_text}%".downcase).order("name")
                     else
-                      where("age LIKE ?", "%#{search_text}%".downcase).order("name")
+                      if search_text.blank?
+                        where("").order("name")
+                      else
+                        where("age = ?", search_text).order("name")
+                      end
                     end
                   end)
 

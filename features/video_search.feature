@@ -129,13 +129,10 @@ Scenario: searching by partial age that does exist on the video list page
   Then I should be on the video search page
   And the "search_text" field should contain "2"
   And I should see "Age" should be selected for "search_condition"
-  And I should see "Mario Lui" within "#search_results"
-  And I should see "Mike Slick" within "#search_results"
-  And I should see "Wario Joe" within "#search_results"
-  And I should see "Luigi Bo" within "#search_results"
-  And I should see "Luigi Bo" before "Mario Lui"
-  And I should see "Mario Lui" before "Mike Slick"
-  And I should see "Mike Slick" before "Wario Joe"
+  And I should not see "Mario Lui" within "#search_results"
+  And I should not see "Mike Slick" within "#search_results"
+  And I should not see "Wario Joe" within "#search_results"
+  And I should not see "Luigi Bo" within "#search_results"
 
 Scenario: searching by age with no text specified on the video list page
   Given I am on the video list page
