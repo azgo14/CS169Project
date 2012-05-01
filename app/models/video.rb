@@ -8,7 +8,11 @@ class Video < ActiveRecord::Base
   SEARCH_OPTIONS = ["Title", "Ethnicity", "Age", "Location"]
 
   scope :search, (lambda do |search_text, search_condition|
-                    where("lower(#{search_condition}) LIKE ?", "%#{search_text}%".downcase).order("name")
+                    if search_condition != "Age"
+                      where("lower(#{search_condition}) LIKE ?", "%#{search_text}%".downcase).order("name")
+                    else
+                      where("lower(#{search_condition}) LIKE cast(? as text)", "%#{search_text}%".downcase).order("name")
+                    end
                   end)
 
   def self.yt_client
