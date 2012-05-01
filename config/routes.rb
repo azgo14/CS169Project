@@ -16,7 +16,7 @@ CS169Project::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :api_admin
+  resources :users
 
   match '/videos/search' => 'videos#search', :as => :video_search
 
