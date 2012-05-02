@@ -28,18 +28,19 @@
 
 
         #navigation
-        #content-left
-          #content-right
-            #content
-              - if flash[:notice]
-                #notice.message= flash[:notice]
-              - elsif flash[:warning]
-                #warning.message= flash[:warning]
-              - elsif flash[:error]
-                #error.message= flash[:error]
-              - elsif flash[:alert]
-                #alert.message= flash[:alert]
 
-              = yield
-              .clear
+        #content
+          #content-left
+          #content-right
+          - if flash[:notice]
+            #notice.message= flash[:notice]
+          - elsif flash[:warning]
+            #warning.message= flash[:warning]
+          - elsif flash[:error]
+            #error.message= flash[:error]
+          - elsif flash[:alert]
+            #alert.message= flash[:alert]
+
+          = yield
+          .clear
         #footer
