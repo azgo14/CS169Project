@@ -26,6 +26,8 @@ CS169Project::Application.routes.draw do
       post 'create_comment'
     end
   end
+  
+  resources :messages
 
   namespace :admin do
     resources :videos
