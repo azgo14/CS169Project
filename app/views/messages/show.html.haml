@@ -1,10 +1,12 @@
-%h1=@message.subject
-%h2="From: "+@message.from_name
-%h2="To: "+@message.to_name
-%p=@message.message
+#viewmessage
+  %h1=@message.subject
+  %h2="From: "+@message.from_name
+  %h2="To: "+@message.to_name
+  %p.messagebody=@message.message
 
-%h1 Reply
-=render 'messages/new', :display_to => nil, 
-  :user_target => @message.other_user(current_user.id), 
-  :subject => 'Re: '+@message.subject, 
-  :message => nil
+  #replymessage
+    %h1 Reply
+    =render 'messages/new', :display_to => nil, 
+      :user_target => @message.other_user(current_user.id), 
+      :subject => 'Re: '+@message.subject, 
+      :message => nil

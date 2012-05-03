@@ -1,2 +1,5 @@
 #newmessage
-  =render 'messages/new', :display_to => nil, :user_target => nil, :subject => nil, :message => nil
+  %h1 Send Message
+  #messagenavigation
+    =render 'messages/navigation'
+  =render 'messages/new', :display_to => @is_admin, :user_target => nil, :subject => nil, :message => nil
