@@ -7,7 +7,7 @@
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Radley|Exo|Open+Sans'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  
+
   %body
     #container-left
       #container-right
@@ -18,16 +18,16 @@
           #background-right
           #login
             =render 'layouts/login'
-         
+
           #search
             =render 'layouts/search'
-               
+
         #navigation
           =render 'layouts/navigation'
         #content
+          =render 'layouts/flashes'
           #content-left
           #content-right
-            =render 'layouts/flashes'
 
           = yield
           .clear

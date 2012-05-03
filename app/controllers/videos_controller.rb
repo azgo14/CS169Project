@@ -22,7 +22,6 @@ class VideosController < ApplicationController
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end
-    #@commments = @video.comments.find_all_by_status('accepted')
     @comments = Comment.find_all_by_video_id_and_status(id,'accepted')
     if @comments == nil
       @comments = []

@@ -18,11 +18,10 @@
     = submit_tag 'Save changes'
   %h2 Comments
   .likes
-    - if @video.likes != nil and @video.likes > 0
-      %p
-        This story currently has
-        =@video.likes
-        likes.
+    %p
+      This story currently has
+      =@video.likes
+      likes.
   .comments
     - @comments.each do |c|
       %div{:id => "#{c.id}", :class => 'comment'}

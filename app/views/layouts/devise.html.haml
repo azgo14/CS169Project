@@ -17,13 +17,13 @@
           #background-right
           #login
             =render 'layouts/login'
-      
+
         #navigation
           =render 'layouts/navigation'
         #content
+          =render 'layouts/flashes'
           #content-left
           #content-right
-            =render 'layouts/flashes'
 
           = yield
           .clear
