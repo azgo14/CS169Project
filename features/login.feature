@@ -15,8 +15,8 @@ Background: not logged in
     |  fail_test@gmail.com |  fail_test |  false   |
 
   And the following videos exist:
-    | name               | email                 | created_at     | status   |
-    | Mario              | mario@plumber.com     | 09-Sept-1985   | Accepted |
+    | name                 | status   |
+    | Mario                | accepted |
 
 Scenario: login successfully as a user
   Given I am on the home page
@@ -93,6 +93,7 @@ Scenario: Upload a video as a user
   And I press "Sign in"
   Then I should be on the video submission page
   And I should see "Signed in successfully."
+
 
 Scenario: Successful sign in from video details page
   Given I am on the video detail page for "Mario"

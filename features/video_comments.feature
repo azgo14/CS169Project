@@ -28,12 +28,13 @@ Scenario: Posting a comment as an unblocked user does not immediately add a comm
   Then I should not see "Some Comment"
 
 Scenario: Cannot post comments as an blocked user
+  Given I am not logged in
   When I am signed in as a blocked user
   And I am on the video list page
   When I follow "Harry Potter"
   And I fill in "Anonymous Comment" with "Please unblock me"
   And I press "Submit Anonymously"
-  Then I should see "Sorry, you are not allowed to post comments"
+  Then I should see "You are blocked from commenting"
 
 Scenario: Only see accepted comments
   And the following comments exist:
