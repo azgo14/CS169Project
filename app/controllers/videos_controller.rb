@@ -18,7 +18,7 @@ class VideosController < ApplicationController
   def show
     id = params[:id]
     @video = Video.find_by_id(id)
-    if not(@video)
+    if not(@video) || @video.status != 'accepted'
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end
@@ -74,7 +74,7 @@ class VideosController < ApplicationController
   def like
     id = params[:id]
     @video = Video.find_by_id(id)
-    if not(@video)
+    if not(@video) || @video.status != 'accepted'
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end

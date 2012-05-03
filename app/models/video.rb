@@ -9,12 +9,12 @@ class Video < ActiveRecord::Base
 
   scope :search, (lambda do |search_text, search_condition|
                     if search_condition != "Age"
-                      where("lower(#{search_condition}) LIKE ?", "%#{search_text}%".downcase).order("name")
+                      where("lower(#{search_condition}) LIKE ? AND status = ?", "%#{search_text}%".downcase, "accepted").order("name")
                     else
                       if search_text.blank?
-                        where("").order("name")
+                        where("status = ?", "accepted").order("name")
                       else
-                        where("age = ?", search_text).order("name")
+                        where("age = ? AND status = ?", search_text, "accepted").order("name")
                       end
                     end
                   end)

@@ -6,10 +6,10 @@ Background: assuring existence of certain videos
 
   Given the following videos exist:
     | name         | age    | ethnicity   | location    | status   |
-    | Mario Lui    | 21     | Chinese     | California  | Accepted |
-    | Luigi Bo     | 25	    | Japanese    | New York    | Accepted |
-    | Wario Joe    | 21     | Korean      | New Jersey  | Accepted |
-    | Mike Slick   | 27	    | Cambodian   | Connecticut | Accepted |
+    | Mario Lui    | 21     | Chinese     | California  | accepted |
+    | Luigi Bo     | 25	    | Japanese    | New York    | accepted |
+    | Wario Joe    | 21     | Korean      | New Jersey  | accepted |
+    | Mike Slick   | 27	    | Cambodian   | Connecticut | accepted |
 
 Scenario: Entering search text w/o selecting condition (default to title)
   Given I am on the video list page
@@ -254,11 +254,11 @@ Scenario: searching by location with no text specified on the video list page
 Scenario: more videos in returned by search than 5 which causes pagination
   Given the following videos exist:
     | name         | age    | ethnicity   | location    | status   |
-    | Abe Jo       | 19     | Chinese     | California  | Accepted |
-    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
-    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
-    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
-    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+    | Abe Jo       | 19     | Chinese     | California  | accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | accepted |
   Given I am on the video list page
   When I select "Title" from "search_condition"
   And I press "Search"
@@ -296,11 +296,11 @@ Scenario: more videos in returned by search than 5 which causes pagination
 Scenario: pressing next and then prev for paginated search
  Given the following videos exist:
     | name         | age    | ethnicity   | location    | status   |
-    | Abe Jo       | 19     | Chinese     | California  | Accepted |
-    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
-    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
-    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
-    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+    | Abe Jo       | 19     | Chinese     | California  | accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | accepted |
   Given I am on the video list page
   When I select "Title" from "search_condition"
   And I press "Search"
@@ -342,11 +342,11 @@ Scenario: more videos in returned by search than 5 which causes pagination. Inst
 
   Given the following videos exist:
     | name         | age    | ethnicity   | location    | status   |
-    | Abe Jo       | 19     | Chinese     | California  | Accepted |
-    | Bob Elo      | 18	    | Japanese    | New York    | Accepted |
-    | Chang So     | 25     | Korean      | New Jersey  | Accepted |
-    | Darren Go    | 27	    | Cambodian   | Connecticut | Accepted |
-    | Elen Cer     | 32     | Chinese     | Georgia     | Accepted |
+    | Abe Jo       | 19     | Chinese     | California  | accepted |
+    | Bob Elo      | 18	    | Japanese    | New York    | accepted |
+    | Chang So     | 25     | Korean      | New Jersey  | accepted |
+    | Darren Go    | 27	    | Cambodian   | Connecticut | accepted |
+    | Elen Cer     | 32     | Chinese     | Georgia     | accepted |
   Given I am on the video list page
   When I select "Title" from "search_condition"
   And I press "Search"
