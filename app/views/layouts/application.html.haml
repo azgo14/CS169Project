@@ -25,10 +25,16 @@
             - else
               = link_to "Sign In", sign_in_path
               = link_to "Register", new_user_registration_path
-
-
+          
         #navigation
-
+          %ul
+            %li
+              = link_to "Upload", new_video_path
+            %li
+              = link_to "Videos", videos_path
+            - if current_user.try(:admin?)
+              %li
+                = link_to "Admin Video Review", admin_videos_path
         #content
           #content-left
           #content-right
@@ -44,3 +50,5 @@
           = yield
           .clear
         #footer
+          #footer-left
+          #footer-right

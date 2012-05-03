@@ -13,9 +13,9 @@ $page-width: 964px;
 $page-margin: 5px;
 
 body {
-  background: $back-color;
   margin: 0;
   font-family: 'Georgia';
+  background: $back-color url(/assets/bg.gif) repeat-x
 }
 
 a {
@@ -101,7 +101,7 @@ a:hover {
 
 #navigation li, #navigation a{
   display: inline-block;
-  width:100px;
+  width:170px;
 }
 #navigation a{
   font-size:16px;
@@ -142,6 +142,32 @@ a:hover {
   background: url(/assets/headerBg.jpg) repeat-x;
   height:113px;
   position:relative;
+}
+#footer{
+  background: url(/assets/footer-bottom.jpg) repeat-x;
+  height:35px;
+  position:relative;
+}
+
+#footer-left{
+  background: url(/assets/footer-left.jpg) no-repeat;
+  height:100%;
+  width:50px;
+  position:absolute;
+  top:0px;
+  left:0px;
+  background-position: top left;
+}
+
+#footer-right{
+  background: url(/assets/footer-right.jpg) no-repeat;
+  height:100%;
+  width:50px;
+  position:absolute;
+  top:0px;
+  right:0px;
+  background-position: top right;
+  
 }
 .vidlistsubmit {
   background: $second-color-dark;
