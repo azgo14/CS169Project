@@ -101,7 +101,7 @@ a:hover {
 
 #navigation li, #navigation a{
   display: inline-block;
-  width:200px;
+  width:190px;
 }
 #navigation a{
   font-size:16px;
@@ -109,6 +109,9 @@ a:hover {
   text-decoration: none;
   font-weight: bold;
   font-family: Arial, sans-serif;
+}
+#navigation a:hover{
+  text-decoration: underline;
 }
 #content-left{
   background: url(/assets/naviBg_left.jpg) no-repeat;
