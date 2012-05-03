@@ -12,6 +12,8 @@ class UsersController < ApplicationController
         @status = @user.email + " is blocked from posting comments."
       end
       @videos = Video.find_all_by_user_id(params[:id])
+      @messages = (Message.find_all_by_from_user(params[:id]) |
+                   Message.find_all_by_to_user(params[:id]))
     else
       flash[:error] = 'You are not authorized to view this page'
       redirect_to videos_path

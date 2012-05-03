@@ -101,7 +101,7 @@ a:hover {
 
 #navigation li, #navigation a{
   display: inline-block;
-  width:170px;
+  width:190px;
 }
 #navigation a{
   font-size:16px;
@@ -109,6 +109,9 @@ a:hover {
   text-decoration: none;
   font-weight: bold;
   font-family: Arial, sans-serif;
+}
+#navigation a:hover{
+  text-decoration: underline;
 }
 #content-left{
   background: url(/assets/naviBg_left.jpg) no-repeat;
@@ -258,35 +261,111 @@ a:hover {
   }
 }
 
-#submission {
+.btp-form, .submission-form, .new-message-form, .reply-form {
+  background: $front-content-back-color;
+  padding: 20px;
+  .additional {
+    input {
+      display: block;
+    }
+  }
+  label {
+    display: block;
+    font-size: 20px;
+    margin: 20px 0 5px 0;
+    border-bottom: 2px solid $back-color;
+    &.smaller {
+      display: inline;
+      margin: 0;
+      border: 0;
+      font-size: 15px;
+    }
+  }
+}
+
+
+#submission, #newmessage {
   h1 {
     font-size: 40px;
     border-bottom: 2px solid $second-color;
     font-family: 'Radley', cursive;
   }
-  .submission-form {
+}
+
+#listmessages {
+  h1 {
+    font-size: 40px;
+    border-bottom: 2px solid $second-color;
+    font-family: 'Radley', cursive;
+  }
+  .messageitem {
     background: $front-content-back-color;
-    padding: 20px;
-    .additional {
-      input {
-        display: block;
+    padding: 10px;
+    margin: 5px 5px 25px 5px;
+    border: 1px solid #cccccc;
+
+    h1 {
+      font-size: 24px;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      float: left;
+      a {
+        color: #000;
       }
     }
-    label {
-      display: block;
-      font-size: 20px;
-      margin: 20px 0 5px 0;
-      border-bottom: 2px solid $back-color;
-      &.smaller {
-        display: inline;
-        margin: 0;
-        border: 0;
-        font-size: 15px;
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+      color: $second-color;
+      font-weight: normal;
+      float: right;
+    }
+  }
+}
+
+#messagenavigation {
+  text-align: center;
+  ul {
+    list-style: none;
+    border-bottom: 1px solid #cccccc;
+    li {
+      display: inline-block;
+      padding: 0px 10px 5px 10px;
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      a:hover {
+       text-decoration: underline; 
       }
     }
   }
 }
 
+#viewmessage {
+  h1 {
+    font-size: 40px;
+    border-bottom: 2px solid $second-color;
+    font-family: 'Radley', cursive;
+  }
+  h2 {
+    font-size: 13px;
+  }
+  .messagebody {
+    border-left: 2px solid $back-color;
+    padding: 5px 5px 5px 10px;
+  }
+
+  #replymessage {
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+
+}
 
 .comment {
   background-color: $front-content-back-color;
@@ -307,3 +386,4 @@ a:hover {
   width: 300px;
   }
 }
+

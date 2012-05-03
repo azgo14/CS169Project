@@ -20,7 +20,7 @@ class VideosController < ApplicationController
   def show
     id = params[:id]
     @video = Video.find_by_id(id)
-    if not(@video)
+    if not(@video) || @video.status != 'accepted'
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end
@@ -43,14 +43,11 @@ class VideosController < ApplicationController
     why, how, hope = params[:why], params[:how], params[:hope]
     video = params[:video]
     if (name != '' and email != '' and age != '' and ethnicity != nil and
-        language != '' and location != '' and title != '' and about != '' and
-        video != nil)
-      spawn_block(:kill => true) do
-        reset_db_connection_post_fork
-        video_hash = {:video => File.new(video.path), :title => 'Title', :description => why}
+        language != '' and title != '' and video != nil)
+      spawn_block(:method => :thread, :kill => true) do
+        video_hash = {:video => File.new(video.path), :title => title, :description => about}
         yt_id = Video.upload(video_hash)
-        # Fix this to support user id/login
-        video = Video.new(:youtube_id => yt_id, :user_id => '', :name => name,
+        video = Video.new(:youtube_id => yt_id, :user_id => current_user.id, :name => name,
                           :email => email, :age => age, :ethnicity => ethnicity.keys,
                           :language => language, :location => location,
                           :title => title, :about => about,
@@ -58,7 +55,6 @@ class VideosController < ApplicationController
                           :status => 'pending', :likes => 0)
         video.save!
       end
-      reset_db_connection_post_fork
       flash[:notice] = 'Thank you for your submission! We will be reviewing your story soon!'
       redirect_to videos_path
     else
@@ -80,7 +76,7 @@ class VideosController < ApplicationController
   def like
     id = params[:id]
     @video = Video.find_by_id(id)
-    if not(@video)
+    if not(@video) || @video.status != 'accepted'
       flash[:error] = 'Invalid video id'
       redirect_to videos_path
     end
@@ -119,10 +115,6 @@ class VideosController < ApplicationController
       flash[:error] = 'Please fill in a comment'
     end
     redirect_to video_path(video)
-  end
-
-  def reset_db_connection_post_fork
-    ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
   end
 
 end

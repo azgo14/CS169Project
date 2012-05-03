@@ -13,39 +13,16 @@
         #head
           #background-left
           #logo
-            = image_tag "Banyan_logo.jpg" 
+            =render 'layouts/logo'
           #background-right
           #login
-            - if user_signed_in?
-              Welcome #{current_user.email}
-              |
-              = link_to "Profile", user_path(current_user)
-              |
-              = link_to "Logout", destroy_user_session_path, :method => :delete
-            - else
-              = link_to "Sign In", sign_in_path
-              = link_to "Register", new_user_registration_path
-                
+            =render 'layouts/login'
         #navigation
-          %ul
-            %li
-              = link_to "Upload", new_video_path
-            %li
-              = link_to "Videos", videos_path
-            - if current_user.try(:admin?)
-              %li
-                = link_to "Admin Video Review", admin_videos_path
+          =render 'layouts/navigation'
         #content
           #content-left
           #content-right
-          - if flash[:notice]
-            #notice.message= flash[:notice]
-          - elsif flash[:warning]
-            #warning.message= flash[:warning]
-          - elsif flash[:error]
-            #error.message= flash[:error]
-          - elsif flash[:alert]
-            #alert.message= flash[:alert]
+            =render 'layouts/flashes'
 
           = yield
           .clear

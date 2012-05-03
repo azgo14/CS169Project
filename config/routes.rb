@@ -29,6 +29,7 @@ CS169Project::Application.routes.draw do
     end
   end
   
+  match '/messages/sent' => 'messages#sent', :as => :sent
   resources :messages
 
 

@@ -1,0 +1,6 @@
+- @messages.each do |message|
+  .messageitem
+    %h1=link_to message.subject, message_path(message)
+    %h2=message.from_name + " -> " + message.to_name
+    .clear
+

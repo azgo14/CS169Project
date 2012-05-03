@@ -1,0 +1,12 @@
+=form_tag({:action => :create}, :class => 'new-message-form', :multipart => 'true') do
+  - if display_to != nil
+    = label_tag 'to', 'To email'
+    = text_area_tag 'to'
+  - if user_target != nil
+    = hidden_field_tag 'to_id', user_target
+  = label_tag 'subject', 'Subject'
+  = text_field_tag 'subject', subject
+  = label_tag 'message', 'Message'
+  = text_area_tag 'message', message
+  = submit_tag 'Send'
+

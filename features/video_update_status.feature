@@ -37,7 +37,7 @@ Scenario: Accept a pending video
 Scenario: Reject a pending video
   Given I am on the admin video detail page for "Solid Snake"
   When I press "Reject"
-  Then I should be on the email page
+  Then I should be on the email page for "Solid Snake"
   When I press "Send"
   Then I should be on the admin video detail page for "Solid Snake"
   And I should see "This video has been rejected."
@@ -47,7 +47,7 @@ Scenario: Reject a pending video
 Scenario: Reject an accepted video
   Given I am on the admin video detail page for "Mario"
   When I press "Reject"
-  Then I should be on the email page
+  Then I should be on the email page for "Mario"
   When I press "Send"
   Then I should be on the admin video detail page for "Mario"
   And I should see "This video has been rejected."

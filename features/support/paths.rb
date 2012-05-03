@@ -18,7 +18,7 @@ module NavigationHelpers
     when /^the video\s? list page$/
       '/videos'
     when /^the video detail page for "([^"]+)"$/
-      "/videos/#{Video.find_by_name( $1 ).id}"
+      "/videos/#{Video.find_by_name($1).id}"
     when /^the user sign-out page$/
       '/users/sign_out'
     when /^the user sign-in page$/
@@ -31,6 +31,10 @@ module NavigationHelpers
       '/videos/new'
     when /^the admin comments page$/
       '/admin/comments'
+    when /^the email page for "([^"]+)"$/
+      "/admin/videos/email/#{Video.find_by_name($1).id}"
+    when /^the user profile page for user ([0-9]*)$/
+      "/users/#{$1}"
 
 
     # Add more mappings here.

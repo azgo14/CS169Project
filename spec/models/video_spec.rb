@@ -49,9 +49,9 @@ describe Video do
 
   describe "#search" do
     before(:each) do
-      @vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California")
-      @vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California")
-      @vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California")
+      @vid1 = FactoryGirl.create(:video, :id => '1721', :name => "Bob Joe", :age => "21", :ethnicity => "Japanese", :location => "California", :status => "accepted")
+      @vid2 = FactoryGirl.create(:video, :id => '1722', :name => "Mario Lui", :age => "21", :ethnicity => "Chinese", :location => "California", :status => "accepted")
+      @vid3 = FactoryGirl.create(:video, :id => '1723', :name => "Wario Lui", :age => "25", :ethnicity => "Japanese", :location => "California", :status => "accepted")
     end
 
     it 'should call search on @search_text if @search_condition argument is "ethniticy" and return a collection of videos with matching "ethnicity"' do

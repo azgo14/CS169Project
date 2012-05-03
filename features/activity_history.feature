@@ -15,32 +15,33 @@ Background: videos and comments submitted
   | false     | Amazing     | 1        | accepted | 1        |
   | true      | I am young  | 1        | pending  | -1       |
   And the following messages exist:
-  | from_user | subject | content |
+  | from_user | subject | message |
   | 1         | hello   | testing |
   | 2         | wrong   | person  |
-  | 1         | more    | message |
+  | 1         | more    | stuff   |
   And I am signed in as user 1
 
 Scenario: Viewing a profile displays all comment history
-  When I go to the user profile page for "test@test.com"
-  Then I should see "You suck"
-  And I should see "Amazing"
-  And I should not see "I am young"
+  When I go to the user profile page for user 1
+  Then I should see the comment "You suck"
+  And I should see the comment "Amazing"
+  And I should not see the comment "I am young"
 
 Scenario: Viewing a profile displays all message history
-  When I go to the user profile page for "test@test.com"
-  Then I should see "hello" and "testing"
-  And I should see "more" and "message"
-  And I should not see "wrong" and "person"
+  When I go to the user profile page for user 1
+  Then I should see the message "hello" with "testing"
+  And I should see the message "more" with "message"
+  And I should not see the message "wrong" with "person"
 
 Scenario: Posting a comment updates activity history
-  When I go to the video details page for "Mario"
-  And I fill in "Anonymous Comment" with "Some comment"
-  And I go to the user profile page for "test@test.com"
-  Then I should see "Some comment"
+  When I go to the video detail page for "Mario"
+  And I fill in "Comment" with "Some comment"
+  And I press "Submit"
+  And I go to the user profile page for user 1
+  Then I should see the comment "Some comment"
 
 Scenario: Sending a message updates activity history
   When I go to the new messages page
   And I send a new message "Hello there"
-  And I go to the user profile page for "test@test.com"
-  Then I should see "Hello there"
+  And I go to the user profile page for user 1
+  Then I should see the message "Hello there"

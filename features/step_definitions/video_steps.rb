@@ -15,7 +15,10 @@ Given /I am signed in as an administrator/ do
 end
 
 Given /I am signed in as a registered user/ do
-  user = User.create(:email => 'user@api.com', :password => 'password')
+  user = User.find_by_email('user@api.com')
+  if(user.blank?)
+    User.create(:email => 'user@api.com', :password => 'password')
+  end
   step %{I am on the user sign-in page}
   step %{I fill in "user_email" with "user@api.com"}
   step %{I fill in "user_password" with "password"}
@@ -66,4 +69,10 @@ end
 
 Then /I should not see any notes/ do
   assert page.find_by_id('video_notes').text.blank?
+end
+
+Then /the "([^"]*)" field should be empty/ do |field|
+  field = find_field(field)
+  field_value = (field.tag_name == 'textarea') ? field.text : field.value
+  assert field_value.blank?
 end

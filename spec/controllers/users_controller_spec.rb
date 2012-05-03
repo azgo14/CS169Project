@@ -23,7 +23,6 @@ describe UsersController do
       #                                  :from_user => @user.id,
       #                                  :content => 'Some message here')
       get :show, {:id => @user.id}
-      puts response.body
       response.body.should include('Some comment here')
       #response.should have_selector('.messages', :text => 'Some message here')
     end
