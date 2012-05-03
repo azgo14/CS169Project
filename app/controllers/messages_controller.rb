@@ -41,6 +41,12 @@ class MessagesController < ApplicationController
     subject, message = params[:subject], params[:message]
     to, to_id = params[:to], params[:to_id]
 
+    if subject == nil or message == nil
+      flash[:error] = 'Please fill in all missing fields'
+      redirect_to new_message_path
+      return
+    end
+
     if to == nil and to_id == nil
       to_id = -1 #admin
     elsif to != nil and to_id == nil
@@ -70,7 +76,7 @@ class MessagesController < ApplicationController
     message.save!
 
     flash[:note] = 'Thank you, your message has been sent!'
-    redirect_to messages_path
+    redirect_to messages_path(message)
 
   end
 end
