@@ -120,7 +120,7 @@ class VideosController < ApplicationController
   end
 
   def reset_db_connection_post_fork
-    ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+    ActiveRecord::Base.establish_connection
   end
 
 end
