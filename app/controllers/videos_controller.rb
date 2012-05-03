@@ -44,6 +44,7 @@ class VideosController < ApplicationController
         language != '' and location != '' and title != '' and about != '' and
         video != nil)
       spawn_block(:kill => true) do
+        reset_db_connection_post_fork
         video_hash = {:video => File.new(video.path), :title => 'Title', :description => why}
         yt_id = Video.upload(video_hash)
         # Fix this to support user id/login
