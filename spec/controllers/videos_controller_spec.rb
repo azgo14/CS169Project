@@ -21,8 +21,7 @@ describe VideosController do
         fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
         get :show, {:id => '1234'}
-        response.should render_template('videos/show')
-        #put response.should have_whatever in the view spec
+        response.should render_template('show')
       end
     end
 
@@ -62,10 +61,9 @@ describe VideosController do
 
     describe 'ratings' do
       it 'should allow me to submit an anonymous rating' do
-        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :likes => 5)
-        Video.should_receive(:find_by_id).with('1234').and_return(fake_video)
+        @fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI', :likes => 5)
         post :like, {:id => '1234'}
-        fake_video.likes.should eq(6)
+        @fake_video.likes.should eq(6)
       end
     end
 
@@ -221,10 +219,7 @@ describe VideosController do
         @user = FactoryGirl.create(:user, :id => '3', :blocked => true,
                                    :email => 'fake@em.ail')
         sign_in @user
-        fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
-        User.should_receive(:find_by_id).with('3').and_return(@user)
-        @user.should_receive(:blocked).and_return(true)
-        Video.should_receive(:find_by_id).with("1234").and_return(fake_video)
+        @fake_video = FactoryGirl.create(:video, :youtube_id => '0NwxHphsCxI')
         post :create, {:id => '1234', :content => 'my comment', :user_id => '1'}
       end
 
@@ -233,7 +228,7 @@ describe VideosController do
           Comment.should_not_receive(:new)
         end
         it 'should flash a notice and redirect back to the video' do
-          response.should redirect_to(show_video_path)
+          response.should redirect_to(video_path @fake_video)
           flash[:error].should == "Sorry, you aren't allowed to post comments"
         end
       end

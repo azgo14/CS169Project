@@ -10,7 +10,7 @@ class VideosController < ApplicationController
 # DELETE /items/1      #=> destroy
 
   before_filter :authenticate_user!, :only => [:new, :create]
-  
+
   before_filter :blocking_user, :only => [:create_comment]
 
   def index
@@ -43,7 +43,7 @@ class VideosController < ApplicationController
     video = params[:video]
     if (name != '' and email != '' and age != '' and ethnicity != nil and
         language != '' and title != '' and video != nil)
-      spawn_block(:method => :thread, :kill => true) do
+      spawn_block do
         video_hash = {:video => File.new(video.path), :title => title, :description => about}
         yt_id = Video.upload(video_hash)
         video = Video.new(:youtube_id => yt_id, :user_id => current_user.id, :name => name,

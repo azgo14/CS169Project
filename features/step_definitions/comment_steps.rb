@@ -31,7 +31,6 @@ And /I should not see the comment "(.*)"/ do |comment|
 end
 
 And /I should see the profile comment "(.*)"/ do |comment|
-  puts page.body
   page.should have_selector(".profile_comment", :text => comment)
 end
 
