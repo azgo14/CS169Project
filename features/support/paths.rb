@@ -37,6 +37,9 @@ module NavigationHelpers
       "/users/#{$1}"
     when /^the new messages page$/
       '/messages/new'
+    when /^the user profile page for "([^"]+)"$/
+      "/users/#{User.find_by_email( $1 ).id}"
+
 
 
     # Add more mappings here.

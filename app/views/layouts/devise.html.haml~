@@ -17,15 +17,21 @@
           #background-right
           #login
             =render 'layouts/login'
+
         #navigation
           =render 'layouts/navigation'
         #content
           =render 'layouts/flashes'
           #content-left
           #content-right
-          
+<<<<<<< Updated upstream
+=======
+          =render 'layouts/flashes'
+>>>>>>> Stashed changes
+
           = yield
           .clear
         #footer
           #footer-left
           #footer-right
+

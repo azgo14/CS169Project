@@ -1,4 +1,5 @@
 !!! 5
+
 %html
   %head
     %title Banyan Tree Project
@@ -17,13 +18,21 @@
           #background-right
           #login
             =render 'layouts/login'
+
+          #search
+            =render 'layouts/search'
+
         #navigation
           =render 'layouts/navigation'
         #content
           =render 'layouts/flashes'
           #content-left
           #content-right
-          
+<<<<<<< Updated upstream
+=======
+          =render 'layouts/flashes'
+>>>>>>> Stashed changes
+
           = yield
           .clear
         #footer

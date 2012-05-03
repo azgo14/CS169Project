@@ -23,7 +23,11 @@
           =render 'layouts/flashes'
           #content-left
           #content-right
-          
+<<<<<<< Updated upstream
+=======
+          =render 'layouts/flashes'
+>>>>>>> Stashed changes
+
           = yield
           .clear
         #footer
