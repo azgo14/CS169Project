@@ -15,7 +15,7 @@
     = label_tag 'name', 'Name/Pseudonym <span class="required">*</span>'.html_safe
     = text_field_tag 'name'
     .moreinfo
-      %p Your name will be displayed next to your story title in our public library. If you want your story to be anonymoous, please use a pseudonym or 'anonymous'.
+      %p Your name will be displayed next to your story title in our public library. If you want your story to be anonymous, please use a pseudonym or 'anonymous'.
     = label_tag 'email', 'Email <span class="required">*</span>'.html_safe
     = email_field_tag 'email'
     .moreinfo
@@ -75,13 +75,8 @@
     = label_tag 'location', 'Location'
     = text_field_tag 'location'
     = label_tag 'video', 'Upload Your Story <span class="required">*</span>'.html_safe
-    = 'Supported file formats: (webm, mpeg4, 3gpp, mov, avi, mpegps, wmv, flv) <br/>'.html_safe
+    = 'Supported file formats: (3gpp, avi, flv, mov, mpeg4, mpegps, webm, wmv) <br/>'.html_safe
     = file_field_tag 'video'
-    = label_tag 'additional', 'Would you like to share any other images or videos related to your story?'
-    .additional
-      .fields
-        = file_field_tag 'additional[]'
-      %a.add Add another row
 
     %h2 About your story
     = label_tag 'title', 'What is the title of your story? <span class="required">*</span>'.html_safe
