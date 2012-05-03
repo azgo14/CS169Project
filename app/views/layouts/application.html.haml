@@ -13,7 +13,7 @@
         #head
           #background-left
           #logo
-            = image_tag "Banyan_logo.jpg" 
+            = link_to image_tag("Banyan_logo.jpg") , '/'
           #background-right
           #login
             - if user_signed_in?
