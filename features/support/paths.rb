@@ -33,6 +33,8 @@ module NavigationHelpers
       '/admin/comments'
     when /^the email page for "([^"]+)"$/
       "/admin/videos/email/#{Video.find_by_name($1).id}"
+    when /^the user profile page for user ([0-9]*)$/
+      "/users/#{$1}"
 
 
     # Add more mappings here.
