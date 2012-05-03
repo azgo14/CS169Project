@@ -2,5 +2,7 @@
   .messageitem
     %h1=link_to message.subject, message_path(message)
     %h2=message.from_name + " -> " + message.to_name
+    -if message.status == 'unread' and message.to_me(current_user.id)
+      %h3 (unread)
     .clear
 

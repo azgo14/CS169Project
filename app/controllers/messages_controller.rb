@@ -28,6 +28,10 @@ class MessagesController < ApplicationController
       flash[:error] = 'You are not allowed to view this message'
       redirect_to messages_path
     end
+    if @message.to_user == current_user.id and @message.status == 'unread'
+      @message.status = 'read'
+      @message.save!
+    end
   end
   def new 
     user = current_user
@@ -61,7 +65,8 @@ class MessagesController < ApplicationController
     end
 
     message = Message.new(:subject => subject, :message => message,
-                          :from_user => from_id, :to_user => to_id)
+                          :from_user => from_id, :to_user => to_id,
+                          :status => 'unread')
     message.save!
 
     flash[:note] = 'Thank you, your message has been sent!'
