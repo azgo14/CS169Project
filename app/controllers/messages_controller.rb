@@ -29,6 +29,10 @@ class MessagesController < ApplicationController
       redirect_to messages_path
     end
   end
+  def new 
+    user = current_user
+    @is_admin = user.admin
+  end
   def create
     subject, message = params[:subject], params[:message]
     to, to_id = params[:to], params[:to_id]
@@ -39,14 +43,16 @@ class MessagesController < ApplicationController
       target_user = User.find_by_email(to)
       if target_user == nil
         flash[:error] = 'Unable to find user with email: '+to
-        redirect_to new_messages_path
+        redirect_to new_message_path
+        return
       end
       to_id = target_user.id
     end
 
     if !current_user.admin and to_id != -1
       flash[:error] = 'You are not allowed to send messages to this user'
-      redirect_to new_messages_path
+      redirect_to new_message_path
+      return
     end
 
     from_id = current_user.id

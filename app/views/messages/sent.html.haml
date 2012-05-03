@@ -1,5 +1,5 @@
 #listmessages
   %h1 Sent Messages
-  =link_to "New Message", new_message_path()
-  =link_to "Received Messages", messages_path()
+  #messagenavigation
+    =render 'messages/navigation'
   =render :partial => 'messages/list'
