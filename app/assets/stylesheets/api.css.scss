@@ -9,13 +9,13 @@ $front-content-back-color: #f5f6e7;
 $second-color: #a0976d;
 $second-color-dark: #a0976d;
 
-$page-width: 1000px;
+$page-width: 964px;
 $page-margin: 5px;
 
 body {
-  background: $back-color;
   margin: 0;
   font-family: 'Georgia';
+  background: $back-color url(/assets/bg.gif) repeat-x
 }
 
 a {
@@ -47,56 +47,133 @@ a:hover {
   height:100%;
   background: url(/assets/bgBorder_right.jpg) repeat-y;
   background-position: right top;
-
 }
 #logo
 {
   float:left;
   margin-top:20px;
 }
-
+#login{
+  position:absolute;
+  top: 25px;
+  right:45px;
+}
+#search{
+  display: inline-block;
+  position: absolute;
+  top: 50px;
+  right: 45px;
+}
 #background-left{
-  float:left;
+  position:absolute;
+  left:0px;
+  top:0px;
   width:35px;
   height:100%;
   background: url(/assets/headerBg_left.jpg) no-repeat;
   background-position: left top;
 }
 #background-right{
-  float:right;
+  position:absolute;
+  right:0px;
+  top:0px;
   width:35px;
   height:100%;
   background: url(/assets/headerBg_right.jpg) no-repeat;
   background-position: right top;
 }
+
+#navigation{
+  margin: 0 8px;
+  padding: 5px 0px;
+  width: 984px;
+  background: $container-back-color;
+}
+
+#navigation ul{
+  width: 984px;
+  margin: 0 auto;
+  text-decoration: none;
+  list-style: none;
+  padding: 0px;
+  text-align: center;
+}
+
+#navigation li, #navigation a{
+  display: inline-block;
+  width:170px;
+}
+#navigation a{
+  font-size:16px;
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
 #content-left{
   background: url(/assets/naviBg_left.jpg) no-repeat;
   background-position: left top;
-  width:100%;
+  width:20px;
+  height:5px;
+  position:absolute;
+  z-index: 10;
+  top:0px;
+  left:-8px;
 }
 #content-right{
   background: url(/assets/naviBg_right.jpg) no-repeat;
   background-position: right top;
-  width:100%;
+  width:20px;
+  height:5px;
+  position:absolute;
+  z-index:10;
+  top:0px;
+  right:-8px;
 }
 #content {
   background: $content-back-color url(/assets/naviBg.jpg) repeat-x;
   margin: 0 8px;
-  width: 984px;
-  height:100px;
+  width: 964px;
   position:relative;
-  z-index:-1;
+  padding: 10px;
 }
 #head{
-
+  padding: 0px 40px;
   background: url(/assets/headerBg.jpg) repeat-x;
   height:113px;
+  position:relative;
+}
+#footer{
+  background: url(/assets/footer-bottom.jpg) repeat-x;
+  height:35px;
+  position:relative;
+}
+
+#footer-left{
+  background: url(/assets/footer-left.jpg) no-repeat;
+  height:100%;
+  width:50px;
+  position:absolute;
+  top:0px;
+  left:0px;
+  background-position: top left;
+}
+
+#footer-right{
+  background: url(/assets/footer-right.jpg) no-repeat;
+  height:100%;
+  width:50px;
+  position:absolute;
+  top:0px;
+  right:0px;
+  background-position: top right;
+  
 }
 .vidlistsubmit {
   background: $second-color-dark;
   color: #fff;
-  margin: 0 -10px 25px -10px;
   padding: 1px 10px 1px 10px;
+  margin: 0px -10px;
   h1 {
     font-family: 'Radley', cursive;
     color: #fff;

@@ -25,21 +25,30 @@
             - else
               = link_to "Sign In", sign_in_path
               = link_to "Register", new_user_registration_path
-
-
+          
         #navigation
-        #content-left
+          %ul
+            %li
+              = link_to "Upload", new_video_path
+            %li
+              = link_to "Videos", videos_path
+            - if current_user.try(:admin?)
+              %li
+                = link_to "Admin Video Review", admin_videos_path
+        #content
+          #content-left
           #content-right
-            #content
-              - if flash[:notice]
-                #notice.message= flash[:notice]
-              - elsif flash[:warning]
-                #warning.message= flash[:warning]
-              - elsif flash[:error]
-                #error.message= flash[:error]
-              - elsif flash[:alert]
-                #alert.message= flash[:alert]
+          - if flash[:notice]
+            #notice.message= flash[:notice]
+          - elsif flash[:warning]
+            #warning.message= flash[:warning]
+          - elsif flash[:error]
+            #error.message= flash[:error]
+          - elsif flash[:alert]
+            #alert.message= flash[:alert]
 
-              = yield
-              .clear
+          = yield
+          .clear
         #footer
+          #footer-left
+          #footer-right
