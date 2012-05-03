@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       flash[:error] = 'You are not allowed to view this message'
       redirect_to messages_path
     end
-    if @message.to_user == current_user.id and @message.status == 'unread'
+    if @message.to_me(current_user.id) and @message.status == 'unread'
       @message.status = 'read'
       @message.save!
     end
