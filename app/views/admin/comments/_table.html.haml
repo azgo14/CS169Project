@@ -7,3 +7,5 @@
       %td= comment.created_at.strftime("%B %d, %Y")
       %td= button_to 'Accept', {:action => 'accept', :id => comment.id}, :id => "#{comment.id}_accept"
       %td= button_to 'Reject', {:action => 'reject', :id => comment.id}, :id => "#{comment.id}_reject"
+      - if !comment.user.nil?
+        %td= link_to 'Go to Profile', user_path(comment.user)

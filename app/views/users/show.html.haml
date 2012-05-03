@@ -1,3 +1,10 @@
+%h1 Status
+%p= @status
+- if @user.blocked?
+  =button_to 'Unblock', { :action => "unblock", :id => @user.id, :controller => "users"}
+- else
+  =button_to 'Block', { :action => "block", :id => @user.id, :controller => "users" }
+
 %h1 Activity History
 %h2 Videos
 - @videos.each do |video|

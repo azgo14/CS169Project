@@ -17,7 +17,9 @@ CS169Project::Application.routes.draw do
   #   resources :products
 
   resources :users
-
+  match '/users/block/:id' => 'users#block', :as => :block
+  match '/users/unblock/:id' => 'users#unblock', :as => :unblock
+    
   match '/videos/search' => 'videos#search', :as => :video_search
 
   resources :videos do

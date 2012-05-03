@@ -10,6 +10,8 @@ class VideosController < ApplicationController
 # DELETE /items/1      #=> destroy
 
   before_filter :authenticate_user!, :only => [:new, :create]
+  
+  before_filter :blocking_user, :only => [:create_comment]
 
   def index
     @videos = Video.accepted_videos

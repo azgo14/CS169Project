@@ -44,6 +44,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def blocking_user
+    if current_user.try(:blocked?)
+      flash[:alert] = "You are blocked from commenting"
+      redirect_to :back
+    end
+  end
+  
   def yt_client
     @yt_client ||= YouTubeIt::Client.new(:dev_key => 'AI39si6KxFUeYAkWUV5FVWzUThnJGb6PmeSdXOBa9MeKapONiggor24t22qsWmgRGzzWZuaqdQeeMVF8XBaWFDi-_XPgOayKLg', :username => 'testacct281', :password => 'testpass281')
   end
