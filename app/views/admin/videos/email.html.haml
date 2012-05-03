@@ -1,9 +1,9 @@
 =form_tag admin_send_path(:reject => @reject) do
-  =label :email, :to, 'To: '
-  =text_field :email, 'to', :value => @video.email
+  =label :email, :to, 'To:'
+  =text_field :email, 'to', :value => @video.email, :size => 50
   %br
-  =label :email, :subject, 'Subject: '
-  =text_field :email, 'subject', :value => @subject
+  =label :email, :subject, 'Subject:'
+  =text_field :email, 'subject', :value => @subject, :size => 50
   %br
   =text_area :email, :body, :size => '100x10'
   %br

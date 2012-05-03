@@ -36,7 +36,7 @@ class Admin::VideosController < ApplicationController
 
   def email
     @video = Video.find_by_id(params[:id])
-    @reject = !params[:reject].blank?
+    @reject = params[:reject].eql?("true") ? true : false
     if (@reject)
       @subject = "Update on your Taking Root story submission"
     else
@@ -47,11 +47,13 @@ class Admin::VideosController < ApplicationController
   def send_email
     @video = Video.find_by_id(params[:id])
     email = Email.new(params[:email][:to], params[:email][:subject], params[:email][:body])
-    if (params[:reject])
+    if (params[:reject].eql? 'true')
       @video.update_attributes(:status => :rejected)
       #Make this unlist videos on Youtube
       #@video.make_unlisted
       flash[:notice] = 'This video has been rejected.'
+    else
+      flash[:notice] = 'Your email has been sent.'
     end
     SubmissionMailer.custom_message(email).deliver
     redirect_to admin_video_path(@video)
