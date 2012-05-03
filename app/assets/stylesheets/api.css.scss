@@ -133,12 +133,16 @@ a:hover {
   top:0px;
   right:-8px;
 }
-#content {
+#content-main{
   background: $content-back-color url(/assets/naviBg.jpg) repeat-x;
   margin: 0 8px;
   width: 964px;
   position:relative;
   padding: 10px;
+}
+#content{
+  display:block;
+  width:944px;
 }
 #head{
   padding: 0px 40px;
