@@ -17,7 +17,7 @@
           #background-right
           #login
             - if user_signed_in?
-              Welcome, #{current_user.email}
+              Welcome #{current_user.email}
               |
               = link_to "Profile", user_path(current_user)
               |
@@ -25,7 +25,7 @@
             - else
               = link_to "Sign In", sign_in_path
               = link_to "Register", new_user_registration_path
-                
+      
         #navigation
           %ul
             %li
@@ -54,3 +54,4 @@
         #footer
           #footer-left
           #footer-right
+
