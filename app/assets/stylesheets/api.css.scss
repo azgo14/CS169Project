@@ -325,6 +325,25 @@ a:hover {
   }
 }
 
+#messagenavigation {
+  text-align: center;
+  ul {
+    list-style: none;
+    border-bottom: 1px solid #cccccc;
+    li {
+      display: inline-block;
+      padding: 0px 10px 5px 10px;
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      a:hover {
+       text-decoration: underline; 
+      }
+    }
+  }
+}
+
 #viewmessage {
   h1 {
     font-size: 40px;
