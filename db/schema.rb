@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503063529) do
+ActiveRecord::Schema.define(:version => 20120503121234) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20120503063529) do
     t.text     "subject"
     t.text     "message"
     t.string   "status"
-    t.integer  "from_user",  :limit => 255
-    t.integer  "to_user",    :limit => 255
+    t.integer  "from_user"
+    t.integer  "to_user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
