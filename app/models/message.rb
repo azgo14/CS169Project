@@ -45,6 +45,13 @@ class Message < ActiveRecord::Base
       return to_user
     end
   end
+
+  def to_me(user_id)
+    if to_user == -1
+      return User.find_by_id(user_id).admin
+    end
+    return to_user == user_id
+  end
     
 
   def self.messages_to(user_id)
