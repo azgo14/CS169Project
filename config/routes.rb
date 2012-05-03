@@ -29,12 +29,15 @@ CS169Project::Application.routes.draw do
   
   resources :messages
 
+
   namespace :admin do
     resources :videos
     match '' => 'videos#index'
     match '/videos/accept/:id' => 'videos#accept', :as => :accept
     match '/videos/pend/:id' => 'videos#pend', :as => :pend
     match '/videos/reject/:id' => 'videos#reject', :as => :reject
+    match '/videos/email/:id' => 'videos#email', :as => :email
+    post '/videos/send/:id' => 'videos#send_email', :as => :send
     resources :comments
     match '/comments/accept/:id' => 'comments#accept', :as => :accept
     match '/comments/reject/:id' => 'comments#reject', :as => :reject
