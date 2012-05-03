@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       redirect_to videos_path
     end
   end
-  
+
   def block
     @user = User.find_by_id(params[:id])
     @user.blocked = true
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     end
   end
-  
+
   def unblock
     @user = User.find_by_id(params[:id])
     @user.blocked = false

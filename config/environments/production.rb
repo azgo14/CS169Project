@@ -1,3 +1,5 @@
+Spawn::default_options({:method => :thread, :kill => true})
+
 CS169Project::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
