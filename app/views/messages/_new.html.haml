@@ -1,5 +1,5 @@
 =form_tag({:action => :create}, :class => 'new-message-form', :multipart => 'true') do
-  - if display_to != nil
+  - if display_to
     = label_tag 'to', 'To email'
     = text_area_tag 'to'
   - if user_target != nil
