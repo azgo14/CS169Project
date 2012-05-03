@@ -17,7 +17,7 @@
           #background-right
           #login
             - if user_signed_in?
-              Welcome #{current_user.email}
+              Welcome, #{current_user.email}
               |
               = link_to "Profile", user_path(current_user)
               |
@@ -35,6 +35,8 @@
             - if current_user.try(:admin?)
               %li
                 = link_to "Admin Video Review", admin_videos_path
+              %li
+                = link_to "Admin Comment Review", admin_comments_path
         #content
           #content-left
           #content-right
