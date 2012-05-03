@@ -4,7 +4,10 @@ Given /the following messages exist/ do |messages_table|
   end
 end
 
-And /I should see the message "(.*)" with "(.*)"/ do |subject, content|
+And /I should see the message "(.*)"/ do |subject|
   page.should have_selector(".message", :text => subject)
-  page.should have_selector(".message", :text => content)
+end
+
+And /I should not see the message "(.*)"/ do |subject|
+  page.should_not have_selector(".message", :text => subject)
 end

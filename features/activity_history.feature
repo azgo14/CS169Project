@@ -23,25 +23,27 @@ Background: videos and comments submitted
 
 Scenario: Viewing a profile displays all comment history
   When I go to the user profile page for user 1
-  Then I should see the comment "You suck"
-  And I should see the comment "Amazing"
-  And I should not see the comment "I am young"
+  Then I should see the profile comment "You suck"
+  And I should see the profile comment "Amazing"
+  And I should not see the profile comment "I am young"
 
 Scenario: Viewing a profile displays all message history
   When I go to the user profile page for user 1
-  Then I should see the message "hello" with "testing"
-  And I should see the message "more" with "message"
-  And I should not see the message "wrong" with "person"
+  Then I should see the message "hello"
+  And I should see the message "more"
+  And I should not see the message "wrong"
 
 Scenario: Posting a comment updates activity history
   When I go to the video detail page for "Mario"
   And I fill in "Comment" with "Some comment"
   And I press "Submit"
   And I go to the user profile page for user 1
-  Then I should see the comment "Some comment"
+  Then I should see the profile comment "Some comment"
 
 Scenario: Sending a message updates activity history
   When I go to the new messages page
-  And I send a new message "Hello there"
+  And I fill in "Subject" with "testing"
+  And I fill in "Message" with "something"
+  And I press "Send"
   And I go to the user profile page for user 1
-  Then I should see the message "Hello there"
+  Then I should see the message "testing"

@@ -1,15 +1,22 @@
 %h1 Activity History
 %h2 Videos
-- @videos.each do |video|
-  .video
-    =link_to video.name, video_path(video)
-  %br
+%table
+  %tbody
+    - @videos.each do |video|
+      %tr.video
+        %td= link_to video.title, video_path(video)
+        %td= video.status
 %h2 Comments
-- @comments.each do |comment|
-  .comment
-    =link_to comment.content, video_path(comment.video_id)
-  %br
+%table
+  %tbody
+    - @comments.each do |comment|
+      %tr.profile_comment
+        %td= link_to comment.content, video_path(comment.video_id)
+        %td= comment.status
 %h2 Messages
-- @messages.each do |message|
-  .message
-    =link_to message.subject, message_path(message)
+%table
+  %tbody
+    - @messages.each do |message|
+      %tr.message
+        %td= link_to message.subject, message_path(message)
+        %td= message.status
