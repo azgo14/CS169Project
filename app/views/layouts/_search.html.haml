@@ -1,0 +1,10 @@
+= form_tag video_search_path, :method => 'get' do
+  - if(@search_condition != "Location")
+    = text_field_tag "search_text", @search_text, :placeholder => 'Enter search term...'
+    = select_tag "replace", options_for_select(us_states), :style => "display: none"
+  - else
+    = text_field_tag "replace1", nil, :placeholder => 'Enter search term...', :style => "display: none"
+    = select_tag "search_text", options_for_select(us_states, @search_text)
+  = select_tag "search_condition", options_for_select(Video::SEARCH_OPTIONS,@search_condition)
+  = submit_tag "Search"
+

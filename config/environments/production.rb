@@ -49,7 +49,7 @@ CS169Project::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
-  # config.threadsafe!
+  config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
@@ -57,7 +57,7 @@ CS169Project::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   # for devise
   config.action_mailer.default_url_options = { :host => 'banyantree.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
@@ -68,6 +68,5 @@ CS169Project::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => ENV['SENDGRID_DOMAIN']
   }
-
 
 end
