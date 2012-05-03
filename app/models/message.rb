@@ -4,7 +4,11 @@ class Message < ActiveRecord::Base
     if from_user == -1
       return 'Admin'
     else
-      return User.find_by_id(from_user).email
+      user = User.find_by_id(from_user)
+      if user == nil
+        return 'Unknown'
+      end
+      return user.email
     end
   end
   
@@ -12,7 +16,11 @@ class Message < ActiveRecord::Base
     if to_user == -1
       return 'Admin'
     else
-      return User.find_by_id(to_user).email
+      user = User.find_by_id(to_user)
+      if user == nil
+        return 'Unknown'
+      end
+      return user.email
     end
   end
 

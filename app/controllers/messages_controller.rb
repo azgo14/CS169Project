@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
     user = current_user
     if user == nil
       flash[:error] = 'You are not logged in'
-      @messages = []
+      redirect_to videos_path
+      return
     else
       @messages = Message.messages_to(user.id)
     end
@@ -12,7 +13,7 @@ class MessagesController < ApplicationController
     user = current_user
     if user == nil
       flash[:error] = 'You are not logged in'
-      @messages = []
+      redirect_to videos_path
     else
       @messages = Message.messages_from(user.id)
     end
@@ -23,10 +24,12 @@ class MessagesController < ApplicationController
     if @message == nil
       flash[:error] = 'Error loading message'
       redirect_to messages_path
+      return
     end
     if not(@message.viewable_by(current_user.id))
       flash[:error] = 'You are not allowed to view this message'
       redirect_to messages_path
+      return
     end
     if @message.to_me(current_user.id) and @message.status == 'unread'
       @message.status = 'read'
@@ -35,9 +38,18 @@ class MessagesController < ApplicationController
   end
   def new 
     user = current_user
+    if user == nil
+      flash[:error] = 'You are not logged in'
+      redirect_to videos_path
+      return
+    end
     @is_admin = user.admin
   end
   def create
+    if current_user == nil
+      flash[:error] = 'You are not logged in'
+      redirect_to videos_path
+    end
     subject, message = params[:subject], params[:message]
     to, to_id = params[:to], params[:to_id]
 

@@ -3,38 +3,34 @@ As a registered community member
 So that I may communicate with BTP admin staff
 I want to be able to send messages/requests, etc
 
-Background:
-  Given the following user exists:
-    |  email               |  password   |  admin  | id  |
-    |  apiUser@gmail.com   |  abbtcs169  |  false  | 123 |
-    |  adminAPI@gmail.com  |  cs169Admin |  true   | 456 |
+Background: 
+  Given I set up accounts for messages because Devise is silly
 
 Scenario: Send a message to admin
+  Given I am signed in as an admin for messages
   Given I am on the home page
-  And I am logged in as adminAPI@gmail.com
   When I follow "Messages"
-  Then I should not see "apiUser@gmail.com"
   And I should not see "My Subject"
 
+  Given I am not logged in
+  Given I am signed in as a user for messages
   Given I am on the home page
-  And I am logged in as apiUser@gmail.com
   When I follow "Messages"
   Then I should be on the messages page
 
   When I follow "New Message"
   Then I should be on the new messages page
-  When I fill in "Subject" with "My Subject"
-  When I fill in "Message" with "My Message"
+  When I fill in "subject" with "My Subject"
+  When I fill in "message" with "My Message"
+  And I press "Send"
 
+  Given I am not logged in
+  Given I am signed in as an admin for messages
   Given I am on the home page
-  And I am logged in as adminAPI@gmail.com
   When I follow "Messages"
-  Then I should see "apiUser@gmail.com"
   And I should see "My Subject"
   And I should not see "My Message"
   When I follow "My Subject"
-  Then I should be on the message detail page
-  And I should see "apiUser@gmail.com"
   And I should see "My Subject"
   And I should see "My Message"
 
@@ -49,6 +45,7 @@ Scenario: See list of messages
     | From Admin3 | 5678    | unread | admin     | 234     |
   Given I am on the home page
   And I am logged in as "apiUser@gmail.com"
+  And this is not possible because Devise does not allow us to test like this
   When I follow "Messages"
   Then I should see "From Admin1"
   And I should see "From Admin2"
