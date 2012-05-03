@@ -19,7 +19,7 @@
             - if user_signed_in?
               Welcome #{current_user.email}
               |
-              = link_to "Activity History", user_path(current_user)
+              = link_to "Profile", user_path(current_user)
               |
               = link_to "Logout", destroy_user_session_path, :method => :delete
             - else
