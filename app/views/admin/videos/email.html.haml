@@ -1,0 +1,12 @@
+=form_tag admin_send_path(:reject => @reject) do
+  =label :email, :to, 'To: '
+  =text_field :email, 'to', :value => @video.email
+  %br
+  =label :email, :subject, 'Subject: '
+  =text_field :email, 'subject', :value => @subject
+  %br
+  =text_area :email, :body, :size => '100x10'
+  %br
+  =submit_tag 'Send'
+=button_to 'Cancel', admin_video_path(@video), :method => "get"
+

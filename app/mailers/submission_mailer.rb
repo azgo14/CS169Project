@@ -7,5 +7,14 @@ class SubmissionMailer < ActionMailer::Base
         :subject => 'Your story for Taking Root has been accepted'
     )
   end
+
+  def custom_message(email)
+    @email = email
+    mail(
+      :from => 'info@banyantreeproject.org',
+      :to => email.to,
+      :subject => email.subject
+    )
+  end
 end
 

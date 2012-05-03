@@ -43,3 +43,4 @@
   =@video.status
   = button_to 'Accept', {:controller => 'admin/videos', :action => 'accept', :id => @video.id}
   = button_to 'Reject', {:controller => 'admin/videos', :action => 'reject', :id => @video.id}
+  = button_to 'Email', {:controller => 'admin/videos', :action => 'email', :id => @video.id}
