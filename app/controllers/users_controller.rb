@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    if params[:id] == current_user.id.to_s
+    if params[:id] == current_user.id.to_s or current_user.admin
       @comments = Comment.find_all_by_user_id(params[:id])
       @videos = Video.find_all_by_user_id(params[:id])
     else
