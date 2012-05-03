@@ -13,14 +13,14 @@ Background: videos submitted
 
 Scenario: Rejecting a video
   When I press "Reject"
-  Then I should be on the email page
-  And I should see "To: oak@oaks_lab.com"
-  And I should see "Subject: Update on your Taking Root story submission"
-  And "message" should be empty
-  When I fill in "message" with "What is your favorite starter Pokemon?"
+  Then I should be on the email page for "Professor Oak"
+  And the "email_to" field should contain "oak@oaks_lab.com"
+  And the "email_subject" field should contain "Update on your Taking Root story submission"
+  And the "email_body" field should be empty
+  When I fill in "email_body" with "What is your favorite starter Pokemon?"
   And I press "Send"
   Then I should be on the admin video detail page for "Professor Oak"
-  And I should see "Your email has been sent."
+  And I should see "This video has been rejected."
 
 Scenario: Cancel sending an email
   When I press "Reject"
