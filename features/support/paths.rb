@@ -35,6 +35,8 @@ module NavigationHelpers
       "/admin/videos/email/#{Video.find_by_name($1).id}"
     when /^the user profile page for user ([0-9]*)$/
       "/users/#{$1}"
+    when /^the new messages page$/
+      '/messages/new'
 
 
     # Add more mappings here.

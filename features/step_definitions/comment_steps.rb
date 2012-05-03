@@ -30,6 +30,15 @@ And /I should not see the comment "(.*)"/ do |comment|
   page.should_not have_selector(".comment", :text => comment)
 end
 
+And /I should see the profile comment "(.*)"/ do |comment|
+  puts page.body
+  page.should have_selector(".profile_comment", :text => comment)
+end
+
+And /I should not see the profile comment "(.*)"/ do |comment|
+  page.should_not have_selector(".profile_comment", :text => comment)
+end
+
 Then /I should see comment ([0-9]*) as "(.*)"/ do |comment, status|
   page.should have_selector("##{comment}", :text => status)
 end
