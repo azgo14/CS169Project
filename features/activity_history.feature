@@ -35,15 +35,15 @@ Scenario: Viewing a profile displays all message history
 
 Scenario: Posting a comment updates activity history
   When I go to the video detail page for "Mario"
-  And I fill in "Comment" with "Some comment"
-  And I press "Submit"
+  And I fill in "content" with "Some comment"
+  And I press "Submit Anonymously"
   And I go to the user profile page for user 1
   Then I should see the profile comment "Some comment"
 
 Scenario: Sending a message updates activity history
   When I go to the new messages page
-  And I fill in "Subject" with "testing"
-  And I fill in "Message" with "something"
+  And I fill in "subject" with "testing"
+  And I fill in "message" with "something"
   And I press "Send"
   And I go to the user profile page for user 1
   Then I should see the message "testing"
