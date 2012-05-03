@@ -77,7 +77,7 @@ class VideosController < ApplicationController
     @video = Video.find_by_id(id)
     if not(@video) || @video.status != 'accepted'
       flash[:error] = 'Invalid video id'
-      redirect_to videos_path
+      redirect_to videos_path and return
     end
 
     @video.likes += 1
