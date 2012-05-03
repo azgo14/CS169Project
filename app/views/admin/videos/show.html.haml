@@ -3,18 +3,18 @@
     %h1=@video.name
     %iframe{:class => 'vid', :src => "http://www.youtube.com/embed/#{@video.youtube_id}"}
     %h2 What is the title of your story?
-    =text_area :video, :title, :size => '140x5'
+    =text_area :video, :title, :size => '120x5'
     %h2 What is your story about?
-    =text_area :video, :about, :size => '140x5'
+    =text_area :video, :about, :size => '120x5'
     %h2 Why did you want to tell this story?
-    =text_area :video, :why, :size => '140x5'
+    =text_area :video, :why, :size => '120x5'
     %h2 How did telling your story change you?
-    =text_area :video, :how, :size => '140x5'
+    =text_area :video, :how, :size => '120x5'
     %h2 How do you hope hearing your story will change the community?
-    =text_area :video, :hope, :size => '140x5'
+    =text_area :video, :hope, :size => '120x5'
     %h2 Additional Media
     %h2 Notes
-    =text_area :video, :notes, :size => '140x5'
+    =text_area :video, :notes, :size => '120x5'
     = submit_tag 'Save changes'
   %h2 Comments
   .likes
@@ -43,4 +43,4 @@
   =@video.status
   = button_to 'Accept', {:controller => 'admin/videos', :action => 'accept', :id => @video.id}
   = button_to 'Reject', {:controller => 'admin/videos', :action => 'reject', :id => @video.id}
-  = button_to 'Email', {:controller => 'admin/videos', :action => 'email', :id => @video.id}
+  = button_to 'Email', {:controller => 'admin/videos', :action => 'email', :id => @video.id, :reject => false}
