@@ -14,6 +14,19 @@ Given /I am signed in as an administrator/ do
   step %{I press "Sign in"}
 end
 
+Given /I am signed in as a blocked user/ do
+  user = User.find_by_email('blockuser@api.com')
+  if(user.blank?)
+    buser = User.create(:email => 'blockuser@api.com', :password => 'password')
+    buser.blocked = true
+    buser.save
+  end
+  step %{I am on the user sign-in page}
+  step %{I fill in "user_email" with "blockuser@api.com"}
+  step %{I fill in "user_password" with "password"}
+  step %{I press "Sign in"}
+end
+
 Given /I am signed in as a registered user/ do
   user = User.find_by_email('user@api.com')
   if(user.blank?)
